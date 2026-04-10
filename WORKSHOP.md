@@ -104,7 +104,7 @@ Use Redis as a **cache** so the computation runs once and subsequent requests ar
 
 ### Steps
 
-1. Open `api/routes/daily_mix.py`.
+1. Open `api/services/daily_mix.py`.
 2. Before the slow computation, check Redis: `GET daily-mix:{user_id}`. If found, return it.
 3. After computing, store: `SET daily-mix:{user_id} <json> EX 86400`.
 4. Verify:
@@ -154,7 +154,7 @@ Replace with a Redis **atomic counter**.
 
 ### Steps
 
-1. Open `api/routes/songs.py` — find the play-count endpoint.
+1. Open `api/services/songs.py` — find the `play_song` function.
 2. Replace the SELECT/UPDATE with `INCR play-count:song:{song_id}`.
 3. Verify:
 
@@ -201,7 +201,7 @@ Use a Redis **Set** for **O(1)** add-with-dedup.
 
 ### Steps
 
-1. Open `api/routes/artists.py` — find the listener-tracking logic.
+1. Open `api/services/artists.py` — find the `add_listener` function.
 2. Replace the List + scan with `SADD monthly-listeners:{artist_id}:{YYYY-MM} {user_id}`.
 3. Verify:
 
@@ -246,8 +246,8 @@ Use a Redis **Sorted Set** where every play event atomically updates the ranking
 
 ### Steps
 
-1. Open `api/routes/songs.py` — in the play endpoint, after `INCR`, also call `ZINCRBY top-songs 1 {song_id}`.
-2. Wire the leaderboard endpoint (`api/routes/leaderboard.py`) to call `ZREVRANGE top-songs 0 49 WITHSCORES` instead of querying PostgreSQL.
+1. Open `api/services/songs.py` — in the `play_song` function, after `INCR`, also call `ZINCRBY top-songs 1 {song_id}`.
+2. Open `api/services/leaderboard.py` — replace the PostgreSQL query with `ZREVRANGE top-songs 0 49 WITHSCORES`.
 3. Verify:
 
 ```bash
@@ -305,7 +305,7 @@ workshop get-redis-memory-usage
 
 ### Steps
 
-1. Open `api/routes/artists.py`.
+1. Open `api/services/artists.py`.
 2. Replace `SADD` with `PFADD hll-listeners:{artist_id}:{YYYY-MM} {user_id}`.
 3. Replace the `SCARD` count endpoint with `PFCOUNT`.
 4. Re-run the listener ingestion and compare memory with `workshop get-redis-memory-usage`.

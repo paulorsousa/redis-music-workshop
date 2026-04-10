@@ -191,12 +191,20 @@ redis-music-workshop/
 │   ├── main.py                 # App entry point, CORS, lifespan
 │   ├── database.py             # PostgreSQL connection (psycopg / SQLAlchemy), CSV seed loader
 │   ├── redis_client.py         # Redis connection (redis-py)
-│   └── routes/
-│       ├── songs.py            # /songs, /songs/{id}, /songs/{id}/play, /songs/{id}/similar
-│       ├── artists.py          # /artists, /artists/{id}, /artists/{id}/listeners
-│       ├── daily_mix.py        # /daily-mix
-│       ├── leaderboard.py      # /leaderboard
-│       └── admin.py            # /admin/load-embeddings
+│   ├── core/                   # Core code (DO NOT EDIT during the workshop)
+│   │   └── daily_mix_engine.py  # Slow recommendation algorithm (time.sleep)
+│   ├── routes/                 # HTTP layer (request parsing, error responses)
+│   │   ├── songs.py            # /songs, /songs/{id}, /songs/{id}/play, /songs/{id}/similar
+│   │   ├── artists.py          # /artists, /artists/{id}, /artists/{id}/listeners
+│   │   ├── daily_mix.py        # /daily-mix
+│   │   ├── leaderboard.py      # /leaderboard
+│   │   └── admin.py            # /admin/load-embeddings
+│   └── services/               # Business logic (what students edit during the workshop)
+│       ├── songs.py            # Modules 2, 4, 6 — play counts, sorted sets, vectors
+│       ├── artists.py          # Modules 3, 5 — listener tracking (sets, HLL)
+│       ├── daily_mix.py        # Module 1 — caching & TTL
+│       ├── leaderboard.py      # Module 4 — sorted set reads
+│       └── admin.py            # Module 6 — embedding loading
 │
 ├── frontend/                   # React (Vite)
 │   ├── src/
