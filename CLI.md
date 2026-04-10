@@ -124,20 +124,20 @@ Fires play events and reports the final counter.
 **Output (broken):**
 
 ```
-Firing 500 concurrent plays for song-1...
-  Plays [█████████████████████████] 500/500  ✗ 0 errors
+Firing 500 concurrent plays for song-1 (current: 0)...
+  Plays [█████████████████████████] 500/500
 ⏱ 3.21 s
-Expected: 500
+Expected: 0 + 500 = 500
 Actual:   487 ✗ (13 lost)
 ```
 
 **Output (fixed):**
 
 ```
-Firing 500 concurrent plays for song-1...
+Firing 500 concurrent plays for song-1 (current: 0)...
   Plays [█████████████████████████] 500/500
 ⏱ 1.85 s
-Expected: 500
+Expected: 0 + 500 = 500
 Actual:   500 ✓
 ```
 

@@ -151,7 +151,12 @@ def cmd_simulate_plays(args):
     song_id = args.song
     count = args.count
     label = "concurrent" if args.concurrent else "sequential"
-    print(f"\nFiring {count} {label} plays for {song_id}...")
+
+    # Read current play count before firing
+    before_data, _ = api_call(f"/songs/{song_id}")
+    before = before_data["play_count"]
+
+    print(f"\nFiring {count} {label} plays for {song_id} (current: {before})...")
     progress = ProgressTracker(count, label="Plays")
 
     def fire_play(_):
@@ -172,13 +177,14 @@ def cmd_simulate_plays(args):
     progress.finish()
 
     data, _ = api_call(f"/songs/{song_id}")
-    actual = data["play_count"]
+    after = data["play_count"]
+    gained = after - before
     print(f"⏱ {elapsed:.2f} s")
-    print(f"Expected: {count}")
-    if actual == count:
-        print(f"Actual:   {actual} ✓")
+    print(f"Expected: {before} + {count} = {before + count}")
+    if gained == count:
+        print(f"Actual:   {after} ✓")
     else:
-        print(f"Actual:   {actual} ✗ ({count - actual} lost)")
+        print(f"Actual:   {after} ✗ ({count - gained} lost)")
 
 
 def cmd_add_listeners(args):
