@@ -1,5 +1,5 @@
 """
-Module 3 — Sets
+Module 4 — Sets
 Module 5 — HyperLogLog
 
 Business logic for artist queries and monthly-listener tracking.
@@ -11,7 +11,7 @@ from redis_client import r
 
 
 def _get_listener_count(artist_id: str) -> int:
-    """Get monthly listener count using Redis List (intentionally slow — Module 3)."""
+    """Get monthly listener count using Redis List (intentionally slow — Module 4)."""
     month = datetime.now().strftime("%Y-%m")
     key = f"monthly-listeners:{artist_id}:{month}"
     return r.llen(key)
@@ -74,15 +74,15 @@ def artist_exists(artist_id: str) -> bool:
 
 
 def add_listener(artist_id: str, user_id: str) -> None:
-    """Track a listener — intentionally uses Redis List with O(N) dedup (Module 3).
+    """Track a listener — intentionally uses Redis List with O(N) dedup (Module 4).
 
-    TODO: Module 3 — replace List + scan with SADD monthly-listeners:{artist_id}:{YYYY-MM} {user_id}
+    TODO: Module 4 — replace List + scan with SADD monthly-listeners:{artist_id}:{YYYY-MM} {user_id}
     TODO: Module 5 — replace SADD with PFADD hll-listeners:{artist_id}:{YYYY-MM} {user_id}
     """
     month = datetime.now().strftime("%Y-%m")
     key = f"monthly-listeners:{artist_id}:{month}"
 
-    # O(N) dedup check on a List — intentionally slow (Module 3)
+    # O(N) dedup check on a List — intentionally slow (Module 4)
     existing = r.lrange(key, 0, -1)
     if user_id not in existing:
         r.rpush(key, user_id)

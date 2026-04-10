@@ -1,5 +1,5 @@
 """
-Module 4 — Sorted Sets (read side)
+Module 3 — Sorted Sets (read side)
 
 Business logic for the top-songs leaderboard.
 """
@@ -8,9 +8,9 @@ from database import get_connection
 
 
 def get_leaderboard(per_page: int) -> dict:
-    """Top songs by play count — queries PostgreSQL directly (Module 4 replaces with Sorted Set).
+    """Top songs by play count — queries PostgreSQL directly (Module 3 replaces with Sorted Set).
 
-    TODO: Module 4 — replace with ZREVRANGE top-songs 0 {per_page-1} WITHSCORES
+    TODO: Module 3 — replace with ZREVRANGE top-songs 0 {per_page-1} WITHSCORES
     """
     conn = get_connection()
     cur = conn.cursor()

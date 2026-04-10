@@ -36,8 +36,8 @@ All services run via **Docker Compose**. Students clone the repo and run `docker
 | Setup & intro          | 10 min   | Architecture walkthrough, `docker compose up`, verify UI works |
 | Module 1 — Caching     | 20 min   | Strings, `SET`/`GET`, TTL                                      |
 | Module 2 — Counters    | 15 min   | `INCR`, atomicity                                              |
-| Module 3 — Sets        | 15 min   | `SADD`, `SCARD`, `SISMEMBER`                                   |
-| Module 4 — Sorted Sets | 15 min   | `ZINCRBY`, `ZREVRANGE`                                         |
+| Module 3 — Sorted Sets | 15 min   | `ZINCRBY`, `ZREVRANGE`                                         |
+| Module 4 — Sets        | 15 min   | `SADD`, `SCARD`, `SISMEMBER`                                   |
 | Module 5 — HyperLogLog | 15 min   | `PFADD`, `PFCOUNT`, memory comparison                          |
 | Module 6 — VectorSets  | 20 min   | `VADD`, `VSIM` _(bonus — only if time allows)_                 |
 | Wrap-up                | 10 min   | Recap, Q&A                                                     |
@@ -64,8 +64,8 @@ The `--user` flag accepts a **username** (e.g. `user-1`) and derives the 36-char
 | `./workshop list-artists [--page N] [--per-page N]`                | —      | Lists artists                                                            |
 | `./workshop daily-mix [--user <username>]`                         | 1      | Calls the daily-mix endpoint and prints the response time                |
 | `./workshop simulate-plays --song <id> [--count N] [--concurrent]` | 2      | Fires N play events (optionally concurrent) and prints the final counter |
-| `./workshop add-listeners --artist <id> [--count N]`               | 3, 5   | Adds N random listeners using the API, prints timing                     |
-| `./workshop top-songs [--limit N]`                                 | 4      | Prints the current Top-N leaderboard from the Sorted Set                 |
+| `./workshop top-songs [--limit N]`                                 | 3      | Prints the current Top-N most-played songs                               |
+| `./workshop add-listeners --artist <id> [--count N]`               | 4, 5   | Adds N random listeners using the API, prints timing                     |
 | `./workshop get-redis-memory-usage`                                | 5      | Prints the memory used by Redis                                          |
 | `./workshop load-embeddings`                                       | 6      | Triggers the API to compute embeddings and load them into a VectorSet    |
 | `./workshop similar-songs --song <id> [--count N]`                 | 6      | Queries the VectorSet for similar songs                                  |
@@ -170,16 +170,66 @@ Implement song play counts with Redis **atomic counters**.
 - How / when do you sync back to PostgreSQL?
 - What happens if Redis restarts? (persistence: RDB / AOF)
 
-### Extra
-
-- Update `list_songs` to read the play count from Redis and merge with the PostgreSQL data.
-
-> [!TIP]
-> Use `MGET key1 key2 ...` to fetch multiple keys in one roundtrip.
+> [!NOTE]
+> By moving play counts to Redis, the **Top Songs** leaderboard (which still reads from PostgreSQL) is now broken — it will always show zero plays. We'll fix this right away in the next module.
 
 ---
 
-## Module 3 — Sets
+## Module 3 — Sorted Sets
+
+**⏱ 15 min**
+
+### Problem
+
+The leaderboard on the home page shows the **"Top Songs"** by play count. It queries PostgreSQL:
+
+```sql
+SELECT * FROM songs ORDER BY play_count DESC LIMIT 50;
+```
+
+After Module 2 moved play counts to Redis, this query returns stale data — PostgreSQL's `play_count` column is no longer updated.
+
+### Goal
+
+We need a data structure that:
+
+1. **Associates each song with a numeric score** (its play count).
+2. **Keeps members sorted by score** at all times — no need to re-sort on every read.
+3. **Updates scores atomically** — concurrent play events never lose an increment.
+
+A Redis **Sorted Set** does exactly this. Every member has a floating-point score, and Redis keeps them sorted automatically. Inserts, score updates, and range queries are all **O(log N)**.
+
+Use a Sorted Set where every play event atomically updates the ranking, and the leaderboard reads directly from it.
+
+### Key Redis commands
+
+| Command                        | Purpose                            |
+| ------------------------------ | ---------------------------------- |
+| `ZINCRBY key increment member` | Atomically add to a member's score |
+| `ZREVRANGE key 0 N WITHSCORES` | Top N members by score             |
+| `ZREVRANK key member`          | "What position is this song?"      |
+| `ZSCORE key member`            | "How many plays?"                  |
+
+### Steps
+
+1. Open `api/services/songs.py` — in the `play_song` function, after `INCR`, also call `ZINCRBY top-songs 1 {song_id}`.
+2. Open `api/services/leaderboard.py` — replace the PostgreSQL query with `ZREVRANGE top-songs 0 49 WITHSCORES`.
+3. Verify:
+
+```bash
+./workshop simulate-plays --song song-1 --count 20 --concurrent
+./workshop simulate-plays --song song-2 --count 35 --concurrent
+./workshop top-songs --limit 10
+# song-2: 35, song-1: 20
+```
+
+### Discussion
+
+- How would you build a "trending this week" chart? (time-windowed key + `EXPIRE`)
+
+---
+
+## Module 4 — Sets
 
 **⏱ 15 min**
 
@@ -225,59 +275,13 @@ Use a Redis **Set** for **O(1)** add-with-dedup.
 
 ---
 
-## Module 4 — Sorted Sets
-
-**⏱ 15 min**
-
-### Problem
-
-The product team wants a **"Top Songs"** leaderboard updated in real time. The current approach queries PostgreSQL:
-
-```sql
-SELECT * FROM songs ORDER BY play_count DESC LIMIT 50;
-```
-
-This is slow under write-heavy load and always slightly stale.
-
-### Goal
-
-Use a Redis **Sorted Set** where every play event atomically updates the ranking.
-
-### Key Redis commands
-
-| Command                        | Purpose                            |
-| ------------------------------ | ---------------------------------- |
-| `ZINCRBY key increment member` | Atomically add to a member's score |
-| `ZREVRANGE key 0 N WITHSCORES` | Top N members by score             |
-| `ZREVRANK key member`          | "What position is this song?"      |
-| `ZSCORE key member`            | "How many plays?"                  |
-
-### Steps
-
-1. Open `api/services/songs.py` — in the `play_song` function, after `INCR`, also call `ZINCRBY top-songs 1 {song_id}`.
-2. Open `api/services/leaderboard.py` — replace the PostgreSQL query with `ZREVRANGE top-songs 0 49 WITHSCORES`.
-3. Verify:
-
-```bash
-./workshop simulate-plays --song song-1 --count 20 --concurrent
-./workshop simulate-plays --song song-2 --count 35 --concurrent
-./workshop top-songs --limit 10
-# song-2: 35, song-1: 20
-```
-
-### Discussion
-
-- How would you build a "trending this week" chart? (time-windowed key + `EXPIRE`)
-
----
-
 ## Module 5 — HyperLogLog
 
 **⏱ 15 min**
 
 ### Problem
 
-Module 3 improved speed, but **not memory** usage. Each user ID is stored in full in the Set.
+Module 4 improved speed, but **not memory** usage. Each user ID is stored in full in the Set.
 Our top-5 artists count with ~100 M monthly listeners (36-char UUIDs each):
 
 ```
@@ -383,8 +387,8 @@ Use Redis **VectorSets** (Redis 8.0+) to store song embeddings and perform simil
 | ------ | ----------------- | ----------------------------------------- | ---------------- |
 | 1      | Strings + TTL     | Redundant expensive computation           | 20 min           |
 | 2      | Counters (`INCR`) | Lost updates under concurrency            | 15 min           |
-| 3      | Sets              | O(N) deduplication                        | 15 min           |
-| 4      | Sorted Sets       | Real-time leaderboards                    | 15 min           |
+| 3      | Sorted Sets       | Real-time leaderboards                    | 15 min           |
+| 4      | Sets              | O(N) deduplication                        | 15 min           |
 | 5      | HyperLogLog       | Memory explosion for cardinality counting | 15 min           |
 | 6      | VectorSets        | Semantic similarity search                | 20 min _(bonus)_ |
 

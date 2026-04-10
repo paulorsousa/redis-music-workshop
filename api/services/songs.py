@@ -1,6 +1,6 @@
 """
 Module 2 — Atomic Counters
-Module 4 — Sorted Sets (write side: ZINCRBY on play)
+Module 3 — Sorted Sets (write side: ZINCRBY on play)
 Module 6 — VectorSets  (read side: VSIM for similar songs)
 
 Business logic for song queries and play-count tracking.
@@ -15,9 +15,11 @@ def play_song(song_id: str) -> int | None:
 
     Returns None if the song does not exist.
 
-    Intentionally broken with race condition (Module 2).
+    NOTE: Intentionally broken with race condition (Module 2 fixes it with INCR).
+    NOTE: After Module 2, the leaderboard breaks (Module 3 fixes it with ZINCRBY).
+
     TODO: Module 2 — replace SELECT/+1/UPDATE with INCR play-count:song:{song_id}
-    TODO: Module 4 — also call ZINCRBY top-songs 1 {song_id}
+    TODO: Module 3 — also call ZINCRBY top-songs 1 {song_id}
     """
     conn = get_connection()
     cur = conn.cursor()
@@ -79,8 +81,6 @@ def list_songs(artist_id: str | None, page: int, per_page: int) -> dict:
     cur.close()
     conn.close()
 
-    # TODO: Module 2 — replace songs' play_count with Redis counter (play-count:song:{song_id})
-
     return {"total": total, "page": page, "per_page": per_page, "data": data}
 
 
@@ -103,7 +103,7 @@ def get_song(song_id: str) -> dict | None:
     cols = [d[0] for d in cur.description]
     result = dict(zip(cols, row))
 
-    # Get play count from Redis, fall back to PostgreSQL if not found (Module 2 not implemented yet)
+    # Get play count from Redis, fallback to PostgreSQL if missing (Module 2 pending)
     redis_count = r.get(f"play-count:song:{song_id}")
     if redis_count:
         result["play_count"] = int(redis_count)

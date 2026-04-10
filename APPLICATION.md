@@ -73,7 +73,7 @@ All collection endpoints (e.g. `/songs`, `/artists`) must be **paginated** using
 | ------ | --------------------- | ---------------------------------------------- | ------ |
 | `GET`  | `/songs`              | List all songs (supports `?artist_id=` filter) | —      |
 | `GET`  | `/songs/{id}`         | Song detail (includes `play_count`)            | —      |
-| `POST` | `/songs/{id}/play`    | Increment play count                           | 2, 4   |
+| `POST` | `/songs/{id}/play`    | Increment play count                           | 2, 3   |
 | `GET`  | `/songs/{id}/similar` | Similar songs _(empty until Module 6)_         | 6      |
 
 ### Artists
@@ -82,7 +82,7 @@ All collection endpoints (e.g. `/songs`, `/artists`) must be **paginated** using
 | ------ | ------------------------- | ----------------------------------------------------- | ------ |
 | `GET`  | `/artists`                | List all artists (includes `monthly_listeners` count) | —      |
 | `GET`  | `/artists/{id}`           | Artist detail (includes `monthly_listeners` count)    | —      |
-| `POST` | `/artists/{id}/listeners` | Record a listener (user ID from `X-User-ID` header)   | 3, 5   |
+| `POST` | `/artists/{id}/listeners` | Record a listener (user ID from `X-User-ID` header)   | 4, 5   |
 
 ### Daily mix
 
@@ -94,7 +94,7 @@ All collection endpoints (e.g. `/songs`, `/artists`) must be **paginated** using
 
 | Method | Path           | Description             | Module |
 | ------ | -------------- | ----------------------- | ------ |
-| `GET`  | `/leaderboard` | Top songs by play count | 4      |
+| `GET`  | `/leaderboard` | Top songs by play count | 3      |
 
 ### Admin
 
@@ -133,8 +133,8 @@ This makes performance problems (and their fixes) immediately visible: a cached 
 
 | Route           | Page          | Description                                                 | Shows effect of |
 | --------------- | ------------- | ----------------------------------------------------------- | --------------- |
-| `/`             | Home          | Daily mix, artist grid, "Top Songs" leaderboard sidebar     | Modules 1, 4    |
-| `/artists/{id}` | Artist detail | Artist info, song list, monthly listener count              | Modules 3, 5    |
+| `/`             | Home          | Daily mix, artist grid, "Top Songs" leaderboard sidebar     | Modules 1, 3    |
+| `/artists/{id}` | Artist detail | Artist info, song list, monthly listener count              | Modules 4, 5    |
 | `/songs/{id}`   | Song detail   | Song info, play button, play count, "Similar Songs" section | Modules 2, 6    |
 
 ### Sections per page
@@ -145,13 +145,13 @@ Each page is composed of sections that load concurrently:
 | Section | API call | Notes |
 |---------|----------|-------|
 | Daily mix | `GET /daily-mix` | ~5 s uncached → ~10 ms cached (Module 1) |
-| Artist grid | `GET /artists` | Includes monthly listener count (Modules 3, 5) |
-| Leaderboard sidebar | `GET /leaderboard` | Slow until Module 4 |
+| Artist grid | `GET /artists` | Includes monthly listener count (Modules 4, 5) |
+| Leaderboard sidebar | `GET /leaderboard` | Slow/Broken until Module 3 |
 
 **Artist detail (`/artists/{id}`)**
 | Section | API call | Notes |
 |---------|----------|-------|
-| Artist info | `GET /artists/{id}` | Includes monthly listener count (Modules 3, 5) |
+| Artist info | `GET /artists/{id}` | Includes monthly listener count (Modules 4, 5) |
 | Song list | `GET /songs?artist_id={id}` | |
 
 **Song detail (`/songs/{id}`)**
@@ -164,8 +164,8 @@ Each page is composed of sections that load concurrently:
 
 - **Play button** (song detail) — calls `POST /songs/{id}/play`, then refreshes the displayed count. Students see the count go wrong under concurrency (Module 2) and then get fixed. The response-time badge updates after each call.
 - **Daily Mix section** (home) — shows a skeleton while loading and shows the elapsed time when loaded. Makes the 5 s delay (and the caching fix) very visible. Loads concurrently with the other home sections.
-- **Leaderboard sidebar** (home) — fetches `GET /leaderboard`. Initially slow; after Module 4 it updates in real time.
-- **Monthly listeners** (artist detail) — displays the count from `GET /artists/{id}`. Changes meaning across Modules 3 → 5.
+- **Leaderboard sidebar** (home) — fetches `GET /leaderboard`. Broken after Module 2 (PostgreSQL no longer updated); fixed in Module 3 with a Sorted Set.
+- **Monthly listeners** (artist detail) — displays the count from `GET /artists/{id}`. Changes meaning across Modules 4 → 5.
 - **Similar Songs** (song detail) — initially shows "No similar songs available". Lights up after Module 6.
 
 ### State / user identity
@@ -174,7 +174,7 @@ There is no authentication. User identity is derived from a **username** display
 
 - The username defaults to `user-1` and is stored in `localStorage`.
 - It can be edited directly in the header (e.g. an inline text field) so students can switch users quickly.
-- The **user ID** is a deterministic 36-char UUID generated from the username (e.g. `uuid5` / name-based UUID). This ensures the same username always produces the same ID, which matters for caching (Module 1) and listener tracking (Modules 3, 5).
+- The **user ID** is a deterministic 36-char UUID generated from the username (e.g. `uuid5` / name-based UUID). This ensures the same username always produces the same ID, which matters for caching (Module 1) and listener tracking (Modules 4, 5).
 
 ---
 
@@ -200,10 +200,10 @@ redis-music-workshop/
 │   │   ├── leaderboard.py      # /leaderboard
 │   │   └── admin.py            # /admin/load-embeddings
 │   └── services/               # Business logic (what students edit during the workshop)
-│       ├── songs.py            # Modules 2, 4, 6 — play counts, sorted sets, vectors
-│       ├── artists.py          # Modules 3, 5 — listener tracking (sets, HLL)
+│       ├── songs.py            # Modules 2, 3, 6 — play counts, sorted sets, vectors
+│       ├── artists.py          # Modules 4, 5 — listener tracking (sets, HLL)
 │       ├── daily_mix.py        # Module 1 — caching & TTL
-│       ├── leaderboard.py      # Module 4 — sorted set reads
+│       ├── leaderboard.py      # Module 3 — sorted set reads
 │       └── admin.py            # Module 6 — embedding loading
 │
 ├── frontend/                   # React (Vite)
@@ -237,7 +237,7 @@ These are the problems students will observe and fix during the workshop:
 | --- | ------------------------------ | ------------------------------------------------------- | -------------------------------------------------------- |
 | 1   | `GET /daily-mix`               | Always recomputes from scratch — no caching             | `time.sleep(5)` in the generation function               |
 | 2   | `POST /songs/{id}/play`        | Non-atomic counter — loses increments under concurrency | Read-modify-write (`SELECT` then `UPDATE`) without locks |
-| 3   | `POST /artists/{id}/listeners` | Tracks listeners in a Redis List with O(N) dedup scan   | `LRANGE` + linear membership check before `RPUSH`        |
-| 4   | `GET /leaderboard`             | Queries PostgreSQL directly — slow and stale under load | `SELECT ... ORDER BY play_count DESC`                    |
-| 5   | (same as 3)                    | Set from Module 3 uses too much memory at scale         | N/A — observed via `./workshop get-redis-memory-usage`   |
+| 3   | `GET /leaderboard`             | Queries PostgreSQL directly — broken after Module 2     | `SELECT ... ORDER BY play_count DESC`                    |
+| 4   | `POST /artists/{id}/listeners` | Tracks listeners in a Redis List with O(N) dedup scan   | `LRANGE` + linear membership check before `RPUSH`        |
+| 5   | (same as 4)                    | Set from Module 4 uses too much memory at scale         | N/A — observed via `./workshop get-redis-memory-usage`   |
 | 6   | `GET /songs/{id}/similar`      | Not implemented                                         | Returns `null` (frontend shows a teaser)                 |

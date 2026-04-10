@@ -22,7 +22,7 @@ def get_artist(artist_id: str):
 
 @router.post("/artists/{artist_id}/listeners")
 def add_listener(artist_id: str, request: Request):
-    """Track a listener (Module 3)."""
+    """Track a listener (Module 4)."""
     user_id = request.headers.get("X-User-ID")
     if not user_id:
         raise HTTPException(status_code=400, detail="X-User-ID header required")
