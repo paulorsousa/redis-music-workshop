@@ -19,7 +19,12 @@ export default function Section({
           <span className={badgeClass}>⏱ {formatTime(elapsed)}</span>
         )}
         {onRefresh && (
-          <button className="refresh-btn" onClick={onRefresh} title="Refresh">
+          <button
+            className="refresh-btn"
+            onClick={onRefresh}
+            title="Refresh"
+            disabled={loading}
+          >
             🔄
           </button>
         )}
@@ -35,7 +40,11 @@ export default function Section({
         <div className="error-msg">
           ⚠️ {error}
           {onRefresh && (
-            <button className="refresh-btn" onClick={onRefresh}>
+            <button
+              className="refresh-btn"
+              onClick={onRefresh}
+              disabled={loading}
+            >
               🔄 Retry
             </button>
           )}

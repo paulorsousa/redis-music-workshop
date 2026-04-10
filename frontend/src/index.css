@@ -56,7 +56,8 @@ header .user-input {
   border-radius: 4px;
   color: #b3b3b3;
 }
-.refresh-btn:hover { background: #282828; }
+.refresh-btn:hover:not(:disabled) { background: #282828; }
+.refresh-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 
 .section {
   background: #181818;
