@@ -1,0 +1,21 @@
+id,name,genre
+artist-1,Queen,Rock
+artist-2,Led Zeppelin,Rock
+artist-3,Eagles,Rock
+artist-4,AC/DC,Rock
+artist-5,Pink Floyd,Rock
+artist-6,The Beatles,Pop
+artist-7,Michael Jackson,Pop
+artist-8,ABBA,Pop
+artist-9,Madonna,Pop
+artist-10,Elton John,Pop
+artist-11,Miles Davis,Jazz
+artist-12,John Coltrane,Jazz
+artist-13,Louis Armstrong,Jazz
+artist-14,Bob Marley,Reggae
+artist-15,Daft Punk,Electronic
+artist-16,Kraftwerk,Electronic
+artist-17,Johnny Cash,Country
+artist-18,Dolly Parton,Country
+artist-19,Beethoven,Classical
+artist-20,Mozart,Classical
