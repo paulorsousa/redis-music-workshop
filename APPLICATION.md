@@ -117,7 +117,7 @@ All collection endpoints (e.g. `/songs`, `/artists`) must be **paginated** using
 
 Base URL: `http://localhost:3000`
 
-A simple single-page app. Minimal styling — just enough to look like a music platform so students have visual feedback when things improve.
+A simple single-page app styled with Tailwind CSS— just enough to look like a music platform so students have visual feedback when things improve.
 
 ### Loading behaviour
 

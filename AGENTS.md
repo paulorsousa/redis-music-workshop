@@ -2,6 +2,10 @@
 
 This file provides guidance to AI coding agents (Claude Code, Cursor, Copilot, etc.) when working with code in this repository.
 
+# Markdown files
+
+- keep APPLICATION.md, WORKSHOP.md and CLI.md up to date and consistent with changes in code
+
 ## Git Commits
 
 - commit messages strictly based on staged changes

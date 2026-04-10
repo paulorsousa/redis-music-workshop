@@ -21,13 +21,26 @@ export default function PlayButton({ songId, onPlayed }) {
     }
   };
 
+  const badgeColor =
+    elapsed != null
+      ? elapsed > 1000
+        ? "bg-[#5c1a1a] text-danger"
+        : "bg-[#1a3d1a] text-[#69db7c]"
+      : "";
+
   return (
     <span>
-      <button className="play-btn" onClick={handlePlay} disabled={playing}>
+      <button
+        className="bg-accent text-black border-none px-6 py-2 rounded-full font-bold cursor-pointer text-base hover:bg-accent-hover hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed"
+        onClick={handlePlay}
+        disabled={playing}
+      >
         {playing ? "⏳" : "▶ Play"}
       </button>
       {elapsed != null && (
-        <span className={`badge ${elapsed > 1000 ? "slow" : "fast"}`}>
+        <span
+          className={`inline-block px-2 py-0.5 rounded-xl text-xs ml-2 ${badgeColor}`}
+        >
           ⏱ {formatTime(elapsed)}
         </span>
       )}

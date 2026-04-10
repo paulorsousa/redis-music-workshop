@@ -16,26 +16,22 @@ export default function App() {
 
   return (
     <BrowserRouter>
-      <header>
-        <h1>
-          <Link to="/" style={{ color: "inherit", textDecoration: "none" }}>
+      <header className="bg-surface border-b border-border px-5 py-3 flex items-center justify-between sticky top-0 z-50">
+        <h1 className="text-lg text-accent">
+          <Link to="/" className="text-inherit no-underline hover:no-underline">
             🎵 Redis Music Workshop
           </Link>
         </h1>
         <div>
-          <label
-            style={{ color: "#b3b3b3", fontSize: "0.85rem", marginRight: 8 }}
-          >
-            User:
-          </label>
+          <label className="text-muted text-sm mr-2">User:</label>
           <input
-            className="user-input"
+            className="bg-card border border-[#404040] text-gray-200 px-2 py-1 rounded text-sm"
             value={username}
             onChange={(e) => updateUsername(e.target.value)}
           />
         </div>
       </header>
-      <div className="container">
+      <div className="max-w-[1200px] mx-auto px-5">
         <Routes>
           <Route path="/" element={<Home username={username} />} />
           <Route path="/artists/:id" element={<ArtistDetail />} />

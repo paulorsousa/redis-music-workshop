@@ -20,23 +20,24 @@ export default function SimilarSongs({ songId }) {
       onRefresh={refresh}
     >
       {similar.length === 0 ? (
-        <p style={{ color: "#b3b3b3", fontStyle: "italic" }}>
+        <p className="text-muted italic">
           🚀 No similar songs available yet — complete Module 6 to enable this
           feature!
         </p>
       ) : (
-        <ul className="song-list">
+        <ul className="list-none">
           {similar.map((song, i) => (
-            <li key={song.id || i}>
+            <li
+              key={song.id || i}
+              className="px-3 py-2 border-b border-border flex justify-between items-center hover:bg-[#1a1a1a]"
+            >
               <span>
-                <span style={{ color: "#b3b3b3", marginRight: 8 }}>
-                  {i + 1}.
-                </span>
+                <span className="text-muted mr-2">{i + 1}.</span>
                 <Link to={`/songs/${song.id}`}>{song.title}</Link>
-                <span style={{ color: "#b3b3b3" }}> — {song.artist_name}</span>
+                <span className="text-muted"> — {song.artist_name}</span>
               </span>
               {song.score != null && (
-                <span style={{ color: "#1db954", fontSize: "0.85rem" }}>
+                <span className="text-accent text-sm">
                   ({song.score.toFixed(2)})
                 </span>
               )}

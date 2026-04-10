@@ -16,7 +16,7 @@ export default function SongDetail({ username }) {
   const song = data;
 
   return (
-    <div style={{ padding: "20px 0" }}>
+    <div className="py-5">
       <Section
         title="Song Info"
         loading={loading}
@@ -26,27 +26,18 @@ export default function SongDetail({ username }) {
       >
         {song && (
           <div>
-            <h2 style={{ fontSize: "2rem", marginBottom: 8 }}>{song.title}</h2>
+            <h2 className="text-3xl mb-2">{song.title}</h2>
             <p>
               <Link to={`/artists/${song.artist_id}`}>{song.artist_name}</Link>
-              <span style={{ color: "#b3b3b3", marginLeft: 12 }}>
-                {song.genre}
-              </span>
+              <span className="text-muted ml-3">{song.genre}</span>
             </p>
-            <p style={{ color: "#b3b3b3", marginTop: 4 }}>
+            <p className="text-muted mt-1">
               {Math.floor(song.duration_seconds / 60)}:
               {(song.duration_seconds % 60).toString().padStart(2, "0")}
             </p>
-            <div
-              style={{
-                marginTop: 16,
-                display: "flex",
-                alignItems: "center",
-                gap: 16,
-              }}
-            >
+            <div className="mt-4 flex items-center gap-4">
               <PlayButton songId={id} onPlayed={refresh} />
-              <span style={{ fontSize: "1.1rem" }}>
+              <span className="text-lg">
                 {song.play_count.toLocaleString()} plays
               </span>
             </div>

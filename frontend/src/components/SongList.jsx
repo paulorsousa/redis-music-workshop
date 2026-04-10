@@ -20,11 +20,14 @@ export default function SongList({ artistId, title = "Songs" }) {
       elapsed={elapsed}
       onRefresh={refresh}
     >
-      <ul className="song-list">
+      <ul className="list-none">
         {songs.map((song) => (
-          <li key={song.id}>
+          <li
+            key={song.id}
+            className="px-3 py-2 border-b border-border flex justify-between items-center hover:bg-[#1a1a1a]"
+          >
             <Link to={`/songs/${song.id}`}>{song.title}</Link>
-            <span style={{ color: "#b3b3b3", fontSize: "0.85rem" }}>
+            <span className="text-muted text-sm">
               {Math.floor(song.duration_seconds / 60)}:
               {(song.duration_seconds % 60).toString().padStart(2, "0")}
             </span>

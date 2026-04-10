@@ -14,7 +14,7 @@ export default function ArtistDetail() {
   const artist = data;
 
   return (
-    <div style={{ padding: "20px 0" }}>
+    <div className="py-5">
       <Section
         title="Artist Info"
         loading={loading}
@@ -24,9 +24,9 @@ export default function ArtistDetail() {
       >
         {artist && (
           <div>
-            <h2 style={{ fontSize: "2rem", marginBottom: 8 }}>{artist.name}</h2>
-            <p style={{ color: "#b3b3b3" }}>Genre: {artist.genre}</p>
-            <p style={{ color: "#b3b3b3", marginTop: 4 }}>
+            <h2 className="text-3xl mb-2">{artist.name}</h2>
+            <p className="text-muted">Genre: {artist.genre}</p>
+            <p className="text-muted mt-1">
               {artist.monthly_listeners.toLocaleString()} monthly listeners
             </p>
           </div>

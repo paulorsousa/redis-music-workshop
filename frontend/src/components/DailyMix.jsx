@@ -20,13 +20,16 @@ export default function DailyMix({ username }) {
       elapsed={elapsed}
       onRefresh={refresh}
     >
-      <ul className="song-list">
+      <ul className="list-none">
         {songs.map((song, i) => (
-          <li key={song.id}>
+          <li
+            key={song.id}
+            className="px-3 py-2 border-b border-border flex justify-between items-center hover:bg-[#1a1a1a]"
+          >
             <span>
-              <span style={{ color: "#b3b3b3", marginRight: 8 }}>{i + 1}.</span>
+              <span className="text-muted mr-2">{i + 1}.</span>
               <Link to={`/songs/${song.id}`}>{song.title}</Link>
-              <span style={{ color: "#b3b3b3" }}> — {song.artist_name}</span>
+              <span className="text-muted"> — {song.artist_name}</span>
             </span>
           </li>
         ))}

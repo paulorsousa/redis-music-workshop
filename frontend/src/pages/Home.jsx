@@ -14,7 +14,7 @@ export default function Home({ username }) {
   const artists = data?.data || [];
 
   return (
-    <div className="home-layout">
+    <div className="grid grid-cols-[1fr_300px] gap-5 py-5 max-md:grid-cols-1">
       <div>
         <DailyMix username={username} />
         <Section
@@ -24,27 +24,17 @@ export default function Home({ username }) {
           elapsed={elapsed}
           onRefresh={refresh}
         >
-          <div className="grid">
+          <div className="grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-4">
             {artists.map((artist) => (
               <Link
                 to={`/artists/${artist.id}`}
                 key={artist.id}
-                style={{ textDecoration: "none" }}
+                className="!no-underline"
               >
-                <div className="card">
-                  <div style={{ fontWeight: "bold", marginBottom: 4 }}>
-                    {artist.name}
-                  </div>
-                  <div style={{ fontSize: "0.8rem", color: "#b3b3b3" }}>
-                    {artist.genre}
-                  </div>
-                  <div
-                    style={{
-                      fontSize: "0.8rem",
-                      color: "#b3b3b3",
-                      marginTop: 4,
-                    }}
-                  >
+                <div className="bg-card rounded-lg p-4 cursor-pointer transition-colors hover:bg-surface-hover">
+                  <div className="font-bold mb-1">{artist.name}</div>
+                  <div className="text-xs text-muted">{artist.genre}</div>
+                  <div className="text-xs text-muted mt-1">
                     {artist.monthly_listeners.toLocaleString()} monthly
                     listeners
                   </div>

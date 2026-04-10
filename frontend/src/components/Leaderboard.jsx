@@ -20,20 +20,19 @@ export default function Leaderboard() {
       onRefresh={refresh}
     >
       {songs.map((song, i) => (
-        <div className="leaderboard-item" key={song.id}>
-          <span className="rank">{i + 1}.</span>
-          <div style={{ flex: 1 }}>
+        <div
+          className="flex items-center py-2 border-b border-border"
+          key={song.id}
+        >
+          <span className="w-[30px] font-bold text-muted">{i + 1}.</span>
+          <div className="flex-1">
             <Link to={`/songs/${song.id}`}>{song.title}</Link>
-            <div style={{ fontSize: "0.8rem", color: "#b3b3b3" }}>
-              {song.artist_name}
-            </div>
+            <div className="text-xs text-muted">{song.artist_name}</div>
           </div>
-          <span style={{ color: "#b3b3b3", fontSize: "0.85rem" }}>
-            {song.play_count} plays
-          </span>
+          <span className="text-muted text-sm">{song.play_count} plays</span>
         </div>
       ))}
-      {songs.length === 0 && <p style={{ color: "#b3b3b3" }}>No plays yet</p>}
+      {songs.length === 0 && <p className="text-muted">No plays yet</p>}
     </Section>
   );
 }
