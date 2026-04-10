@@ -55,7 +55,7 @@ Two CSV files in `data/`:
 
 Both files are loaded into PostgreSQL by `workshop reset` (and automatically on first `docker compose up`). The API reads from PostgreSQL at runtime — the CSVs are only used for seeding and for computing embeddings (Module 6).
 
-Song embeddings for Module 6 are **computed at load time** from the CSV data by the `workshop load-embeddings` command, using a HuggingFace sentence-transformer model. No pre-computed embeddings file is shipped.
+Song embeddings for Module 6 are **computed by the API** from the CSV data when triggered via `POST /admin/load-embeddings`. The API container has `sentence-transformers` installed. No pre-computed embeddings file is shipped.
 
 ---
 
@@ -95,6 +95,21 @@ All collection endpoints (e.g. `/songs`, `/artists`) must be **paginated** using
 | Method | Path           | Description             | Module |
 | ------ | -------------- | ----------------------- | ------ |
 | `GET`  | `/leaderboard` | Top songs by play count | 4      |
+
+### Admin
+
+| Method | Path                     | Description                                                         | Module |
+| ------ | ------------------------ | ------------------------------------------------------------------- | ------ |
+| `POST` | `/admin/load-embeddings` | Compute song embeddings from CSV data and load into Redis VectorSet | 6      |
+
+#### `POST /admin/load-embeddings` — details
+
+1. Read `data/songs.csv` and `data/artists.csv`, join on `artist_id` to resolve artist names.
+2. For each song, build a text string: `"{title} {artist_name} {genre}"`.
+3. Load sentence-transformer model (`all-MiniLM-L6-v2`, 384 dimensions).
+4. Compute embeddings for all songs in a single batch.
+5. For each song, store the embedding: `VADD song-vectors FP32 {song_id} VALUES {v1} {v2} ...`.
+6. Return a JSON summary: `{ "loaded": 500, "dimensions": 384 }`.
 
 ---
 

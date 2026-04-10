@@ -56,17 +56,17 @@ The `--user` flag accepts a **username** (e.g. `user-1`) and derives the 36-char
 
 ### Commands
 
-| Command                                                      | Module | What it does                                                              |
-| ------------------------------------------------------------ | ------ | ------------------------------------------------------------------------- |
-| `workshop reset`                                             | —      | Resets PostgreSQL and Redis, reloads CSV data into PostgreSQL             |
-| `workshop help`                                              | —      | Prints a detailed help message                                            |
-| `workshop daily-mix --user <username>`                       | 1      | Calls the daily-mix endpoint and prints the response time                 |
-| `workshop simulate-plays --song <id> --count N --concurrent` | 2      | Fires N play events (optionally concurrent) and prints the final counter  |
-| `workshop add-listeners --artist <id> --count N`             | 3, 5   | Adds N random listeners using the API, prints timing                      |
-| `workshop top-songs --limit N`                               | 4      | Prints the current Top-N leaderboard from the Sorted Set                  |
-| `workshop get-redis-memory-usage`                            | 5      | Prints the memory used by Redis                                           |
-| `workshop load-embeddings`                                   | 6      | Computes embeddings from `data/songs.csv` and loads them into a VectorSet |
-| `workshop similar-songs --song <id> --count N`               | 6      | Queries the VectorSet for similar songs                                   |
+| Command                                                      | Module | What it does                                                             |
+| ------------------------------------------------------------ | ------ | ------------------------------------------------------------------------ |
+| `workshop reset`                                             | —      | Resets PostgreSQL and Redis, reloads CSV data into PostgreSQL            |
+| `workshop help`                                              | —      | Prints a detailed help message                                           |
+| `workshop daily-mix --user <username>`                       | 1      | Calls the daily-mix endpoint and prints the response time                |
+| `workshop simulate-plays --song <id> --count N --concurrent` | 2      | Fires N play events (optionally concurrent) and prints the final counter |
+| `workshop add-listeners --artist <id> --count N`             | 3, 5   | Adds N random listeners using the API, prints timing                     |
+| `workshop top-songs --limit N`                               | 4      | Prints the current Top-N leaderboard from the Sorted Set                 |
+| `workshop get-redis-memory-usage`                            | 5      | Prints the memory used by Redis                                          |
+| `workshop load-embeddings`                                   | 6      | Triggers the API to compute embeddings and load them into a VectorSet    |
+| `workshop similar-songs --song <id> --count N`               | 6      | Queries the VectorSet for similar songs                                  |
 
 ---
 
@@ -332,7 +332,7 @@ Use Redis **VectorSets** (Redis 8.0+) to store song embeddings and perform simil
 ### Pre-requisites
 
 - Song data in `data/songs.csv` (already used to seed PostgreSQL).
-- The `workshop load-embeddings` command computes embeddings on the fly from the CSV using a HuggingFace sentence-transformer model.
+- The API container has `sentence-transformers` installed and computes embeddings when triggered via `POST /admin/load-embeddings`.
 - Redis 8.0+ (included in the Docker Compose setup).
 
 ### Key Redis commands
