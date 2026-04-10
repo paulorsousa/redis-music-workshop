@@ -1,6 +1,6 @@
 services:
   redis:
-    image: redis:8.0-M04
+    image: redis:8.6-alpine
     ports:
       - "6379:6379"
     healthcheck:
@@ -10,7 +10,7 @@ services:
       retries: 5
 
   postgres:
-    image: postgres:16-alpine
+    image: postgres:18-alpine
     environment:
       POSTGRES_DB: music
       POSTGRES_USER: music
