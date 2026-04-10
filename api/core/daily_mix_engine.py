@@ -18,11 +18,9 @@ def generate_daily_mix(user_id: str) -> list[dict]:
 
     conn = get_connection()
     cur = conn.cursor()
-    cur.execute(
-        """SELECT s.id, s.title, s.artist_id, a.name as artist_name,
+    cur.execute("""SELECT s.id, s.title, s.artist_id, a.name as artist_name,
                   s.genre, s.duration_seconds
-           FROM songs s JOIN artists a ON s.artist_id = a.id"""
-    )
+           FROM songs s JOIN artists a ON s.artist_id = a.id""")
     cols = [d[0] for d in cur.description]
     all_songs = [dict(zip(cols, row)) for row in cur.fetchall()]
     cur.close()
