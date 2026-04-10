@@ -8,6 +8,7 @@ router = APIRouter()
 def _get_listener_count(artist_id: str) -> int:
     """Get monthly listener count using Redis List (intentionally slow — Module 3)."""
     from datetime import datetime
+
     month = datetime.now().strftime("%Y-%m")
     key = f"monthly-listeners:{artist_id}:{month}"
     return r.llen(key)
@@ -80,6 +81,7 @@ def add_listener(artist_id: str, request: Request):
     conn.close()
 
     from datetime import datetime
+
     month = datetime.now().strftime("%Y-%m")
     key = f"monthly-listeners:{artist_id}:{month}"
 

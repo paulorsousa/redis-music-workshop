@@ -30,6 +30,7 @@ def load_embeddings():
 
     # Compute embeddings
     from sentence_transformers import SentenceTransformer
+
     model = SentenceTransformer("all-MiniLM-L6-v2")
     embeddings = model.encode(texts, show_progress_bar=False)
 
@@ -40,8 +41,7 @@ def load_embeddings():
         values = embedding.tolist()
         # VADD song-vectors FP32 <element> VALUES v1 v2 ...
         r.execute_command(
-            "VADD", "song-vectors", "FP32", song_id,
-            "VALUES", *[str(v) for v in values]
+            "VADD", "song-vectors", "FP32", song_id, "VALUES", *[str(v) for v in values]
         )
 
     return {"loaded": len(song_ids), "dimensions": int(dimensions)}

@@ -3,7 +3,9 @@ import csv
 import psycopg2
 from psycopg2.extras import execute_values
 
-DATABASE_URL = os.environ.get("DATABASE_URL", "postgresql://music:music@localhost:5432/music")
+DATABASE_URL = os.environ.get(
+    "DATABASE_URL", "postgresql://music:music@localhost:5432/music"
+)
 
 
 def get_connection():
@@ -58,7 +60,16 @@ def seed_db():
     songs_count = 0
     with open("/data/songs.csv") as f:
         reader = csv.DictReader(f)
-        rows = [(r["id"], r["title"], r["artist_id"], r["genre"], int(r["duration_seconds"])) for r in reader]
+        rows = [
+            (
+                r["id"],
+                r["title"],
+                r["artist_id"],
+                r["genre"],
+                int(r["duration_seconds"]),
+            )
+            for r in reader
+        ]
         if rows:
             execute_values(
                 cur,

@@ -10,6 +10,7 @@ async def lifespan(app: FastAPI):
     # Startup: init DB and seed if empty
     init_db()
     from database import get_connection
+
     conn = get_connection()
     cur = conn.cursor()
     cur.execute("SELECT COUNT(*) FROM songs")
