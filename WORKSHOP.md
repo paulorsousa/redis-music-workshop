@@ -130,22 +130,22 @@ workshop daily-mix --user user-1          # < 10 ms (cached)
 
 ### Problem
 
-Every play event increments a counter in PostgreSQL using SELECT → add 1 → UPDATE.
-Under concurrency, two requests read the same value and both write `count + 1` — **losing an increment**.
-
-> 💡 **Tip:** use `--concurrent` to fire requests in parallel — without it, requests run sequentially and the race condition won't manifest.
+Every play event increments a counter in PostgreSQL using `SELECT` → add 1 → `UPDATE`.
+Under concurrency, two requests can read the same value and both write `count + 1` — **losing an increment**!
 
 ### Observe
 
 ```bash
-workshop reset
-workshop simulate-plays --song song-1 --count 500 --concurrent
-# Expected: 500 — Actual: less than 500 (lost updates)
+workshop simulate-plays --song song-1 --concurrent
+# Expected: 100 — Actual: less than 100 (lost updates)
 ```
+
+> [!TIP]
+> Use `--concurrent` to fire requests in parallel — without it, requests run sequentially and the race condition won't manifest.
 
 ### Goal
 
-Replace with a Redis **atomic counter**.
+Implement song play counts with Redis **atomic counters**.
 
 ### Key Redis commands
 
@@ -161,15 +161,21 @@ Replace with a Redis **atomic counter**.
 3. Verify:
 
 ```bash
-workshop reset
 workshop simulate-plays --song song-1 --count 500 --concurrent
-# Now: exactly 500
+# Now: exactly 500 added
 ```
 
 ### Discussion
 
 - How / when do you sync back to PostgreSQL?
 - What happens if Redis restarts? (persistence: RDB / AOF)
+
+### Extra
+
+- Update `list_songs` to read the play count from Redis and merge with the PostgreSQL data.
+
+> [!TIP]
+> Use `MGET key1 key2 ...` to fetch multiple keys in one roundtrip.
 
 ---
 
