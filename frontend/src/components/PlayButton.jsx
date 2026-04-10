@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import { apiFetch } from '../api';
-import { formatTime } from '../hooks';
+import { useState } from "react";
+import { apiFetch } from "../api";
+import { formatTime } from "../hooks";
 
 export default function PlayButton({ songId, onPlayed }) {
   const [playing, setPlaying] = useState(false);
@@ -9,7 +9,9 @@ export default function PlayButton({ songId, onPlayed }) {
   const handlePlay = async () => {
     setPlaying(true);
     try {
-      const { elapsed } = await apiFetch(`/songs/${songId}/play`, { method: 'POST' });
+      const { elapsed } = await apiFetch(`/songs/${songId}/play`, {
+        method: "POST",
+      });
       setElapsed(elapsed);
       if (onPlayed) onPlayed();
     } catch (e) {
@@ -22,10 +24,12 @@ export default function PlayButton({ songId, onPlayed }) {
   return (
     <span>
       <button className="play-btn" onClick={handlePlay} disabled={playing}>
-        {playing ? '⏳' : '▶ Play'}
+        {playing ? "⏳" : "▶ Play"}
       </button>
       {elapsed != null && (
-        <span className={`badge ${elapsed > 1000 ? 'slow' : 'fast'}`}>⏱ {formatTime(elapsed)}</span>
+        <span className={`badge ${elapsed > 1000 ? "slow" : "fast"}`}>
+          ⏱ {formatTime(elapsed)}
+        </span>
       )}
     </span>
   );
