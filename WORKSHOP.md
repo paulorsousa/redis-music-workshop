@@ -170,7 +170,7 @@ Implement song play counts with Redis **atomic counters**.
 - How / when do you sync back to PostgreSQL?
 - What happens if Redis restarts? (persistence: RDB / AOF)
 
-> [!NOTE]
+> [!WARNING]
 > By moving play counts to Redis, the **Top Songs** leaderboard (which still reads from PostgreSQL) is now broken — it will always show zero plays. We'll fix this right away in the next module.
 
 ---
@@ -199,7 +199,10 @@ We need a data structure that:
 
 A Redis **Sorted Set** does exactly this. Every member has a floating-point score, and Redis keeps them sorted automatically. Inserts, score updates, and range queries are all **O(log N)**.
 
-Use a Sorted Set where every play event atomically updates the ranking, and the leaderboard reads directly from it.
+Replace the counter from Module 2 with a Sorted Set — `ZINCRBY` is also atomic, so it serves as both the counter and the ranking. Use `ZSCORE` wherever you need to read a single song's play count.
+
+> [!NOTE]
+> ZSCORE is O(1) — it's a hash lookup under the hood.
 
 ### Key Redis commands
 
@@ -212,9 +215,10 @@ Use a Sorted Set where every play event atomically updates the ranking, and the 
 
 ### Steps
 
-1. Open `api/services/songs.py` — in the `play_song` function, after `INCR`, also call `ZINCRBY top-songs 1 {song_id}`.
-2. Open `api/services/leaderboard.py` — replace the PostgreSQL query with `ZREVRANGE top-songs 0 49 WITHSCORES`.
-3. Verify:
+1. Open `api/services/songs.py` — in `play_song`, replace the `INCR` with `ZINCRBY top-songs 1 {song_id}`.
+2. In `get_song` (same file), replace `GET play-count:song:{song_id}` with `ZSCORE top-songs {song_id}` to read a single song's play count.
+3. Open `api/services/leaderboard.py` — replace the PostgreSQL query with `ZREVRANGE top-songs 0 {per_page-1} WITHSCORES`.
+4. Verify:
 
 ```bash
 ./workshop simulate-plays --song song-1 --count 20 --concurrent

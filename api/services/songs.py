@@ -1,6 +1,6 @@
 """
 Module 2 — Atomic Counters
-Module 3 — Sorted Sets (write side: ZINCRBY on play)
+Module 3 — Sorted Sets (ZINCRBY replaces INCR + powers the leaderboard)
 Module 6 — VectorSets  (read side: VSIM for similar songs)
 
 Business logic for song queries and play-count tracking.
@@ -19,7 +19,7 @@ def play_song(song_id: str) -> int | None:
     NOTE: After Module 2, the leaderboard breaks (Module 3 fixes it with ZINCRBY).
 
     TODO: Module 2 — replace SELECT/+1/UPDATE with INCR play-count:song:{song_id}
-    TODO: Module 3 — also call ZINCRBY top-songs 1 {song_id}
+    TODO: Module 3 — replace INCR with ZINCRBY top-songs 1 {song_id} (i.e., sorted set replaces the counter)
     """
     conn = get_connection()
     cur = conn.cursor()
@@ -103,7 +103,8 @@ def get_song(song_id: str) -> dict | None:
     cols = [d[0] for d in cur.description]
     result = dict(zip(cols, row))
 
-    # Get play count from Redis, fallback to PostgreSQL if missing (Module 2 pending)
+    # Get play count from Redis, fallback to PostgreSQL if missing
+    # TODO: Module 3 — replace with r.zscore("top-songs", song_id)
     redis_count = r.get(f"play-count:song:{song_id}")
     if redis_count:
         result["play_count"] = int(redis_count)
