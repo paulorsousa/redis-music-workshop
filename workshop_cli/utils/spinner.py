@@ -2,6 +2,8 @@
 
 import threading
 
+from workshop_cli.utils.formatting import OK
+
 
 def spinner(message, stop_event):
     """Animate a spinner on a single line until *stop_event* is set."""
@@ -11,7 +13,7 @@ def spinner(message, stop_event):
         print(f"\r  {frames[i % len(frames)]} {message}", end="", flush=True)
         i += 1
         stop_event.wait(0.1)
-    print(f"\r  ✓ {message} done")
+    print(f"\r  {OK} {message} done")
 
 
 def run_with_spinner(message, fn, *args, **kwargs):

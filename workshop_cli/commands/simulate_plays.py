@@ -3,7 +3,7 @@
 import time
 from concurrent.futures import ThreadPoolExecutor
 
-from workshop_cli.utils import ProgressTracker, api_call
+from workshop_cli.utils import FAIL, OK, ProgressTracker, api_call
 
 
 def cmd_simulate_plays(args):
@@ -41,6 +41,6 @@ def cmd_simulate_plays(args):
     print(f"⏱ {elapsed:.2f} s")
     print(f"Expected: {before} + {count} = {before + count}")
     if gained == count:
-        print(f"Actual:   {after} ✓")
+        print(f"Actual:   {after} {OK}")
     else:
-        print(f"Actual:   {after} ✗ ({count - gained} lost)")
+        print(f"Actual:   {after} {FAIL} ({count - gained} lost)")

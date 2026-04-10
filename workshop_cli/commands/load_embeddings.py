@@ -1,6 +1,6 @@
 """Compute and load song embeddings."""
 
-from workshop_cli.utils import api_call
+from workshop_cli.utils import FAIL, OK, api_call
 from workshop_cli.utils.spinner import run_with_spinner
 
 
@@ -13,8 +13,8 @@ def cmd_load_embeddings(args):
             method="POST",
         )
         print(
-            f"  ✓ {data['loaded']} song embeddings loaded ({data['dimensions']} dimensions)"
+            f"  {OK} {data['loaded']} song embeddings loaded ({data['dimensions']} dimensions)"
         )
         print(f"  ⏱ {elapsed:.2f} s")
     except Exception as e:
-        print(f"  ✗ Error: {e}")
+        print(f"  {FAIL} Error: {e}")

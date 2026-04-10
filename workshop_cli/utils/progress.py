@@ -2,6 +2,8 @@
 
 import threading
 
+from workshop_cli.utils.formatting import FAIL
+
 
 class ProgressTracker:
     """Thread-safe progress tracker that overwrites a single terminal line."""
@@ -21,7 +23,7 @@ class ProgressTracker:
         return f"[{'█' * filled}{'·' * (width - filled)}]"
 
     def _print(self):
-        err_str = f"  ✗ {self._errors} errors" if self._errors else ""
+        err_str = f"  {FAIL} {self._errors} errors" if self._errors else ""
         print(
             f"\r  {self.label} {self._bar()} {self._done}/{self.total}{err_str}",
             end="",
