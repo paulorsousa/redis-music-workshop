@@ -9,7 +9,7 @@ import SimilarSongs from "../components/SimilarSongs";
 export default function SongDetail({ username }) {
   const { id } = useParams();
   const { loading, data, error, elapsed, refresh } = useSection(
-    () => apiFetch(`/songs/${id}`),
+    (signal) => apiFetch(`/songs/${id}`, { signal }),
     [id],
   );
 

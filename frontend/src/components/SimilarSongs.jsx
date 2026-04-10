@@ -5,7 +5,8 @@ import Section from "./Section";
 
 export default function SimilarSongs({ songId }) {
   const { loading, data, error, elapsed, refresh } = useSection(
-    () => apiFetch(`/songs/${songId}/similar`, { params: { count: 5 } }),
+    (signal) =>
+      apiFetch(`/songs/${songId}/similar`, { params: { count: 5 }, signal }),
     [songId],
   );
 

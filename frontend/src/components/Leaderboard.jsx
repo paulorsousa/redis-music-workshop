@@ -5,7 +5,7 @@ import Section from "./Section";
 
 export default function Leaderboard() {
   const { loading, data, error, elapsed, refresh } = useSection(
-    () => apiFetch("/leaderboard", { params: { per_page: 10 } }),
+    (signal) => apiFetch("/leaderboard", { params: { per_page: 10 }, signal }),
     [],
   );
 

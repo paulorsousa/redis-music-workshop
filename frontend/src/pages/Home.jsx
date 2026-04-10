@@ -7,7 +7,7 @@ import Section from "../components/Section";
 
 export default function Home({ username }) {
   const { loading, data, error, elapsed, refresh } = useSection(
-    () => apiFetch("/artists", { params: { per_page: 20 } }),
+    (signal) => apiFetch("/artists", { params: { per_page: 20 }, signal }),
     [],
   );
 

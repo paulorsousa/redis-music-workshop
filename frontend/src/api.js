@@ -41,7 +41,10 @@ export function deriveUserId(username) {
   return uuidv5(username);
 }
 
-export async function apiFetch(path, { method = "GET", userId, params } = {}) {
+export async function apiFetch(
+  path,
+  { method = "GET", userId, params, signal } = {},
+) {
   const url = new URL(`${API_URL}${path}`);
   if (params) {
     Object.entries(params).forEach(([k, v]) => url.searchParams.set(k, v));
@@ -50,7 +53,7 @@ export async function apiFetch(path, { method = "GET", userId, params } = {}) {
   if (userId) headers["X-User-ID"] = userId;
 
   const start = performance.now();
-  const res = await fetch(url.toString(), { method, headers });
+  const res = await fetch(url.toString(), { method, headers, signal });
   const elapsed = performance.now() - start;
 
   if (!res.ok) {

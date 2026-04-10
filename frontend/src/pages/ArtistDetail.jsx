@@ -7,7 +7,7 @@ import SongList from "../components/SongList";
 export default function ArtistDetail() {
   const { id } = useParams();
   const { loading, data, error, elapsed, refresh } = useSection(
-    () => apiFetch(`/artists/${id}`),
+    (signal) => apiFetch(`/artists/${id}`, { signal }),
     [id],
   );
 

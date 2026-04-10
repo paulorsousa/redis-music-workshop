@@ -6,7 +6,7 @@ import Section from "./Section";
 export default function DailyMix({ username }) {
   const userId = deriveUserId(username);
   const { loading, data, error, elapsed, refresh } = useSection(
-    () => apiFetch("/daily-mix", { userId }),
+    (signal) => apiFetch("/daily-mix", { userId, signal }),
     [userId],
   );
 

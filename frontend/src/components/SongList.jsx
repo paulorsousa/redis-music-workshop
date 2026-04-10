@@ -5,8 +5,11 @@ import Section from "./Section";
 
 export default function SongList({ artistId, title = "Songs" }) {
   const { loading, data, error, elapsed, refresh } = useSection(
-    () =>
-      apiFetch("/songs", { params: { artist_id: artistId, per_page: 100 } }),
+    (signal) =>
+      apiFetch("/songs", {
+        params: { artist_id: artistId, per_page: 100 },
+        signal,
+      }),
     [artistId],
   );
 
