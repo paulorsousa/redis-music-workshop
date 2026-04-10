@@ -9,13 +9,22 @@ a slow black box; the fix is to cache its output here.
 """
 
 from core.daily_mix_engine import generate_daily_mix
+import json
+from redis_client import r
 
 
-def get_daily_mix(user_id: str) -> dict:
-    """Return the daily mix for a user.
+def get_daily_mix(user_id: str) -> list[dict]:
+    """Return the daily mix songs for a user.
 
     TODO: Module 1 — check Redis cache first: GET daily-mix:{user_id}
-    TODO: Module 1 — after computing, cache: SET daily-mix:{user_id} <json> EX 86400
+    TODO: Module 1 — after computing, cache: SET daily-mix:{user_id} <json> EX <ttl_in_seconds>
     """
-    songs = generate_daily_mix(user_id)
-    return {"user_id": user_id, "songs": songs}
+    # check if daily mix already exists in Redis
+    # cached_daily_mix = r.get(f"daily-mix:{user_id}")
+    # if yes, return cached value directly. Tip: use `json.loads(cached_daily_mix)` to decode JSON
+
+    daily_mix = generate_daily_mix(user_id)  # slow!
+
+    # save songs to Redis. Tip: use `json.dumps(daily_mix)` to encode as JSON
+
+    return daily_mix

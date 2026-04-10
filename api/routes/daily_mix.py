@@ -10,4 +10,4 @@ def daily_mix(request: Request):
     if not user_id:
         raise HTTPException(status_code=400, detail="X-User-ID header required")
 
-    return get_daily_mix(user_id)
+    return {"user_id": user_id, "songs": get_daily_mix(user_id)}
