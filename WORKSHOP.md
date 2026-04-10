@@ -17,12 +17,12 @@ In each module you will **observe a concrete problem**, then **fix it with the r
 ┌────────────┐       ┌────────────┐       ┌────────────┐
 │   React    │──────▶│  REST API  │──────▶│ PostgreSQL │
 │  Frontend  │◀──────│  (Python)  │◀──────│            │
-└────────────┘       └─────┬──────┘       └────────────┘
-                           │
-                           ▼
-                     ┌───────────┐
-                     │   Redis   │
-                     └───────────┘
+└────────────┘       └────┬───┬───┘       └────────────┘
+                          │   ▲
+                          ▼   │
+                     ┌────────────┐
+                     │   Redis    │
+                     └────────────┘
 ```
 
 All services run via **Docker Compose**. Students clone the repo and run `docker compose up`.
