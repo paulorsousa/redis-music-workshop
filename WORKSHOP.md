@@ -1,21 +1,22 @@
 # Redis Music Workshop
 
-> An introductory, hands-on workshop about Redis for university software-engineering students.
+> A 2-hour, hands-on workshop to introduce Redis
 
 ## Context
 
-You work at a music-streaming company. The product has a **React web front-end** backed by a **RESTful API** that uses **PostgreSQL** as its primary database for songs, artists, and playlists.
+You work at a music-streaming company. The product has a **React web front-end** backed by a **Python REST API** (FastAPI) that uses **PostgreSQL** as its primary database for songs and artists.
 
-Everything works — until it doesn't. As the platform grows, several parts of the system start showing performance, correctness, and scalability problems. In each module of this workshop you will **identify a concrete problem**, then **solve it with the right Redis data structure or feature**.
+Everything works — until it doesn't. As the platform grows, several parts of the system start showing performance, correctness, and scalability problems.
+In each module you will **observe a concrete problem**, then **fix it with the right Redis data structure**.
 
 ---
 
-## Architecture overview
+## Architecture
 
 ```
 ┌────────────┐       ┌────────────┐       ┌────────────┐
 │   React    │──────▶│  REST API  │──────▶│ PostgreSQL │
-│  Frontend  │◀──────│  (Node.js) │◀──────│            │
+│  Frontend  │◀──────│  (Python)  │◀──────│            │
 └────────────┘       └─────┬──────┘       └────────────┘
                            │
                            ▼
@@ -24,259 +25,359 @@ Everything works — until it doesn't. As the platform grows, several parts of t
                      └───────────┘
 ```
 
+All services run via **Docker Compose**. Students clone the repo and run `docker compose up`.
+
+---
+
+## Time budget
+
+| Block                  | Duration | Content                                                        |
+| ---------------------- | -------- | -------------------------------------------------------------- |
+| Setup & intro          | 10 min   | Architecture walkthrough, `docker compose up`, verify UI works |
+| Module 1 — Caching     | 20 min   | Strings, `SET`/`GET`, TTL                                      |
+| Module 2 — Counters    | 15 min   | `INCR`, atomicity                                              |
+| Module 3 — Sets        | 15 min   | `SADD`, `SCARD`, `SISMEMBER`                                   |
+| Module 4 — Sorted Sets | 15 min   | `ZINCRBY`, `ZREVRANGE`                                         |
+| Module 5 — HyperLogLog | 15 min   | `PFADD`, `PFCOUNT`, memory comparison                          |
+| Module 6 — VectorSets  | 20 min   | `VADD`, `VSIM` _(bonus — only if time allows)_                 |
+| Wrap-up                | 10 min   | Recap, Q&A                                                     |
+
+---
+
+## CLI utility — `workshop`
+
+A Python CLI tool (`workshop`) ships with the repo. It wraps every simulation, data-loading, and verification step so students don't waste time writing boilerplate. It is implemented with `click` and uses the same RESTful API / Redis / PostgreSQL connections as the application.
+
+The `--user` flag accepts a **username** (e.g. `user-1`) and derives the 36-char UUID internally, matching the frontend behaviour.
+
+```
+./workshop <command> [options]
+```
+
+### Commands
+
+| Command                                                      | Module | What it does                                                              |
+| ------------------------------------------------------------ | ------ | ------------------------------------------------------------------------- |
+| `workshop reset`                                             | —      | Resets PostgreSQL and Redis, reloads CSV data into PostgreSQL             |
+| `workshop help`                                              | —      | Prints a detailed help message                                            |
+| `workshop daily-mix --user <username>`                       | 1      | Calls the daily-mix endpoint and prints the response time                 |
+| `workshop simulate-plays --song <id> --count N --concurrent` | 2      | Fires N play events (optionally concurrent) and prints the final counter  |
+| `workshop add-listeners --artist <id> --count N`             | 3, 5   | Adds N random listeners using the API, prints timing                      |
+| `workshop top-songs --limit N`                               | 4      | Prints the current Top-N leaderboard from the Sorted Set                  |
+| `workshop get-redis-memory-usage`                            | 5      | Prints the memory used by Redis                                           |
+| `workshop load-embeddings`                                   | 6      | Computes embeddings from `data/songs.csv` and loads them into a VectorSet |
+| `workshop similar-songs --song <id> --count N`               | 6      | Queries the VectorSet for similar songs                                   |
+
 ---
 
 ## Module 1 — Caching & TTL
 
+**⏱ 20 min**
+
 ### Problem
 
-The platform generates **personalised daily mixes** for every user. The algorithm is powerful but **slow and resource-intensive**: for each request it iterates over the entire song catalogue, scoring and ranking every track before returning the top 50.
+The platform generates **daily mixes** for every user. The algorithm is slow: for each request it loops over all songs, scoring each one before returning the top 50.
 
-> _Simulated in code with a deliberate `sleep` / busy-loop inside the generation function._
+> _Simulated in code with a `time.sleep(5)` inside the generation function._
 
-Calling the endpoint twice for the same user runs the expensive algorithm twice — wasting time and compute.
+Calling the endpoint twice for the same user runs the expensive algorithm twice.
+
+### Observe
+
+```bash
+workshop daily-mix --user user-1          # ~5 s
+workshop daily-mix --user user-1          # ~5 s again — no caching
+```
 
 ### Goal
 
-Use Redis as a **cache** so the expensive computation only runs once, and subsequent requests are served instantly.
+Use Redis as a **cache** so the computation runs once and subsequent requests are instant.
 
-### Key concepts
+### Key Redis commands
 
-| Concept             | Redis command   | Why it matters                                                          |
-| ------------------- | --------------- | ----------------------------------------------------------------------- |
-| String / JSON value | `SET`, `GET`    | Store the serialised playlist                                           |
-| Time-to-live        | `EXPIRE`, `TTL` | Auto-invalidate after 24 h so users get a fresh mix daily               |
-| Cache-aside pattern | —               | App checks cache first, falls back to computation, then populates cache |
+| Command                    | Purpose                                   |
+| -------------------------- | ----------------------------------------- |
+| `SET key value EX seconds` | Store the result with an automatic expiry |
+| `GET key`                  | Retrieve the cached result                |
+| `TTL key`                  | Check remaining time-to-live              |
+| `DEL key`                  | Manually invalidate                       |
 
 ### Steps
 
-1. **Observe the problem** — call `GET /users/{id}/daily-mix` twice; both calls take ~5 s.
-2. **Add a cache check** — before running the algorithm, `GET daily-mix:{userId}` from Redis.
-3. **Populate the cache** — after computing the mix, `SET daily-mix:{userId} <json> EX 86400`.
-4. **Verify** — second call returns in < 10 ms. Inspect `TTL daily-mix:{userId}`.
+1. Open `api/routes/daily_mix.py`.
+2. Before the slow computation, check Redis: `GET daily-mix:{user_id}`. If found, return it.
+3. After computing, store: `SET daily-mix:{user_id} <json> EX 86400`.
+4. Verify:
+
+```bash
+workshop daily-mix --user user-1          # ~5 s (cold)
+workshop daily-mix --user user-1          # < 10 ms (cached)
+```
 
 ### Discussion
 
-- What happens when the TTL expires?
-- What if the user explicitly asks for a new mix? (`DEL daily-mix:{userId}`)
-- What are the risks of caching (stale data, cold starts)?
+- What happens after 24 h?
+- How would the user force a refresh? (`DEL`)
+- What are the risks of caching? (stale data, cold starts, thundering herd)
 
 ---
 
 ## Module 2 — Atomic Counters
 
+**⏱ 15 min**
+
 ### Problem
 
-Every time a song is played, the API increments a **play counter** in PostgreSQL:
+Every play event increments a counter in PostgreSQL using SELECT → add 1 → UPDATE.
+Under concurrency, two requests read the same value and both write `count + 1` — **losing an increment**.
 
-```sql
-SELECT play_count FROM songs WHERE id = ?;
--- application adds 1 --
-UPDATE songs SET play_count = ? WHERE id = ?;
+> _Simulated by adding a `time.sleep(0.1)` between SELECT and UPDATE._
+
+### Observe
+
+```bash
+workshop reset
+workshop simulate-plays --song song-1 --count 500 --concurrent
+# Expected: 500 — Actual: less than 500 (lost updates)
 ```
-
-Under concurrent requests the read-modify-write cycle is **not atomic**. Two requests can read the same value and both write `count + 1`, losing an increment.
-
-> _Simulated by adding a `sleep` between the SELECT and the UPDATE._
 
 ### Goal
 
-Use a Redis **atomic counter** so increments are never lost, regardless of concurrency.
+Replace with a Redis **atomic counter**.
 
-### Key concepts
+### Key Redis commands
 
-| Concept          | Redis command    | Why it matters                                           |
-| ---------------- | ---------------- | -------------------------------------------------------- |
-| Atomic increment | `INCR`, `INCRBY` | Single-threaded execution guarantees no lost updates     |
-| Key naming       | —                | `play-count:song:{songId}` — predictable, collision-free |
+| Command    | Purpose                   |
+| ---------- | ------------------------- |
+| `INCR key` | Atomically increment by 1 |
+| `GET key`  | Read the current count    |
 
 ### Steps
 
-1. **Observe the problem** — fire 100 concurrent play events for the same song; final count < 100.
-2. **Replace with `INCR`** — each play event calls `INCR play-count:song:{songId}`.
-3. **Verify** — fire 100 concurrent events again; final count = 100.
-4. **Read the counter** — `GET play-count:song:{songId}`.
+1. Open `api/routes/songs.py` — find the play-count endpoint.
+2. Replace the SELECT/UPDATE with `INCR play-count:song:{song_id}`.
+3. Verify:
+
+```bash
+workshop reset
+workshop simulate-plays --song song-1 --count 500 --concurrent
+# Now: exactly 500
+```
 
 ### Discussion
 
-- How / when do you sync the counter back to PostgreSQL?
+- How / when do you sync back to PostgreSQL?
 - What happens if Redis restarts? (persistence: RDB / AOF)
 
 ---
 
 ## Module 3 — Sets
 
+**⏱ 15 min**
+
 ### Problem
 
-The platform tracks **monthly distinct listeners** per artist. The current implementation appends every `userId` to a **PostgreSQL array** (or a Redis List), then checks for duplicates with a linear scan before inserting.
+The platform tracks **monthly distinct listeners** per artist. The current implementation uses a Redis **List**: before appending a user ID, it scans the list to check for duplicates — **O(N) per event**.
 
-As the number of distinct listeners grows, the duplicate check becomes **O(N)** per play event — unacceptably slow for popular artists.
+### Observe
+
+```bash
+workshop add-listeners --artist artist-1 --count 100000     # note the time
+workshop add-listeners --artist artist-1 --count 100000     # same operation, but slower — List now has 100K entries, O(N) check on every insert
+```
 
 ### Goal
 
-Use a Redis **Set** to track distinct listeners with **O(1)** add and membership check.
+Use a Redis **Set** for **O(1)** add-with-dedup.
 
-### Key concepts
+### Key Redis commands
 
-| Concept         | Redis command      | Why it matters                                                   |
-| --------------- | ------------------ | ---------------------------------------------------------------- |
-| Add to set      | `SADD`             | Ignores duplicates automatically                                 |
-| Cardinality     | `SCARD`            | Distinct listener count in O(1)                                  |
-| Membership test | `SISMEMBER`        | O(1) lookup                                                      |
-| Set operations  | `SINTER`, `SUNION` | Listeners in common between artists, total unique across artists |
+| Command                | Purpose                                 |
+| ---------------------- | --------------------------------------- |
+| `SADD key member`      | Add; ignores duplicates                 |
+| `SCARD key`            | Count distinct members                  |
+| `SISMEMBER key member` | Check membership in O(1)                |
+| `SINTER key1 key2`     | Listeners in common between two artists |
 
 ### Steps
 
-1. **Observe the problem** — add listeners to a list, measure time for the 1 000th vs the 100 000th insert.
-2. **Switch to a Set** — `SADD monthly-listeners:artist:{artistId}:{YYYY-MM} {userId}`.
-3. **Query** — `SCARD` for count, `SISMEMBER` for "has this user listened?".
-4. **Bonus** — `SINTER` to find users who listen to both Artist A and Artist B.
+1. Open `api/routes/artists.py` — find the listener-tracking logic.
+2. Replace the List + scan with `SADD monthly-listeners:{artist_id}:{YYYY-MM} {user_id}`.
+3. Verify:
+
+```bash
+workshop reset
+workshop add-listeners --artist artist-1 --count 100000
+# Constant speed regardless of size
+```
 
 ### Discussion
 
-- Sets store each member in full — what happens when you have 100 M members? (→ Module 5)
-- How do you "reset" at the end of the month? (key-per-month + `EXPIRE`)
+- Sets store each member in full — what about memory at 100 M scale? (→ Module 5)
 
 ---
 
 ## Module 4 — Sorted Sets
 
+**⏱ 15 min**
+
 ### Problem
 
-The product team wants a **"Top 50 Most Played Songs"** leaderboard on the homepage, updated in real time. Currently this requires a full-table query:
+The product team wants a **"Top Songs"** leaderboard updated in real time. The current approach queries PostgreSQL:
 
 ```sql
 SELECT * FROM songs ORDER BY play_count DESC LIMIT 50;
 ```
 
-This is expensive, especially under heavy write load, and the result is only as fresh as the last query.
+This is slow under write-heavy load and always slightly stale.
 
 ### Goal
 
-Use a Redis **Sorted Set** to maintain a real-time leaderboard where every play event automatically updates the ranking.
+Use a Redis **Sorted Set** where every play event atomically updates the ranking.
 
-### Key concepts
+### Key Redis commands
 
-| Concept            | Redis command              | Why it matters                                 |
-| ------------------ | -------------------------- | ---------------------------------------------- |
-| Add / update score | `ZINCRBY`                  | Atomically increment a member's score          |
-| Top-N query        | `ZREVRANGE ... WITHSCORES` | Get the top N members by score in O(log N + M) |
-| Rank lookup        | `ZREVRANK`                 | "What position is this song at?"               |
-| Score lookup       | `ZSCORE`                   | "How many plays does this song have?"          |
+| Command                        | Purpose                            |
+| ------------------------------ | ---------------------------------- |
+| `ZINCRBY key increment member` | Atomically add to a member's score |
+| `ZREVRANGE key 0 N WITHSCORES` | Top N members by score             |
+| `ZREVRANK key member`          | "What position is this song?"      |
+| `ZSCORE key member`            | "How many plays?"                  |
 
 ### Steps
 
-1. **Observe the problem** — run the SQL query under load; note latency.
-2. **Increment on play** — every play event calls `ZINCRBY top-songs {songId} 1`.
-3. **Query the leaderboard** — `ZREVRANGE top-songs 0 49 WITHSCORES`.
-4. **Lookup a song** — `ZREVRANK top-songs {songId}` → position, `ZSCORE top-songs {songId}` → count.
-5. **Bonus** — build a per-genre leaderboard: `ZINCRBY top-songs:genre:{genre} {songId} 1`.
+1. Open `api/routes/songs.py` — in the play endpoint, after `INCR`, also call `ZINCRBY top-songs 1 {song_id}`.
+2. Wire the leaderboard endpoint (`api/routes/leaderboard.py`) to call `ZREVRANGE top-songs 0 49 WITHSCORES` instead of querying PostgreSQL.
+3. Verify:
+
+```bash
+workshop simulate-plays --song song-1 --count 20 --concurrent
+workshop simulate-plays --song song-2 --count 35 --concurrent
+workshop top-songs --limit 10
+# song-2: 35, song-1: 20
+```
 
 ### Discussion
 
-- How does this relate to the counters in Module 2? Could you replace the per-song counter with the Sorted Set score?
-- How would you implement a "trending this week" chart? (use a time-windowed key + `EXPIRE`)
+- How would you build a "trending this week" chart? (time-windowed key + `EXPIRE`)
 
 ---
 
 ## Module 5 — HyperLogLog
 
+**⏱ 15 min**
+
 ### Problem
 
-Module 3 solved the correctness problem, but **not the memory problem**. Each member of a Set is stored in full. Consider the top 5 artists, each with ~100 M monthly listeners represented by a 36-character UUID:
+Module 3 improved speed, but **not memory** usage. Each user ID is stored in full in the Set.
+Our top-5 artists count with ~100 M monthly listeners (36-char UUIDs each):
 
 ```
-100 000 000 listeners × 36 bytes ≈ 3.4 GiB per artist per month
-5 artists × 3.4 GiB ≈ 17 GiB per month — just for 5 artists
+100 000 000 × 36 bytes ≈ 3.4 GiB per artist
+5 artists ≈ 17 GiB — just for 5 artists
 ```
-
-This does not scale.
 
 ### Goal
 
-Use **HyperLogLog** to estimate the number of distinct listeners using a fixed ~12 KB of memory per counter — regardless of cardinality.
+Use **HyperLogLog**: approximate distinct count in ~12 KB of memory, regardless of cardinality.
 
-### Key concepts
+### Key Redis commands
 
-| Concept         | Redis command | Why it matters                                     |
-| --------------- | ------------- | -------------------------------------------------- |
-| Add element     | `PFADD`       | Observe a listener                                 |
-| Estimated count | `PFCOUNT`     | Approximate distinct count (standard error 0.81 %) |
-| Merge           | `PFMERGE`     | Combine multiple HLLs (e.g. weekly → monthly)      |
+| Command                  | Purpose                                            |
+| ------------------------ | -------------------------------------------------- |
+| `PFADD key element`      | Observe an element                                 |
+| `PFCOUNT key`            | Approximate distinct count (0.81 % standard error) |
+| `PFMERGE dest src1 src2` | Merge HLLs (e.g. weekly → monthly)                 |
+
+### Observe & compare
+
+```bash
+workshop reset
+workshop add-listeners --artist artist-1 --count 1000000
+workshop get-redis-memory-usage
+
+# TODO – add actual numbers
+# Output:
+#   Set   — count: ??, memory: ~?? MiB
+#   HLL   — count: ~??, memory: ~?? KiB
+#   Error: ~?? %
+```
 
 ### Steps
 
-1. **Observe the problem** — check `MEMORY USAGE` of the Set from Module 3 after adding 100 K members.
-2. **Switch to HLL** — `PFADD hll-listeners:artist:{artistId}:{YYYY-MM} {userId}`.
-3. **Query** — `PFCOUNT hll-listeners:artist:{artistId}:{YYYY-MM}`.
-4. **Compare** — Set count vs HLL estimate (should be within ~1 %). Compare memory usage.
-5. **Merge** — `PFMERGE` weekly HLLs into a monthly HLL.
+1. Open `api/routes/artists.py`.
+2. Replace `SADD` with `PFADD hll-listeners:{artist_id}:{YYYY-MM} {user_id}`.
+3. Replace the `SCARD` count endpoint with `PFCOUNT`.
+4. Re-run the listener ingestion and compare memory with `workshop get-redis-memory-usage`.
 
 ### Discussion
 
-- HyperLogLog is **probabilistic** — you cannot list the members or check membership. When is that trade-off acceptable?
-- When would you still prefer a Set? (when you need to know _who_, not just _how many_)
+- HLL is **probabilistic** — you cannot list members or check membership.
+- When is ~1 % error acceptable? When isn't it?
 
 ---
 
-## Module 6 — VectorSets _(bonus / advanced)_
+## Module 6 — VectorSets _(bonus — if time allows)_
+
+**⏱ 20 min**
 
 ### Problem
 
-The product team wants a **"Similar Songs"** section on every song page. Traditional approaches (genre tags, collaborative filtering) are either too coarse or require heavy infrastructure.
+The product team wants a **"Similar Songs"** section. Traditional tag-based matching is too coarse.
 
 ### Goal
 
-Use Redis **VectorSets** (available since Redis 8.0) to store song embeddings and perform real-time similarity searches.
-
-### Key concepts
-
-| Concept           | Redis command | Why it matters                                                     |
-| ----------------- | ------------- | ------------------------------------------------------------------ |
-| Add a vector      | `VADD`        | Store a song embedding with its ID                                 |
-| Similarity search | `VSIM`        | Find the K nearest neighbours                                      |
-| Dimensionality    | —             | Depends on the embedding model (e.g. 384-d for `all-MiniLM-L6-v2`) |
+Use Redis **VectorSets** (Redis 8.0+) to store song embeddings and perform similarity search.
 
 ### Pre-requisites
 
-- **Redis 8.0+**
-- A set of **pre-computed song embeddings** (provided as a JSON/CSV file to avoid workshop-time computation)
-- Embeddings generated from song metadata (title + artist + genre + mood tags) using a HuggingFace sentence-transformer model
+- Song data in `data/songs.csv` (already used to seed PostgreSQL).
+- The `workshop load-embeddings` command computes embeddings on the fly from the CSV using a HuggingFace sentence-transformer model.
+- Redis 8.0+ (included in the Docker Compose setup).
+
+### Key Redis commands
+
+| Command                                               | Purpose                      |
+| ----------------------------------------------------- | ---------------------------- |
+| `VADD key [REDUCE dim] FP32 element VALUES v1 v2 ...` | Store an embedding           |
+| `VSIM key ELE element COUNT N`                        | Find N most similar elements |
 
 ### Steps
 
-1. **Load embeddings** — iterate over the embeddings file and `VADD song-vectors {songId} VALUES {dim} {v1} {v2} ...`.
-2. **Query** — `VSIM song-vectors VALUES {dim} {v1} {v2} ... COUNT 10` → 10 most similar songs.
-3. **Lookup by song** — `VSIM song-vectors ELE {songId} COUNT 10` → 10 songs most similar to a given song.
-4. **Integrate** — wire the API endpoint `GET /songs/{id}/similar` to the VectorSet query.
+1. Load the embeddings:
+
+```bash
+workshop load-embeddings
+# Loaded 500 song embeddings into VectorSet "song-vectors"
+```
+
+2. Query:
+
+```bash
+workshop similar-songs --song song-42 --count 5
+# 1. song-108  (score: 0.94)
+# 2. song-271  (score: 0.91)
+# ...
+```
+
+3. Wire `GET /songs/{id}/similar` to `VSIM song-vectors ELE {song_id} COUNT 10`.
 
 ### Discussion
 
-- How do you update embeddings when song metadata changes?
-- What are the trade-offs vs. a dedicated vector database?
-- How would you combine vector similarity with business rules (e.g. exclude explicit content)?
+- How do you update embeddings when metadata changes?
+- Trade-offs vs a dedicated vector database?
 
 ---
 
 ## Summary
 
-| Module | Data structure    | Problem solved                        | Complexity |
-| ------ | ----------------- | ------------------------------------- | ---------- |
-| 1      | Strings + TTL     | Avoid redundant expensive computation | ⭐         |
-| 2      | Counters (`INCR`) | Lost updates under concurrency        | ⭐         |
-| 3      | Sets              | O(N) deduplication                    | ⭐⭐       |
-| 4      | Sorted Sets       | Real-time leaderboards                | ⭐⭐       |
-| 5      | HyperLogLog       | Memory explosion for cardinality      | ⭐⭐⭐     |
-| 6      | VectorSets        | Semantic similarity search            | ⭐⭐⭐     |
+| Module | Data structure    | Problem                                   | Time             |
+| ------ | ----------------- | ----------------------------------------- | ---------------- |
+| 1      | Strings + TTL     | Redundant expensive computation           | 20 min           |
+| 2      | Counters (`INCR`) | Lost updates under concurrency            | 15 min           |
+| 3      | Sets              | O(N) deduplication                        | 15 min           |
+| 4      | Sorted Sets       | Real-time leaderboards                    | 15 min           |
+| 5      | HyperLogLog       | Memory explosion for cardinality counting | 15 min           |
+| 6      | VectorSets        | Semantic similarity search                | 20 min _(bonus)_ |
 
-Each module builds on a single, consistent application so that by the end of the workshop students have seen how Redis complements a relational database — not as a replacement, but as the right tool for specific problems.
-
-1. **Observe the problem** — add listeners to a list, measure time for the 1 000th vs the 100 000th insert.
-2. **Switch to a Set** — `SADD monthly-listeners:artist:{artistId}:{YYYY-MM} {userId}`.
-3. **Query** — `SCARD` for count, `SISMEMBER` for "has this user listened?".
-4. **Bonus** — `SINTER` to find users who listen to both Artist A and Artist B.
-
-### Discussion
-
-- Sets store each member in full — what happens when you have 100 M members? (→ Module 5)
-- How do you "reset" at the end of the month? (key-per-month + `EXPIRE`)
+Each module builds on the same application. By the end, students have seen how Redis **complements** a relational database — not as a replacement, but as the right tool for specific problems.
