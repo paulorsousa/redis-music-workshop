@@ -5,6 +5,8 @@ import sys
 
 from workshop_cli.commands.add_listeners import cmd_add_listeners
 from workshop_cli.commands.daily_mix import cmd_daily_mix
+from workshop_cli.commands.list_artists import cmd_list_artists
+from workshop_cli.commands.list_songs import cmd_list_songs
 from workshop_cli.commands.load_embeddings import cmd_load_embeddings
 from workshop_cli.commands.redis_memory import cmd_get_redis_memory
 from workshop_cli.commands.reset import cmd_reset
@@ -22,6 +24,18 @@ def main():
 
     sub.add_parser("reset", help="Reset PostgreSQL and Redis, reload seed data")
     sub.add_parser("help", help="Show this help message")
+
+    p = sub.add_parser("list-songs", help="List songs (paginated)")
+    p.add_argument("--page", type=int, default=1, help="Page number (default: 1)")
+    p.add_argument(
+        "--per-page", type=int, default=20, help="Items per page (default: 20)"
+    )
+
+    p = sub.add_parser("list-artists", help="List artists (paginated)")
+    p.add_argument("--page", type=int, default=1, help="Page number (default: 1)")
+    p.add_argument(
+        "--per-page", type=int, default=20, help="Items per page (default: 20)"
+    )
 
     p = sub.add_parser("daily-mix", help="Call the daily-mix endpoint")
     p.add_argument("--user", default="user-1", help="Username (default: user-1)")
@@ -59,8 +73,10 @@ def main():
     args = parser.parse_args()
 
     cmds = {
-        "reset": cmd_reset,
         "help": lambda a: parser.print_help(),
+        "reset": cmd_reset,
+        "list-songs": cmd_list_songs,
+        "list-artists": cmd_list_artists,
         "daily-mix": cmd_daily_mix,
         "simulate-plays": cmd_simulate_plays,
         "add-listeners": cmd_add_listeners,

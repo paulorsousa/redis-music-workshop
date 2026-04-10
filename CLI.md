@@ -48,21 +48,18 @@ The derived UUID is sent as the `X-User-ID` header on API calls, matching the fr
 
 ### `workshop reset`
 
-Resets Redis and PostgreSQL by restarting Docker containers, then reloads seed data. No arguments.
+Resets Redis and PostgreSQL, then reloads seed data. No arguments.
 
 **Behaviour:**
 
-1. `docker compose restart redis postgres` — restart both containers to clear all state.
-2. Wait for containers to be healthy.
-3. `docker compose exec api python -c "from database import init_db, seed_db; init_db(); seed_db()"` — trigger the API container to reload `data/artists.csv` and `data/songs.csv` into PostgreSQL.
-4. Print summary.
+1. `docker compose exec redis redis-cli FLUSHDB` — flush all Redis keys.
+2. `docker compose exec api python -c "from database import init_db, seed_db; init_db(); seed_db()"` — trigger the API container to reload `data/artists.csv` and `data/songs.csv` into PostgreSQL.
+3. Print summary.
 
 **Output:**
 
 ```
-  ✓ Restarting redis... done
-  ✓ Restarting postgres... done
-  ✓ Waiting for services... done
+  ✓ Flushing redis... done
   ✓ Seeding database... done
   20 artists, 500 songs loaded
 ```
@@ -72,6 +69,62 @@ Resets Redis and PostgreSQL by restarting Docker containers, then reloads seed d
 ### `workshop help`
 
 Prints a summary of all commands with descriptions and examples. Implemented via `argparse` subparsers with epilog text, aliased as a subcommand for discoverability.
+
+---
+
+### `workshop list-songs [--page N] [--per-page N]`
+
+Lists songs with pagination.
+
+| Option       | Required | Default | Description              |
+| ------------ | -------- | ------- | ------------------------ |
+| `--page`     | No       | `1`     | Page number              |
+| `--per-page` | No       | `20`    | Number of items per page |
+
+**Behaviour:**
+
+1. `GET /songs?page={page}&per_page={per_page}`.
+2. Print a numbered table with ID, title, artist, and genre.
+
+**Output:**
+
+```
+Songs (page 1/25, 500 total)
+────────────────────────────────────────────────────────────
+   #  ID         Title                          Artist               Genre
+   1. song-1     Bohemian Rhapsody              Queen                Rock
+   2. song-2     Stairway to Heaven             Led Zeppelin         Rock
+   ...
+⏱ 12 ms
+```
+
+---
+
+### `workshop list-artists [--page N] [--per-page N]`
+
+Lists artists with pagination.
+
+| Option       | Required | Default | Description              |
+| ------------ | -------- | ------- | ------------------------ |
+| `--page`     | No       | `1`     | Page number              |
+| `--per-page` | No       | `20`    | Number of items per page |
+
+**Behaviour:**
+
+1. `GET /artists?page={page}&per_page={per_page}`.
+2. Print a numbered table with ID, name, and genre.
+
+**Output:**
+
+```
+Artists (page 1/1, 20 total)
+─────────────────────────────────────────────
+   #  ID           Name                      Genre
+   1. artist-1     Queen                     Rock
+   2. artist-2     Led Zeppelin              Rock
+   ...
+⏱ 8 ms
+```
 
 ---
 
@@ -104,7 +157,7 @@ GET /daily-mix (user: user-1, id: 553d2075-...)
 
 ---
 
-### `workshop simulate-plays --song <id> --count N [--concurrent]`
+### `workshop simulate-plays --song <id> [--count N] [--concurrent]`
 
 Fires play events and reports the final counter.
 
@@ -143,7 +196,7 @@ Actual:   500 ✓
 
 ---
 
-### `workshop add-listeners --artist <id> --count N`
+### `workshop add-listeners --artist <id> [--count N]`
 
 Adds random listeners to an artist via the API and reports timing.
 
@@ -169,7 +222,7 @@ Monthly listeners: 100000
 
 ---
 
-### `workshop top-songs --limit N`
+### `workshop top-songs [--limit N]`
 
 Prints the current leaderboard.
 
@@ -249,7 +302,7 @@ The embedding computation (`sentence-transformers`) runs inside the API containe
 
 ---
 
-### `workshop similar-songs --song <id> --count N`
+### `workshop similar-songs --song <id> [--count N]`
 
 Queries the VectorSet for similar songs.
 

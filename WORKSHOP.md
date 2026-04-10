@@ -56,17 +56,19 @@ The `--user` flag accepts a **username** (e.g. `user-1`) and derives the 36-char
 
 ### Commands
 
-| Command                                                      | Module | What it does                                                             |
-| ------------------------------------------------------------ | ------ | ------------------------------------------------------------------------ |
-| `workshop reset`                                             | —      | Resets PostgreSQL and Redis, reloads CSV data into PostgreSQL            |
-| `workshop help`                                              | —      | Prints a detailed help message                                           |
-| `workshop daily-mix --user <username>`                       | 1      | Calls the daily-mix endpoint and prints the response time                |
-| `workshop simulate-plays --song <id> --count N --concurrent` | 2      | Fires N play events (optionally concurrent) and prints the final counter |
-| `workshop add-listeners --artist <id> --count N`             | 3, 5   | Adds N random listeners using the API, prints timing                     |
-| `workshop top-songs --limit N`                               | 4      | Prints the current Top-N leaderboard from the Sorted Set                 |
-| `workshop get-redis-memory-usage`                            | 5      | Prints the memory used by Redis                                          |
-| `workshop load-embeddings`                                   | 6      | Triggers the API to compute embeddings and load them into a VectorSet    |
-| `workshop similar-songs --song <id> --count N`               | 6      | Queries the VectorSet for similar songs                                  |
+| Command                                                          | Module | What it does                                                             |
+| ---------------------------------------------------------------- | ------ | ------------------------------------------------------------------------ |
+| `workshop reset`                                                 | —      | Resets PostgreSQL and Redis, reloads CSV data into PostgreSQL            |
+| `workshop help`                                                  | —      | Prints a detailed help message                                           |
+| `workshop list-songs [--page N] [--per-page N]`                  | —      | Lists songs                                                              |
+| `workshop list-artists [--page N] [--per-page N]`                | —      | Lists artists                                                            |
+| `workshop daily-mix [--user <username>]`                         | 1      | Calls the daily-mix endpoint and prints the response time                |
+| `workshop simulate-plays --song <id> [--count N] [--concurrent]` | 2      | Fires N play events (optionally concurrent) and prints the final counter |
+| `workshop add-listeners --artist <id> [--count N]`               | 3, 5   | Adds N random listeners using the API, prints timing                     |
+| `workshop top-songs [--limit N]`                                 | 4      | Prints the current Top-N leaderboard from the Sorted Set                 |
+| `workshop get-redis-memory-usage`                                | 5      | Prints the memory used by Redis                                          |
+| `workshop load-embeddings`                                       | 6      | Triggers the API to compute embeddings and load them into a VectorSet    |
+| `workshop similar-songs --song <id> [--count N]`                 | 6      | Queries the VectorSet for similar songs                                  |
 
 ---
 
@@ -78,7 +80,7 @@ The `--user` flag accepts a **username** (e.g. `user-1`) and derives the 36-char
 
 The platform generates **daily mixes** for every user. The algorithm is slow: for each request it loops over all songs, scoring each one before returning the top 50.
 
-> _Simulated in code with a `time.sleep(5)` inside the generation function._
+> _Simulated in code with a `time.sleep(5)` inside the generation function. Keep it to simulate a real-world expensive computation._
 
 Calling the endpoint twice for the same user runs the expensive algorithm twice.
 
