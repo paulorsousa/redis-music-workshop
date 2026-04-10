@@ -8,20 +8,11 @@ from workshop_cli.utils.spinner import run_with_spinner
 
 def cmd_reset(args):
     run_with_spinner(
-        "Restarting redis...",
+        "Flushing redis...",
         subprocess.run,
-        ["docker", "compose", "restart", "redis"],
+        ["docker", "compose", "exec", "redis", "redis-cli", "FLUSHDB"],
         capture_output=True,
     )
-
-    run_with_spinner(
-        "Restarting postgres...",
-        subprocess.run,
-        ["docker", "compose", "restart", "postgres"],
-        capture_output=True,
-    )
-
-    run_with_spinner("Waiting for services...", time.sleep, 5)
 
     result = run_with_spinner(
         "Seeding database...",
