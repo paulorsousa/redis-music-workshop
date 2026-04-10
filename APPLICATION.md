@@ -53,7 +53,7 @@ Two CSV files in `data/`:
 
 ~20 artists and ~500 songs spanning 5–6 genres.
 
-Both files are loaded into PostgreSQL by `workshop reset` (and automatically on first `docker compose up`). The API reads from PostgreSQL at runtime — the CSVs are only used for seeding and for computing embeddings (Module 6).
+Both files are loaded into PostgreSQL by `./workshop reset` (and automatically when DB is empty). The API reads from PostgreSQL at runtime — the CSVs are only used for seeding and for computing embeddings (Module 6).
 
 Song embeddings for Module 6 are **computed by the API** from the CSV data when triggered via `POST /admin/load-embeddings`. The API container has `sentence-transformers` installed. No pre-computed embeddings file is shipped.
 
@@ -239,5 +239,5 @@ These are the problems students will observe and fix during the workshop:
 | 2   | `POST /songs/{id}/play`        | Non-atomic counter — loses increments under concurrency | Read-modify-write (`SELECT` then `UPDATE`) without locks |
 | 3   | `POST /artists/{id}/listeners` | Tracks listeners in a Redis List with O(N) dedup scan   | `LRANGE` + linear membership check before `RPUSH`        |
 | 4   | `GET /leaderboard`             | Queries PostgreSQL directly — slow and stale under load | `SELECT ... ORDER BY play_count DESC`                    |
-| 5   | (same as 3)                    | Set from Module 3 uses too much memory at scale         | N/A — observed via `workshop get-redis-memory-usage`     |
+| 5   | (same as 3)                    | Set from Module 3 uses too much memory at scale         | N/A — observed via `./workshop get-redis-memory-usage`   |
 | 6   | `GET /songs/{id}/similar`      | Not implemented                                         | Returns `null` (frontend shows a teaser)                 |

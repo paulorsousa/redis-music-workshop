@@ -46,7 +46,7 @@ The derived UUID is sent as the `X-User-ID` header on API calls, matching the fr
 
 ## Commands
 
-### `workshop reset`
+### `./workshop reset`
 
 Resets Redis and PostgreSQL, then reloads seed data. No arguments.
 
@@ -66,13 +66,13 @@ Resets Redis and PostgreSQL, then reloads seed data. No arguments.
 
 ---
 
-### `workshop help`
+### `./workshop help`
 
 Prints a summary of all commands with descriptions and examples. Implemented via `argparse` subparsers with epilog text, aliased as a subcommand for discoverability.
 
 ---
 
-### `workshop list-songs [--page N] [--per-page N]`
+### `./workshop list-songs [--page N] [--per-page N]`
 
 Lists songs with pagination.
 
@@ -100,7 +100,7 @@ Songs (page 1/25, 500 total)
 
 ---
 
-### `workshop list-artists [--page N] [--per-page N]`
+### `./workshop list-artists [--page N] [--per-page N]`
 
 Lists artists with pagination.
 
@@ -128,7 +128,7 @@ Artists (page 1/1, 20 total)
 
 ---
 
-### `workshop daily-mix --user <username>`
+### `./workshop daily-mix --user <username>`
 
 Calls the daily-mix API endpoint and reports timing.
 
@@ -157,7 +157,7 @@ GET /daily-mix (user: user-1, id: 553d2075-...)
 
 ---
 
-### `workshop simulate-plays --song <id> [--count N] [--concurrent]`
+### `./workshop simulate-plays --song <id> [--count N] [--concurrent]`
 
 Fires play events and reports the final counter.
 
@@ -196,7 +196,7 @@ Actual:   500 ✓
 
 ---
 
-### `workshop add-listeners --artist <id> [--count N]`
+### `./workshop add-listeners --artist <id> [--count N]`
 
 Adds random listeners to an artist via the API and reports timing.
 
@@ -222,7 +222,7 @@ Monthly listeners: 100000
 
 ---
 
-### `workshop top-songs [--limit N]`
+### `./workshop top-songs [--limit N]`
 
 Prints the current leaderboard.
 
@@ -251,7 +251,7 @@ Top 10 Songs
 
 ---
 
-### `workshop get-redis-memory-usage`
+### `./workshop get-redis-memory-usage`
 
 Prints memory stats for workshop-related Redis keys using `docker exec`. No arguments.
 
@@ -280,7 +280,7 @@ Redis Memory Usage
 
 ---
 
-### `workshop load-embeddings`
+### `./workshop load-embeddings`
 
 Triggers the API to compute song embeddings and load them into a Redis VectorSet. No arguments.
 
@@ -302,7 +302,7 @@ The embedding computation (`sentence-transformers`) runs inside the API containe
 
 ---
 
-### `workshop similar-songs --song <id> [--count N]`
+### `./workshop similar-songs --song <id> [--count N]`
 
 Queries the VectorSet for similar songs.
 

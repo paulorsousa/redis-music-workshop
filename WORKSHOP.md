@@ -56,19 +56,19 @@ The `--user` flag accepts a **username** (e.g. `user-1`) and derives the 36-char
 
 ### Commands
 
-| Command                                                          | Module | What it does                                                             |
-| ---------------------------------------------------------------- | ------ | ------------------------------------------------------------------------ |
-| `workshop reset`                                                 | —      | Resets PostgreSQL and Redis, reloads CSV data into PostgreSQL            |
-| `workshop help`                                                  | —      | Prints a detailed help message                                           |
-| `workshop list-songs [--page N] [--per-page N]`                  | —      | Lists songs                                                              |
-| `workshop list-artists [--page N] [--per-page N]`                | —      | Lists artists                                                            |
-| `workshop daily-mix [--user <username>]`                         | 1      | Calls the daily-mix endpoint and prints the response time                |
-| `workshop simulate-plays --song <id> [--count N] [--concurrent]` | 2      | Fires N play events (optionally concurrent) and prints the final counter |
-| `workshop add-listeners --artist <id> [--count N]`               | 3, 5   | Adds N random listeners using the API, prints timing                     |
-| `workshop top-songs [--limit N]`                                 | 4      | Prints the current Top-N leaderboard from the Sorted Set                 |
-| `workshop get-redis-memory-usage`                                | 5      | Prints the memory used by Redis                                          |
-| `workshop load-embeddings`                                       | 6      | Triggers the API to compute embeddings and load them into a VectorSet    |
-| `workshop similar-songs --song <id> [--count N]`                 | 6      | Queries the VectorSet for similar songs                                  |
+| Command                                                            | Module | What it does                                                             |
+| ------------------------------------------------------------------ | ------ | ------------------------------------------------------------------------ |
+| `./workshop reset`                                                 | —      | Resets PostgreSQL and Redis, reloads CSV data into PostgreSQL            |
+| `./workshop help`                                                  | —      | Prints a detailed help message                                           |
+| `./workshop list-songs [--page N] [--per-page N]`                  | —      | Lists songs                                                              |
+| `./workshop list-artists [--page N] [--per-page N]`                | —      | Lists artists                                                            |
+| `./workshop daily-mix [--user <username>]`                         | 1      | Calls the daily-mix endpoint and prints the response time                |
+| `./workshop simulate-plays --song <id> [--count N] [--concurrent]` | 2      | Fires N play events (optionally concurrent) and prints the final counter |
+| `./workshop add-listeners --artist <id> [--count N]`               | 3, 5   | Adds N random listeners using the API, prints timing                     |
+| `./workshop top-songs [--limit N]`                                 | 4      | Prints the current Top-N leaderboard from the Sorted Set                 |
+| `./workshop get-redis-memory-usage`                                | 5      | Prints the memory used by Redis                                          |
+| `./workshop load-embeddings`                                       | 6      | Triggers the API to compute embeddings and load them into a VectorSet    |
+| `./workshop similar-songs --song <id> [--count N]`                 | 6      | Queries the VectorSet for similar songs                                  |
 
 ---
 
@@ -87,8 +87,8 @@ Calling the endpoint twice for the same user runs the expensive algorithm twice.
 ### Observe
 
 ```bash
-workshop daily-mix --user user-1          # ~5 s
-workshop daily-mix --user user-1          # ~5 s again — no caching
+./workshop daily-mix --user user-1          # ~5 s
+./workshop daily-mix --user user-1          # ~5 s again — no caching
 ```
 
 ### Goal
@@ -112,8 +112,8 @@ Use Redis as a **cache** so the computation runs once and subsequent requests ar
 4. Verify:
 
 ```bash
-workshop daily-mix --user user-1          # ~5 s (cold)
-workshop daily-mix --user user-1          # < 10 ms (cached)
+./workshop daily-mix --user user-1          # ~5 s (cold)
+./workshop daily-mix --user user-1          # < 10 ms (cached)
 ```
 
 ### Discussion
@@ -136,7 +136,7 @@ Under concurrency, two requests can read the same value and both write `count + 
 ### Observe
 
 ```bash
-workshop simulate-plays --song song-1 --concurrent
+./workshop simulate-plays --song song-1 --concurrent
 # Expected: 100 — Actual: less than 100 (lost updates)
 ```
 
@@ -161,7 +161,7 @@ Implement song play counts with Redis **atomic counters**.
 3. Verify:
 
 ```bash
-workshop simulate-plays --song song-1 --count 500 --concurrent
+./workshop simulate-plays --song song-1 --count 500 --concurrent
 # Now: exactly 500 added
 ```
 
@@ -190,8 +190,8 @@ The platform tracks **monthly distinct listeners** per artist. The current imple
 ### Observe
 
 ```bash
-workshop add-listeners --artist artist-1 --count 100000     # note the time
-workshop add-listeners --artist artist-1 --count 100000     # same operation, but slower — List now has 100K entries, O(N) check on every insert
+./workshop add-listeners --artist artist-1 --count 100000     # note the time
+./workshop add-listeners --artist artist-1 --count 100000     # same operation, but slower — List now has 100K entries, O(N) check on every insert
 ```
 
 ### Goal
@@ -214,8 +214,8 @@ Use a Redis **Set** for **O(1)** add-with-dedup.
 3. Verify:
 
 ```bash
-workshop reset
-workshop add-listeners --artist artist-1 --count 100000
+./workshop reset
+./workshop add-listeners --artist artist-1 --count 100000
 # Constant speed regardless of size
 ```
 
@@ -259,9 +259,9 @@ Use a Redis **Sorted Set** where every play event atomically updates the ranking
 3. Verify:
 
 ```bash
-workshop simulate-plays --song song-1 --count 20 --concurrent
-workshop simulate-plays --song song-2 --count 35 --concurrent
-workshop top-songs --limit 10
+./workshop simulate-plays --song song-1 --count 20 --concurrent
+./workshop simulate-plays --song song-2 --count 35 --concurrent
+./workshop top-songs --limit 10
 # song-2: 35, song-1: 20
 ```
 
@@ -300,9 +300,9 @@ Use **HyperLogLog**: approximate distinct count in ~12 KB of memory, regardless 
 ### Observe & compare
 
 ```bash
-workshop reset
-workshop add-listeners --artist artist-1 --count 1000000
-workshop get-redis-memory-usage
+./workshop reset
+./workshop add-listeners --artist artist-1 --count 1000000
+./workshop get-redis-memory-usage
 
 # TODO – add actual numbers
 # Output:
@@ -316,7 +316,7 @@ workshop get-redis-memory-usage
 1. Open `api/services/artists.py`.
 2. Replace `SADD` with `PFADD hll-listeners:{artist_id}:{YYYY-MM} {user_id}`.
 3. Replace the `SCARD` count endpoint with `PFCOUNT`.
-4. Re-run the listener ingestion and compare memory with `workshop get-redis-memory-usage`.
+4. Re-run the listener ingestion and compare memory with `./workshop get-redis-memory-usage`.
 
 ### Discussion
 
@@ -355,14 +355,14 @@ Use Redis **VectorSets** (Redis 8.0+) to store song embeddings and perform simil
 1. Load the embeddings:
 
 ```bash
-workshop load-embeddings
+./workshop load-embeddings
 # Loaded 500 song embeddings into VectorSet "song-vectors"
 ```
 
 2. Query:
 
 ```bash
-workshop similar-songs --song song-42 --count 5
+./workshop similar-songs --song song-42 --count 5
 # 1. song-108  (score: 0.94)
 # 2. song-271  (score: 0.91)
 # ...
