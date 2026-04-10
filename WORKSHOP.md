@@ -131,7 +131,7 @@ workshop daily-mix --user user-1          # < 10 ms (cached)
 Every play event increments a counter in PostgreSQL using SELECT → add 1 → UPDATE.
 Under concurrency, two requests read the same value and both write `count + 1` — **losing an increment**.
 
-> _Simulated by adding a `time.sleep(0.1)` between SELECT and UPDATE._
+> 💡 **Tip:** use `--concurrent` to fire requests in parallel — without it, requests run sequentially and the race condition won't manifest.
 
 ### Observe
 

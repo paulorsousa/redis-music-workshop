@@ -83,19 +83,14 @@ def play_song(song_id: str):
 
         raise HTTPException(status_code=404, detail="Song not found")
 
-    current = row[0]
-
-    # Intentional delay to simulate race condition
-    time.sleep(0.1)
+    new_count = row[0] + 1
 
     # Step 2: UPDATE with incremented value (non-atomic — loses updates under concurrency)
-    cur.execute(
-        "UPDATE songs SET play_count = %s WHERE id = %s", (current + 1, song_id)
-    )
+    cur.execute("UPDATE songs SET play_count = %s WHERE id = %s", (new_count, song_id))
     conn.commit()
     cur.close()
     conn.close()
-    return {"play_count": current + 1}
+    return {"play_count": new_count}
 
 
 @router.get("/songs/{song_id}/similar")
