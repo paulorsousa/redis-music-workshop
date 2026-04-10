@@ -60,10 +60,11 @@ Resets Redis and PostgreSQL by restarting Docker containers, then reloads seed d
 **Output:**
 
 ```
-✓ Restarting redis... done
-✓ Restarting postgres... done
-✓ Seeding database... 20 artists, 500 songs loaded
-⏱ 4.12 s
+  ✓ Restarting redis... done
+  ✓ Restarting postgres... done
+  ✓ Waiting for services... done
+  ✓ Seeding database... done
+  20 artists, 500 songs loaded
 ```
 
 ---
@@ -123,7 +124,8 @@ Fires play events and reports the final counter.
 **Output (broken):**
 
 ```
-Fired 500 concurrent plays for song-1
+Firing 500 concurrent plays for song-1...
+  Plays [█████████████████████████] 500/500  ✗ 0 errors
 ⏱ 3.21 s
 Expected: 500
 Actual:   487 ✗ (13 lost)
@@ -132,7 +134,8 @@ Actual:   487 ✗ (13 lost)
 **Output (fixed):**
 
 ```
-Fired 500 concurrent plays for song-1
+Firing 500 concurrent plays for song-1...
+  Plays [█████████████████████████] 500/500
 ⏱ 1.85 s
 Expected: 500
 Actual:   500 ✓
@@ -158,11 +161,10 @@ Adds random listeners to an artist via the API and reports timing.
 **Output:**
 
 ```
-
 Adding 100000 listeners to artist-1...
+  Listeners [█████████████████████████] 100000/100000
 ⏱ 12.45 s
 Monthly listeners: 100000
-
 ```
 
 ---
@@ -239,9 +241,10 @@ The embedding computation (`sentence-transformers`) runs inside the API containe
 **Output:**
 
 ```
-Loading embeddings via API...
-✓ 500 song embeddings loaded (384 dimensions)
-⏱ 18.72 s
+  ⠹ Loading embeddings (this may take a while)...
+  ✓ Loading embeddings (this may take a while)... done
+  ✓ 500 song embeddings loaded (384 dimensions)
+  ⏱ 18.72 s
 ```
 
 ---

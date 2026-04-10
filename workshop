@@ -6,6 +6,7 @@ import json
 import os
 import subprocess
 import sys
+import threading
 import time
 import uuid
 from concurrent.futures import ThreadPoolExecutor
@@ -17,6 +18,50 @@ NAMESPACE = uuid.UUID("6ba7b810-9dad-11d1-80b4-00c04fd430c8")
 
 def derive_user_id(username: str) -> str:
     return str(uuid.uuid5(NAMESPACE, username))
+
+
+class ProgressTracker:
+    """Thread-safe progress tracker that overwrites a single terminal line."""
+
+    def __init__(self, total, label="Progress"):
+        self.total = total
+        self.label = label
+        self._done = 0
+        self._errors = 0
+        self._lock = threading.Lock()
+        self._print()
+
+    def _bar(self):
+        pct = self._done / self.total if self.total else 1
+        width = 25
+        filled = int(width * pct)
+        return f"[{'█' * filled}{'·' * (width - filled)}]"
+
+    def _print(self):
+        err_str = f"  ✗ {self._errors} errors" if self._errors else ""
+        print(
+            f"\r  {self.label} {self._bar()} {self._done}/{self.total}{err_str}",
+            end="",
+            flush=True,
+        )
+
+    def advance(self, error=False):
+        with self._lock:
+            self._done += 1
+            if error:
+                self._errors += 1
+            self._print()
+
+    def finish(self):
+        print()  # newline after the progress line
+
+    @property
+    def errors(self):
+        return self._errors
+
+    @property
+    def done(self):
+        return self._done
 
 
 def api_call(path, method="GET", user_id=None, params=None):
@@ -36,17 +81,42 @@ def api_call(path, method="GET", user_id=None, params=None):
     return data, elapsed
 
 
+def _spinner(message, stop_event):
+    """Animate a spinner on a single line until stop_event is set."""
+    frames = "⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏"
+    i = 0
+    while not stop_event.is_set():
+        print(f"\r  {frames[i % len(frames)]} {message}", end="", flush=True)
+        i += 1
+        stop_event.wait(0.1)
+    print(f"\r  ✓ {message} done")
+
+
 def cmd_reset(args):
-    print("✓ Restarting redis...", end=" ", flush=True)
+    stop = threading.Event()
+    t = threading.Thread(target=_spinner, args=("Restarting redis...", stop))
+    t.start()
     subprocess.run(["docker", "compose", "restart", "redis"], capture_output=True)
-    print("done")
-    print("✓ Restarting postgres...", end=" ", flush=True)
+    stop.set()
+    t.join()
+
+    stop = threading.Event()
+    t = threading.Thread(target=_spinner, args=("Restarting postgres...", stop))
+    t.start()
     subprocess.run(["docker", "compose", "restart", "postgres"], capture_output=True)
-    print("done")
-    print("✓ Waiting for services...", end=" ", flush=True)
+    stop.set()
+    t.join()
+
+    stop = threading.Event()
+    t = threading.Thread(target=_spinner, args=("Waiting for services...", stop))
+    t.start()
     time.sleep(5)
-    print("done")
-    print("✓ Seeding database...", end=" ", flush=True)
+    stop.set()
+    t.join()
+
+    stop = threading.Event()
+    t = threading.Thread(target=_spinner, args=("Seeding database...", stop))
+    t.start()
     result = subprocess.run(
         [
             "docker",
@@ -60,7 +130,9 @@ def cmd_reset(args):
         capture_output=True,
         text=True,
     )
-    print(result.stdout.strip())
+    stop.set()
+    t.join()
+    print(f"  {result.stdout.strip()}")
 
 
 def cmd_daily_mix(args):
@@ -78,12 +150,16 @@ def cmd_daily_mix(args):
 def cmd_simulate_plays(args):
     song_id = args.song
     count = args.count
+    label = "concurrent" if args.concurrent else "sequential"
+    print(f"\nFiring {count} {label} plays for {song_id}...")
+    progress = ProgressTracker(count, label="Plays")
 
     def fire_play(_):
         try:
             api_call(f"/songs/{song_id}/play", method="POST")
+            progress.advance()
         except Exception:
-            pass
+            progress.advance(error=True)
 
     start = time.time()
     if args.concurrent:
@@ -93,11 +169,10 @@ def cmd_simulate_plays(args):
         for i in range(count):
             fire_play(i)
     elapsed = time.time() - start
+    progress.finish()
 
     data, _ = api_call(f"/songs/{song_id}")
     actual = data["play_count"]
-    label = "concurrent" if args.concurrent else "sequential"
-    print(f"Fired {count} {label} plays for {song_id}")
     print(f"⏱ {elapsed:.2f} s")
     print(f"Expected: {count}")
     if actual == count:
@@ -110,6 +185,7 @@ def cmd_add_listeners(args):
     artist_id = args.artist
     count = args.count
     print(f"\nAdding {count} listeners to {artist_id}...")
+    progress = ProgressTracker(count, label="Listeners")
     start = time.time()
 
     def add_one(i):
@@ -117,12 +193,14 @@ def cmd_add_listeners(args):
         uid = derive_user_id(username)
         try:
             api_call(f"/artists/{artist_id}/listeners", method="POST", user_id=uid)
+            progress.advance()
         except Exception:
-            pass
+            progress.advance(error=True)
 
     with ThreadPoolExecutor(max_workers=20) as pool:
         list(pool.map(add_one, range(count)))
 
+    progress.finish()
     elapsed = time.time() - start
     data, _ = api_call(f"/artists/{artist_id}")
     print(f"⏱ {elapsed:.2f} s")
@@ -152,8 +230,10 @@ def cmd_get_redis_memory(args):
         "song-vectors",
     ]
     total_mem = 0
+    total_patterns = len(patterns)
     print(f"  {'Key pattern':<25} {'Count':>6}  {'Memory':>10}")
-    for pattern in patterns:
+    for idx, pattern in enumerate(patterns, 1):
+        print(f"\r  Scanning {idx}/{total_patterns}: {pattern}...", end="", flush=True)
         # Scan for keys matching pattern
         result = subprocess.run(
             [
@@ -196,7 +276,7 @@ def cmd_get_redis_memory(args):
             mem_str = _format_bytes(mem)
         else:
             mem_str = "—"
-        print(f"  {pattern:<25} {count:>6}  {mem_str:>10}")
+        print(f"\r  {pattern:<25} {count:>6}  {mem_str:>10}")
     print("─" * 50)
     print(f"  {'Total':<25} {'':>6}  {_format_bytes(total_mem):>10}")
 
@@ -210,15 +290,23 @@ def _format_bytes(b):
 
 
 def cmd_load_embeddings(args):
-    print("Loading embeddings via API...")
+    stop = threading.Event()
+    t = threading.Thread(
+        target=_spinner, args=("Loading embeddings (this may take a while)...", stop)
+    )
+    t.start()
     try:
         data, elapsed = api_call("/admin/load-embeddings", method="POST")
+        stop.set()
+        t.join()
         print(
-            f"✓ {data['loaded']} song embeddings loaded ({data['dimensions']} dimensions)"
+            f"  ✓ {data['loaded']} song embeddings loaded ({data['dimensions']} dimensions)"
         )
-        print(f"⏱ {elapsed:.2f} s")
+        print(f"  ⏱ {elapsed:.2f} s")
     except Exception as e:
-        print(f"✗ Error: {e}")
+        stop.set()
+        t.join()
+        print(f"  ✗ Error: {e}")
 
 
 def cmd_similar_songs(args):

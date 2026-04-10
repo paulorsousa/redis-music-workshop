@@ -16,3 +16,6 @@ docker-compose.override.yml
 *.log
 _gen_*.py
 .env
+
+# Python
+__pycache__/
