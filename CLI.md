@@ -54,7 +54,7 @@ Resets Redis and PostgreSQL by restarting Docker containers, then reloads seed d
 
 1. `docker compose restart redis postgres` — restart both containers to clear all state.
 2. Wait for containers to be healthy.
-3. `docker compose exec api python -m api.seed` — trigger the API container to reload `data/artists.csv` and `data/songs.csv` into PostgreSQL.
+3. `docker compose exec api python -c "from database import init_db, seed_db; init_db(); seed_db()"` — trigger the API container to reload `data/artists.csv` and `data/songs.csv` into PostgreSQL.
 4. Print summary.
 
 **Output:**

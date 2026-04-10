@@ -46,7 +46,7 @@ All services run via **Docker Compose**. Students clone the repo and run `docker
 
 ## CLI utility — `workshop`
 
-A Python CLI tool (`workshop`) ships with the repo. It wraps every simulation, data-loading, and verification step so students don't waste time writing boilerplate. It is implemented with `click` and uses the same RESTful API / Redis / PostgreSQL connections as the application.
+A Python CLI tool (`workshop`) ships with the repo. It wraps every simulation, data-loading, and verification step so students don't waste time writing boilerplate. It is implemented with `argparse` and uses the same RESTful API / Redis / PostgreSQL connections as the application.
 
 The `--user` flag accepts a **username** (e.g. `user-1`) and derives the 36-char UUID internally, matching the frontend behaviour.
 

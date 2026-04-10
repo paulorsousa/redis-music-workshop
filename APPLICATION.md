@@ -183,7 +183,7 @@ There is no authentication. User identity is derived from a **username** display
 ```
 redis-music-workshop/
 ├── docker-compose.yml
-├── workshop                    # CLI utility (Python / click)
+├── workshop                    # CLI utility (Python / argparse)
 ├── WORKSHOP.md
 ├── APPLICATION.md
 │
@@ -195,7 +195,8 @@ redis-music-workshop/
 │       ├── songs.py            # /songs, /songs/{id}, /songs/{id}/play, /songs/{id}/similar
 │       ├── artists.py          # /artists, /artists/{id}, /artists/{id}/listeners
 │       ├── daily_mix.py        # /daily-mix
-│       └── leaderboard.py      # /leaderboard
+│       ├── leaderboard.py      # /leaderboard
+│       └── admin.py            # /admin/load-embeddings
 │
 ├── frontend/                   # React (Vite)
 │   ├── src/
@@ -209,6 +210,7 @@ redis-music-workshop/
 │   │       ├── Leaderboard.jsx
 │   │       ├── SongList.jsx
 │   │       ├── PlayButton.jsx
+│   │       ├── Section.jsx
 │   │       └── SimilarSongs.jsx
 │   └── ...
 │
@@ -223,11 +225,11 @@ redis-music-workshop/
 
 These are the problems students will observe and fix during the workshop:
 
-| #   | Endpoint                       | What's broken                                           | Simulated how                                        |
-| --- | ------------------------------ | ------------------------------------------------------- | ---------------------------------------------------- |
-| 1   | `GET /daily-mix`               | Always recomputes from scratch — no caching             | `time.sleep(5)` in the generation function           |
-| 2   | `POST /songs/{id}/play`        | Non-atomic counter — loses increments under concurrency | `time.sleep(0.1)` between `SELECT` and `UPDATE`      |
-| 3   | `POST /artists/{id}/listeners` | Tracks listeners in a Redis List with O(N) dedup scan   | `LRANGE` + linear membership check before `RPUSH`    |
-| 4   | `GET /leaderboard`             | Queries PostgreSQL directly — slow and stale under load | `SELECT ... ORDER BY play_count DESC`                |
-| 5   | (same as 3)                    | Set from Module 3 uses too much memory at scale         | N/A — observed via `workshop get-redis-memory-usage` |
-| 6   | `GET /songs/{id}/similar`      | Not implemented                                         | Returns `null` (frontend shows a teaser)             |
+| #   | Endpoint                       | What's broken                                           | Simulated how                                            |
+| --- | ------------------------------ | ------------------------------------------------------- | -------------------------------------------------------- |
+| 1   | `GET /daily-mix`               | Always recomputes from scratch — no caching             | `time.sleep(5)` in the generation function               |
+| 2   | `POST /songs/{id}/play`        | Non-atomic counter — loses increments under concurrency | Read-modify-write (`SELECT` then `UPDATE`) without locks |
+| 3   | `POST /artists/{id}/listeners` | Tracks listeners in a Redis List with O(N) dedup scan   | `LRANGE` + linear membership check before `RPUSH`        |
+| 4   | `GET /leaderboard`             | Queries PostgreSQL directly — slow and stale under load | `SELECT ... ORDER BY play_count DESC`                    |
+| 5   | (same as 3)                    | Set from Module 3 uses too much memory at scale         | N/A — observed via `workshop get-redis-memory-usage`     |
+| 6   | `GET /songs/{id}/similar`      | Not implemented                                         | Returns `null` (frontend shows a teaser)                 |
