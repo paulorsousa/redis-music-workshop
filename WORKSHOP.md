@@ -273,8 +273,12 @@ Use a Redis **Set** for **O(1)** add-with-dedup.
 ./workshop reset
 ./workshop add-listeners --artist artist-1 --count 5000
 ./workshop add-listeners --artist artist-1 --count 5000
-# Constant speed regardless of size
+# Constant speed regardless of size (~5s)
 ```
+
+> [!CAUTION]
+> Redis needs to be reset, because the key we're using for the Set is the same as the one used for the List in the previous module.
+> Otherwise, we'll get an "WRONGTYPE Operation against a key holding the wrong kind of value" error.
 
 ### Discussion
 
