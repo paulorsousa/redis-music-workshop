@@ -56,21 +56,21 @@ The `--user` flag accepts a **username** (e.g. `user-1`) and derives the 36-char
 
 ### Commands
 
-| Command                                                            | Module | What it does                                                             |
-| ------------------------------------------------------------------ | ------ | ------------------------------------------------------------------------ |
-| `./workshop health`                                                | —      | Checks that all services (Redis, Postgres, API, Frontend) are healthy    |
-| `./workshop reset`                                                 | —      | Resets PostgreSQL and Redis, reloads CSV data into PostgreSQL            |
-| `./workshop destroy [--rmi local\|all] [--prune-build-cache]`      | —      | Destroys all containers, networks, volumes, and images (`local` default) |
-| `./workshop help`                                                  | —      | Prints a detailed help message                                           |
-| `./workshop list-songs [--page N] [--per-page N]`                  | —      | Lists songs                                                              |
-| `./workshop list-artists [--page N] [--per-page N]`                | —      | Lists artists                                                            |
-| `./workshop daily-mix [--user <username>]`                         | 1      | Calls the daily-mix endpoint and prints the response time                |
-| `./workshop simulate-plays --song <id> [--count N] [--concurrent]` | 2      | Fires N play events (optionally concurrent) and prints the final counter |
-| `./workshop top-songs [--limit N]`                                 | 3      | Prints the current Top-N most-played songs                               |
-| `./workshop add-listeners --artist <id> [--count N]`               | 4, 5   | Adds N random listeners using the API, prints timing                     |
-| `./workshop get-redis-memory-usage`                                | 5      | Prints the memory used by Redis                                          |
-| `./workshop load-embeddings`                                       | 6      | Triggers the API to compute embeddings and load them into a VectorSet    |
-| `./workshop similar-songs --song <id> [--count N]`                 | 6      | Queries the VectorSet for similar songs                                  |
+| Command                                                            | Module | What it does                                                                                |
+| ------------------------------------------------------------------ | ------ | ------------------------------------------------------------------------------------------- |
+| `./workshop health`                                                | —      | Checks that all services (Redis, Postgres, API, Frontend) are healthy                       |
+| `./workshop reset`                                                 | —      | Resets PostgreSQL and Redis, reloads CSV data into PostgreSQL                               |
+| `./workshop destroy [--rmi local\|all] [--prune-build-cache]`      | —      | Destroys all containers, networks, volumes, and images (`local` default)                    |
+| `./workshop help`                                                  | —      | Prints a detailed help message                                                              |
+| `./workshop list-songs [--page N] [--per-page N]`                  | —      | Lists songs                                                                                 |
+| `./workshop list-artists [--page N] [--per-page N]`                | —      | Lists artists                                                                               |
+| `./workshop daily-mix [--user <username>]`                         | 1      | Calls the daily-mix endpoint and prints the response time                                   |
+| `./workshop simulate-plays --song <id> [--count N] [--concurrent]` | 2      | Fires N play events (optionally concurrent) and prints the final counter                    |
+| `./workshop top-songs [--limit N]`                                 | 3      | Prints the current Top-N most-played songs                                                  |
+| `./workshop add-listeners --artist <id> [--count N]`               | 4, 5   | Adds N random listeners using the API, prints timing                                        |
+| `./workshop get-redis-memory-usage`                                | 5      | Prints the memory used by Redis                                                             |
+| `./workshop load-embeddings`                                       | 6      | _(vectorsets branch)_ Triggers the API to compute embeddings and load them into a VectorSet |
+| `./workshop similar-songs --song <id> [--count N]`                 | 6      | _(vectorsets branch)_ Queries the VectorSet for similar songs                               |
 
 ---
 
@@ -325,14 +325,16 @@ It's a probabilistic data structure, so the count is approximate, but the error 
 ./workshop reset
 ./workshop add-listeners --artist artist-1 --count 10000
 ./workshop get-redis-memory-usage
+# Set: 817 KiB
+# HLL: ...
 ```
 
 ### Steps
 
 1. Open `api/services/artists.py`.
-2. Replace `SADD` with `PFADD hll-listeners:{artist_id}:{YYYY-MM} {user_id}`.
-3. Replace the `SCARD` count endpoint with `PFCOUNT`.
-4. Re-run the listener ingestion and compare memory with `./workshop get-redis-memory-usage`.
+2. Replace `SADD` with `PFADD hll-listeners:{artist_id}:{YYYY-MM} {user_id}` in `add_listener` function.
+3. Replace the `SCARD` count with `PFCOUNT` in `_get_listener_count` function.
+4. Re-run the listener ingestion and compare memory using `./workshop get-redis-memory-usage`.
 
 ### Compare
 
@@ -353,6 +355,20 @@ It's a probabilistic data structure, so the count is approximate, but the error 
 
 **⏱ 20 min**
 
+> [!IMPORTANT]
+> This module requires additional dependencies (`sentence-transformers`, `numpy`).
+> To keep the initial setup lightweight, all VectorSet code lives on a dedicated branch.
+>
+> ```bash
+> git checkout vectorsets
+> ```
+>
+> Then rebuild the containers so the extra dependencies are installed:
+>
+> ```bash
+> docker compose up --build
+> ```
+
 ### Problem
 
 The product team wants a **"Similar Songs"** section. Traditional tag-based matching is too coarse.
@@ -363,6 +379,7 @@ Use Redis **VectorSets** (Redis 8.0+) to store song embeddings and perform simil
 
 ### Pre-requisites
 
+- Checkout the `vectorsets` branch (see above).
 - Song data in `data/songs.csv` (already used to seed PostgreSQL).
 - The API container has `sentence-transformers` installed and computes embeddings when triggered via `POST /admin/load-embeddings`.
 - Redis 8.0+ (included in the Docker Compose setup).

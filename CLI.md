@@ -332,6 +332,9 @@ Redis Memory Usage
 
 ### `./workshop load-embeddings`
 
+> [!NOTE]
+> This command is only available on the `vectorsets` branch. Run `git checkout vectorsets` and rebuild the containers first.
+
 Triggers the API to compute song embeddings and load them into a Redis VectorSet. No arguments.
 
 The embedding computation (`sentence-transformers`) runs inside the API container, which already has the dependency installed.
@@ -353,6 +356,9 @@ The embedding computation (`sentence-transformers`) runs inside the API containe
 ---
 
 ### `./workshop similar-songs --song <id> [--count N]`
+
+> [!NOTE]
+> This command is only available on the `vectorsets` branch. Run `git checkout vectorsets` and rebuild the containers first.
 
 Queries the VectorSet for similar songs.
 
