@@ -224,6 +224,7 @@ Replace the counter from Module 2 with a Sorted Set — `ZINCRBY` is also atomic
 4. Verify:
 
 ```bash
+./workshop reset
 ./workshop simulate-plays --song song-1 --count 20 --concurrent
 ./workshop simulate-plays --song song-2 --count 35 --concurrent
 ./workshop top-songs
@@ -270,7 +271,8 @@ Use a Redis **Set** for **O(1)** add-with-dedup.
 
 1. Open `api/services/artists.py` — find the `add_listener` function.
 2. Replace the List + scan with `SADD monthly-listeners:{artist_id}:{YYYY-MM} {user_id}`.
-3. Verify:
+3. Replace the `LLEN` with `SCARD` on `_get_listener_count` function as well.
+4. Verify:
 
 ```bash
 ./workshop reset
