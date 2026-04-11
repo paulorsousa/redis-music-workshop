@@ -184,7 +184,7 @@ There is no authentication. User identity is derived from a **username** display
 redis-music-workshop/
 ├── docker-compose.yml
 ├── workshop                    # CLI utility (Python / argparse)
-├── WORKSHOP.md
+├── README.md
 ├── APPLICATION.md
 │
 ├── api/                        # Python / FastAPI
