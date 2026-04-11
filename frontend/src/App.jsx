@@ -34,7 +34,7 @@ export default function App() {
       <header className="bg-surface border-b border-border px-5 py-3 flex items-center justify-between sticky top-0 z-50">
         <h1 className="text-lg text-accent">
           <Link to="/" className="text-inherit no-underline hover:no-underline">
-            🎵 Redis Music Workshop
+            🎵 RedisCover
           </Link>
         </h1>
         <div className="flex items-center gap-3">
