@@ -325,14 +325,16 @@ It's a probabilistic data structure, so the count is approximate, but the error 
 ./workshop reset
 ./workshop add-listeners --artist artist-1 --count 10000
 ./workshop get-redis-memory-usage
+# Set: 817 KiB
+# HLL: ...
 ```
 
 ### Steps
 
 1. Open `api/services/artists.py`.
-2. Replace `SADD` with `PFADD hll-listeners:{artist_id}:{YYYY-MM} {user_id}`.
-3. Replace the `SCARD` count endpoint with `PFCOUNT`.
-4. Re-run the listener ingestion and compare memory with `./workshop get-redis-memory-usage`.
+2. Replace `SADD` with `PFADD hll-listeners:{artist_id}:{YYYY-MM} {user_id}` in `add_listener` function.
+3. Replace the `SCARD` count with `PFCOUNT` in `_get_listener_count` function.
+4. Re-run the listener ingestion and compare memory using `./workshop get-redis-memory-usage`.
 
 ### Compare
 
