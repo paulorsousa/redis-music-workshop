@@ -81,6 +81,7 @@ The `--user` flag accepts a **username** (e.g. `user-1`) and derives the 36-char
 
 The platform generates **daily mixes** for every user. The algorithm is slow: for each request it loops over all songs, scoring each one before returning the top 50.
 
+> [!NOTE]
 > _Simulated in code with a `time.sleep(5)` inside the generation function. Keep it to simulate a real-world expensive computation._
 
 Calling the endpoint twice for the same user runs the expensive algorithm twice.

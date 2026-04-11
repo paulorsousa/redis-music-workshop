@@ -29,7 +29,7 @@ export default function DailyMix({ username }) {
         {visible.map((song, i) => (
           <li
             key={song.id}
-            className="px-3 py-2 border-b border-border flex justify-between items-center hover:bg-[#1a1a1a]"
+            className="px-3 py-2 border-b border-border flex justify-between items-center hover:bg-list-hover"
           >
             <span>
               <span className="text-muted mr-2">{i + 1}.</span>

@@ -1,20 +1,71 @@
 @import "tailwindcss";
 
+/* ── Light / Dark custom properties ── */
+:root {
+  --color-bg-val: #f5f5f5;
+  --color-surface-val: #ffffff;
+  --color-surface-hover-val: #e5e5e5;
+  --color-card-val: #f0f0f0;
+  --color-border-val: #e0e0e0;
+  --color-muted-val: #6b7280;
+  --color-foreground-val: #1f2937;
+  --color-accent-val: #16a34a;
+  --color-accent-hover-val: #15803d;
+  --color-danger-val: #dc2626;
+  --color-skeleton-from: #e5e5e5;
+  --color-skeleton-via: #d4d4d4;
+  --color-list-hover-val: #f0f0f0;
+  --color-badge-slow-bg-val: #fecaca;
+  --color-badge-slow-text-val: #dc2626;
+  --color-badge-fast-bg-val: #d1fae5;
+  --color-badge-fast-text-val: #059669;
+  --color-input-border-val: #d1d5db;
+}
+
+.dark {
+  --color-bg-val: #0f0f0f;
+  --color-surface-val: #181818;
+  --color-surface-hover-val: #383838;
+  --color-card-val: #282828;
+  --color-border-val: #282828;
+  --color-muted-val: #b3b3b3;
+  --color-foreground-val: #e5e7eb;
+  --color-accent-val: #1db954;
+  --color-accent-hover-val: #1ed760;
+  --color-danger-val: #ff6b6b;
+  --color-skeleton-from: #282828;
+  --color-skeleton-via: #383838;
+  --color-list-hover-val: #1a1a1a;
+  --color-badge-slow-bg-val: #5c1a1a;
+  --color-badge-slow-text-val: #ff6b6b;
+  --color-badge-fast-bg-val: #1a3d1a;
+  --color-badge-fast-text-val: #69db7c;
+  --color-input-border-val: #404040;
+}
+
+/* ── Tailwind theme tokens (reference CSS vars) ── */
 @theme {
-  --color-surface: #181818;
-  --color-surface-hover: #383838;
-  --color-card: #282828;
-  --color-border: #282828;
-  --color-muted: #b3b3b3;
-  --color-accent: #1db954;
-  --color-accent-hover: #1ed760;
-  --color-danger: #ff6b6b;
-  --color-bg: #0f0f0f;
+  --color-bg: var(--color-bg-val);
+  --color-surface: var(--color-surface-val);
+  --color-surface-hover: var(--color-surface-hover-val);
+  --color-card: var(--color-card-val);
+  --color-border: var(--color-border-val);
+  --color-muted: var(--color-muted-val);
+  --color-foreground: var(--color-foreground-val);
+  --color-accent: var(--color-accent-val);
+  --color-accent-hover: var(--color-accent-hover-val);
+  --color-danger: var(--color-danger-val);
+  --color-list-hover: var(--color-list-hover-val);
+  --color-badge-slow-bg: var(--color-badge-slow-bg-val);
+  --color-badge-slow-text: var(--color-badge-slow-text-val);
+  --color-badge-fast-bg: var(--color-badge-fast-bg-val);
+  --color-badge-fast-text: var(--color-badge-fast-text-val);
+  --color-input-border: var(--color-input-border-val);
 }
 
 @layer base {
   body {
-    @apply bg-bg text-gray-200 leading-relaxed font-sans;
+    @apply bg-bg text-foreground leading-relaxed font-sans;
   }
   a {
     @apply text-accent no-underline hover:underline;
@@ -22,7 +73,12 @@
 }
 
 @utility skeleton {
-  background: linear-gradient(90deg, #282828 25%, #383838 50%, #282828 75%);
+  background: linear-gradient(
+    90deg,
+    var(--color-skeleton-from) 25%,
+    var(--color-skeleton-via) 50%,
+    var(--color-skeleton-from) 75%
+  );
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
   @apply rounded h-5 my-2;

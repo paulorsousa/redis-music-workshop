@@ -11,8 +11,8 @@ export default function Section({
   const badgeColor =
     elapsed != null
       ? elapsed > 1000
-        ? "bg-[#5c1a1a] text-danger"
-        : "bg-[#1a3d1a] text-[#69db7c]"
+        ? "bg-badge-slow-bg text-badge-slow-text"
+        : "bg-badge-fast-bg text-badge-fast-text"
       : "bg-card text-muted";
 
   return (

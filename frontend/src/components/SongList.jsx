@@ -27,7 +27,7 @@ export default function SongList({ artistId, title = "Songs" }) {
         {songs.map((song) => (
           <li
             key={song.id}
-            className="px-3 py-2 border-b border-border flex justify-between items-center hover:bg-[#1a1a1a]"
+            className="px-3 py-2 border-b border-border flex justify-between items-center hover:bg-list-hover"
           >
             <Link to={`/songs/${song.id}`}>{song.title}</Link>
             <span className="text-muted text-sm">
