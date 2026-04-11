@@ -8,18 +8,6 @@ def decode_redis(value) -> str:
     return value if isinstance(value, str) else value.decode()
 
 
-def parse_vsim_results(results: list, exclude_id: str | None = None) -> list[dict]:
-    """Parse alternating element/score pairs from a VSIM response."""
-    parsed = []
-    for i in range(0, len(results), 2):
-        elem = decode_redis(results[i])
-        score = float(decode_redis(results[i + 1]))
-        if elem == exclude_id:
-            continue
-        parsed.append({"id": elem, "score": score})
-    return parsed
-
-
 _SONG_METADATA_QUERY = """SELECT s.id, s.title, s.artist_id, a.name as artist_name, s.genre
                           FROM songs s JOIN artists a ON s.artist_id = a.id"""
 
