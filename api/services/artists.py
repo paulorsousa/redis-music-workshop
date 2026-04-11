@@ -11,25 +11,22 @@ from redis_client import r
 
 
 def _get_listener_count(artist_id: str) -> int:
-    """Get monthly listener count using Redis List (intentionally slow — Module 4)."""
+    """Get monthly listener count using Redis Set."""
     month = datetime.now().strftime("%Y-%m")
     key = f"monthly-listeners:{artist_id}:{month}"
-    return r.llen(key)
+    return r.scard(key)
 
 
 def add_listener(artist_id: str, user_id: str) -> None:
-    """Track a listener — intentionally uses Redis List with O(N) dedup (Module 4).
+    """Track a listener — uses a Redis Set with O(1) dedup
 
-    TODO: Module 4 — replace List + scan with SADD monthly-listeners:{artist_id}:{YYYY-MM} {user_id}
     TODO: Module 5 — replace SADD with PFADD hll-listeners:{artist_id}:{YYYY-MM} {user_id}
     """
     month = datetime.now().strftime("%Y-%m")
     key = f"monthly-listeners:{artist_id}:{month}"
 
-    # O(N) dedup check on a List — intentionally slow (Module 4)
-    existing = r.lrange(key, 0, -1)
-    if user_id not in existing:
-        r.rpush(key, user_id)
+    # O(1) dedup native to Redis Sets
+    r.sadd(key, user_id)
 
 
 def list_artists(page: int, per_page: int) -> dict:
