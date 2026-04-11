@@ -52,6 +52,12 @@ def main():
     p.add_argument(
         "--count", type=int, default=1000, help="Number of listeners (default: 1000)"
     )
+    p.add_argument(
+        "--range",
+        type=int,
+        default=1_000_000,
+        help="Size of the random listener pool (default: 1M)",
+    )
 
     p = sub.add_parser("top-songs", help="Print the leaderboard")
     p.add_argument(

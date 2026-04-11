@@ -1,5 +1,6 @@
 """Add random listeners to an artist."""
 
+import random
 import time
 from concurrent.futures import ThreadPoolExecutor
 
@@ -9,9 +10,12 @@ from workshop_cli.utils import ProgressTracker, api_call, derive_user_id
 def cmd_add_listeners(args):
     artist_id = args.artist
     count = args.count
-    print(f"\nAdding {count} listeners to {artist_id}...")
+    pool_size = args.range
+    print(f"\nAdding {count} listeners (from pool of {pool_size}) to {artist_id}...")
     progress = ProgressTracker(count, label="Listeners")
     start = time.time()
+
+    indices = random.sample(range(pool_size), min(count, pool_size))
 
     def add_one(i):
         username = f"listener-{i:06d}"
@@ -23,7 +27,7 @@ def cmd_add_listeners(args):
             progress.advance(error=True)
 
     with ThreadPoolExecutor(max_workers=20) as pool:
-        list(pool.map(add_one, range(count)))
+        list(pool.map(add_one, indices))
 
     progress.finish()
     elapsed = time.time() - start

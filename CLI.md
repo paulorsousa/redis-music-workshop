@@ -196,25 +196,26 @@ Actual:   500 ✓
 
 ---
 
-### `./workshop add-listeners --artist <id> [--count N]`
+### `./workshop add-listeners --artist <id> [--count N] [--range R]`
 
 Adds random listeners to an artist via the API and reports timing.
 
-| Option     | Required | Default | Description                       |
-| ---------- | -------- | ------- | --------------------------------- |
-| `--artist` | Yes      | —       | Artist ID (e.g. `artist-1`)       |
-| `--count`  | No       | `1000`  | Number of listener events to send |
+| Option     | Required | Default   | Description                                     |
+| ---------- | -------- | --------- | ----------------------------------------------- |
+| `--artist` | Yes      | —         | Artist ID (e.g. `artist-1`)                     |
+| `--count`  | No       | `1000`    | Number of listener events to send               |
+| `--range`  | No       | `1000000` | Size of the random listener pool to sample from |
 
 **Behaviour:**
 
-1. Generate `N` random usernames (e.g. `listener-0001` through `listener-{N}`).
+1. Sample `N` unique indices from a pool of `R` possible listeners (e.g. `listener-000000` through `listener-{R-1}`).
 2. For each, derive the user ID and call `POST /artists/{id}/listeners` with the `X-User-ID` header.
 3. Print elapsed time and the current listener count from `GET /artists/{id}`.
 
 **Output:**
 
 ```
-Adding 100000 listeners to artist-1...
+Adding 100000 listeners (from pool of 1000000) to artist-1...
   Listeners [█████████████████████████] 100000/100000
 ⏱ 12.45 s
 Monthly listeners: 100000
