@@ -375,10 +375,14 @@ Use Redis **VectorSets** (Redis 8.0+) to store song embeddings and perform simil
 
 ```bash
 ./workshop load-embeddings
-# Loaded 500 song embeddings into VectorSet "song-vectors"
+# 500 song embeddings loaded (384 dimensions)
 ```
 
 2. Query:
+
+- Open `api/services/songs.py` — find the `find_similar_songs` function.
+- Check the call to `VSIM song-vectors ELE {song_id} COUNT {count}`.
+- Verify:
 
 ```bash
 ./workshop similar-songs --song song-42 --count 5
