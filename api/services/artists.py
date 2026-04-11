@@ -14,7 +14,7 @@ def _get_listener_count(artist_id: str) -> int:
     """Get monthly listener count using Redis Set."""
     month = datetime.now().strftime("%Y-%m")
     key = f"monthly-listeners:{artist_id}:{month}"
-    return r.scard(key)
+    return r.pfcount(key)
 
 
 def add_listener(artist_id: str, user_id: str) -> None:
@@ -26,7 +26,7 @@ def add_listener(artist_id: str, user_id: str) -> None:
     key = f"monthly-listeners:{artist_id}:{month}"
 
     # O(1) dedup native to Redis Sets
-    r.sadd(key, user_id)
+    r.pfadd(key, user_id)
 
 
 def list_artists(page: int, per_page: int) -> dict:
