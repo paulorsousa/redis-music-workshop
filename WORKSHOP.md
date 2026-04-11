@@ -303,7 +303,8 @@ Our top-5 artists count with ~100 M monthly listeners (36-char UUIDs each):
 
 ### Goal
 
-Use **HyperLogLog**: approximate distinct count in ~12 KB of memory, regardless of cardinality.
+Use **HyperLogLog**: approximates distinct count in ~12 KB of memory, regardless of cardinality.
+It's a probabilistic data structure, so the count is approximate, but the error is small (0.81 % standard error).
 
 ### Key Redis commands
 
@@ -313,18 +314,12 @@ Use **HyperLogLog**: approximate distinct count in ~12 KB of memory, regardless 
 | `PFCOUNT key`            | Approximate distinct count (0.81 % standard error) |
 | `PFMERGE dest src1 src2` | Merge HLLs (e.g. weekly → monthly)                 |
 
-### Observe & compare
+### Observe
 
 ```bash
 ./workshop reset
-./workshop add-listeners --artist artist-1 --count 1000000
+./workshop add-listeners --artist artist-1 --count 10000
 ./workshop get-redis-memory-usage
-
-# TODO – add actual numbers
-# Output:
-#   Set   — count: ??, memory: ~?? MiB
-#   HLL   — count: ~??, memory: ~?? KiB
-#   Error: ~?? %
 ```
 
 ### Steps
@@ -333,6 +328,14 @@ Use **HyperLogLog**: approximate distinct count in ~12 KB of memory, regardless 
 2. Replace `SADD` with `PFADD hll-listeners:{artist_id}:{YYYY-MM} {user_id}`.
 3. Replace the `SCARD` count endpoint with `PFCOUNT`.
 4. Re-run the listener ingestion and compare memory with `./workshop get-redis-memory-usage`.
+
+### Compare
+
+- **Set**: ~817 KiB (10K listeners)
+- **HLL**: ~14.1 KiB (9.9K listeners: ~0.1 % error; ~58x less memory)
+
+> [!NOTE]
+> Contrary to Sets, HLL memory usage is **not** affected by the number of distinct elements.
 
 ### Discussion
 
