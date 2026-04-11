@@ -233,18 +233,18 @@ Prints the current leaderboard.
 **Behaviour:**
 
 1. `GET /leaderboard?per_page={limit}`.
-2. Print a numbered table with rank, song title, artist, and play count.
+2. Print a numbered table with rank, song ID, title, artist, and play count.
 
 **Output:**
 
 ```
 
 Top 10 Songs
-─────────────────────────────────────
- #   Song                   Plays
- 1.  Bohemian Rhapsody       35
- 2.  Stairway to Heaven      20
- 3.  Hotel California        12
+──────────────────────────────────────────────────────────
+ #   ID         Song                   Artist              Plays
+ 1.  song-1     Bohemian Rhapsody      Queen                 35
+ 2.  song-2     Stairway to Heaven     Led Zeppelin          20
+ 3.  song-3     Hotel California       Eagles                12
  ...
 ⏱ 3 ms
 ```

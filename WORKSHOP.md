@@ -230,6 +230,7 @@ Replace the counter from Module 2 with a Sorted Set — `ZINCRBY` is also atomic
 ### Discussion
 
 - How would you build a "trending this week" chart? (time-windowed key + `EXPIRE`)
+- What if we want to show the top songs of all time, but also the top songs of the last week/month/year? (multiple sorted sets, `ZUNION`/`ZINTER` for combined views)
 
 ---
 
