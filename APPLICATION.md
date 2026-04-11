@@ -53,9 +53,7 @@ Two CSV files in `data/`:
 
 ~20 artists and ~500 songs spanning 5–6 genres.
 
-Both files are loaded into PostgreSQL by `./workshop reset` (and automatically when DB is empty). The API reads from PostgreSQL at runtime — the CSVs are only used for seeding and for computing embeddings (Module 6).
-
-Song embeddings for Module 6 are **computed by the API** from the CSV data when triggered via `POST /admin/load-embeddings`. The API container has `sentence-transformers` installed. No pre-computed embeddings file is shipped.
+Both files are loaded into PostgreSQL by `./workshop reset` (and automatically when DB is empty). The API reads from PostgreSQL at runtime — the CSVs are only used for seeding and for computing embeddings (Module 6, `vectorsets` branch).
 
 ---
 
@@ -96,11 +94,13 @@ All collection endpoints (e.g. `/songs`, `/artists`) must be **paginated** using
 | ------ | -------------- | ----------------------- | ------ |
 | `GET`  | `/leaderboard` | Top songs by play count | 3      |
 
-### Admin
+### Admin _(vectorsets branch only)_
 
 | Method | Path                     | Description                                                         | Module |
 | ------ | ------------------------ | ------------------------------------------------------------------- | ------ |
 | `POST` | `/admin/load-embeddings` | Compute song embeddings from CSV data and load into Redis VectorSet | 6      |
+
+> Available on the `vectorsets` branch — run `git checkout vectorsets` and rebuild the containers.
 
 #### `POST /admin/load-embeddings` — details
 
@@ -200,11 +200,11 @@ redis-music-workshop/
 │   │   ├── leaderboard.py      # /leaderboard
 │   │   └── admin.py            # /admin/load-embeddings
 │   └── services/               # Business logic (what students edit during the workshop)
-│       ├── songs.py            # Modules 2, 3, 6 — play counts, sorted sets, vectors
+│       ├── songs.py            # Modules 2, 3 — play counts, sorted sets (+ Module 6 on vectorsets branch)
 │       ├── artists.py          # Modules 4, 5 — listener tracking (sets, HLL)
 │       ├── daily_mix.py        # Module 1 — caching & TTL
 │       ├── leaderboard.py      # Module 3 — sorted set reads
-│       └── admin.py            # Module 6 — embedding loading
+│       └── admin.py            # Module 6 — embedding loading (placeholder; impl on vectorsets branch)
 │
 ├── frontend/                   # React (Vite)
 │   ├── src/
