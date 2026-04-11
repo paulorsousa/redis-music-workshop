@@ -59,6 +59,7 @@ The `--user` flag accepts a **username** (e.g. `user-1`) and derives the 36-char
 | Command                                                            | Module | What it does                                                             |
 | ------------------------------------------------------------------ | ------ | ------------------------------------------------------------------------ |
 | `./workshop reset`                                                 | —      | Resets PostgreSQL and Redis, reloads CSV data into PostgreSQL            |
+| `./workshop destroy [--rmi local\|all] [--prune-build-cache]`      | —      | Destroys all containers, networks, volumes, and images (`local` default) |
 | `./workshop help`                                                  | —      | Prints a detailed help message                                           |
 | `./workshop list-songs [--page N] [--per-page N]`                  | —      | Lists songs                                                              |
 | `./workshop list-artists [--page N] [--per-page N]`                | —      | Lists artists                                                            |
@@ -397,6 +398,14 @@ Use Redis **VectorSets** (Redis 8.0+) to store song embeddings and perform simil
 
 - How do you update embeddings when metadata changes?
 - Trade-offs vs a dedicated vector database?
+
+---
+
+## Cleanup
+
+```bash
+./workshop destroy [--rmi all] [--prune-build-cache]
+```
 
 ---
 

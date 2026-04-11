@@ -66,6 +66,29 @@ Resets Redis and PostgreSQL, then reloads seed data. No arguments.
 
 ---
 
+### `./workshop destroy [--rmi local|all] [--prune-build-cache]`
+
+Stops and removes all Docker Compose containers, networks, volumes, and images.
+
+| Flag                  | Default | Description                                                                             |
+| --------------------- | ------- | --------------------------------------------------------------------------------------- |
+| `--rmi`               | `local` | `local` removes only images built by Compose; `all` removes all images used by services |
+| `--prune-build-cache` | off     | Also prune Docker build cache (`docker builder prune --force`)                          |
+
+**Behaviour:**
+
+1. `docker compose down --volumes --remove-orphans --rmi <local|all>` — stop services, remove containers, networks, volumes, orphan containers, and images.
+2. If `--prune-build-cache` is passed, `docker builder prune --force` — remove cached build layers.
+
+**Output:**
+
+```
+  ✓ Stopping and removing containers, networks, volumes, and images... done
+  ✓ Pruning Docker build cache... done          # only with --prune-build-cache
+```
+
+---
+
 ### `./workshop help`
 
 Prints a summary of all commands with descriptions and examples. Implemented via `argparse` subparsers with epilog text, aliased as a subcommand for discoverability.

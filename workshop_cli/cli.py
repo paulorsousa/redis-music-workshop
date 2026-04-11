@@ -5,6 +5,7 @@ import sys
 
 from workshop_cli.commands.add_listeners import cmd_add_listeners
 from workshop_cli.commands.daily_mix import cmd_daily_mix
+from workshop_cli.commands.destroy import cmd_destroy
 from workshop_cli.commands.list_artists import cmd_list_artists
 from workshop_cli.commands.list_songs import cmd_list_songs
 from workshop_cli.commands.load_embeddings import cmd_load_embeddings
@@ -23,6 +24,20 @@ def main():
     sub = parser.add_subparsers(dest="command")
 
     sub.add_parser("reset", help="Reset PostgreSQL and Redis, reload seed data")
+    p = sub.add_parser("destroy", help="Destroy all containers, networks, and volumes")
+    p.add_argument(
+        "--rmi",
+        choices=["local", "all"],
+        nargs="?",
+        const="local",
+        default="local",
+        help="Remove images: 'local' (built by compose, default) or 'all'",
+    )
+    p.add_argument(
+        "--prune-build-cache",
+        action="store_true",
+        help="Also prune Docker build cache",
+    )
     sub.add_parser("help", help="Show this help message")
 
     p = sub.add_parser("list-songs", help="List songs (paginated)")
@@ -80,6 +95,7 @@ def main():
 
     cmds = {
         "help": lambda a: parser.print_help(),
+        "destroy": cmd_destroy,
         "reset": cmd_reset,
         "list-songs": cmd_list_songs,
         "list-artists": cmd_list_artists,
