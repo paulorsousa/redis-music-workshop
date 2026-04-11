@@ -46,6 +46,32 @@ The derived UUID is sent as the `X-User-ID` header on API calls, matching the fr
 
 ## Commands
 
+### `./workshop health`
+
+Checks whether all workshop services are running and healthy. No arguments.
+
+**Behaviour:**
+
+1. For each Docker Compose service (`redis`, `postgres`, `api`, `frontend`), checks that the container is running.
+2. Hits `GET /health` on the API to verify the endpoint responds with `{"status": "ok"}`.
+3. Prints a summary with ✓/✗ marks.
+
+**Output:**
+
+```
+Service Health
+─────────────────────────────────────────────
+  ✓ redis          running
+  ✓ postgres       running
+  ✓ api            running
+  ✓ frontend       running
+  ✓ api /health    status ok
+
+All services healthy.
+```
+
+---
+
 ### `./workshop reset`
 
 Resets Redis and PostgreSQL, then reloads seed data. No arguments.

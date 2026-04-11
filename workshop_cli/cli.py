@@ -6,6 +6,7 @@ import sys
 from workshop_cli.commands.add_listeners import cmd_add_listeners
 from workshop_cli.commands.daily_mix import cmd_daily_mix
 from workshop_cli.commands.destroy import cmd_destroy
+from workshop_cli.commands.health import cmd_health
 from workshop_cli.commands.list_artists import cmd_list_artists
 from workshop_cli.commands.list_songs import cmd_list_songs
 from workshop_cli.commands.load_embeddings import cmd_load_embeddings
@@ -23,6 +24,7 @@ def main():
     )
     sub = parser.add_subparsers(dest="command")
 
+    sub.add_parser("health", help="Healthcheck all workshop services")
     sub.add_parser("reset", help="Reset PostgreSQL and Redis, reload seed data")
     p = sub.add_parser("destroy", help="Destroy all containers, networks, and volumes")
     p.add_argument(
@@ -95,7 +97,7 @@ def main():
 
     cmds = {
         "help": lambda a: parser.print_help(),
-        "destroy": cmd_destroy,
+        "health": cmd_health,
         "reset": cmd_reset,
         "list-songs": cmd_list_songs,
         "list-artists": cmd_list_artists,
@@ -106,6 +108,7 @@ def main():
         "get-redis-memory-usage": cmd_get_redis_memory,
         "load-embeddings": cmd_load_embeddings,
         "similar-songs": cmd_similar_songs,
+        "destroy": cmd_destroy,
     }
 
     if not args.command:

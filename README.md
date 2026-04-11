@@ -58,6 +58,7 @@ The `--user` flag accepts a **username** (e.g. `user-1`) and derives the 36-char
 
 | Command                                                            | Module | What it does                                                             |
 | ------------------------------------------------------------------ | ------ | ------------------------------------------------------------------------ |
+| `./workshop health`                                                | —      | Checks that all services (Redis, Postgres, API, Frontend) are healthy    |
 | `./workshop reset`                                                 | —      | Resets PostgreSQL and Redis, reloads CSV data into PostgreSQL            |
 | `./workshop destroy [--rmi local\|all] [--prune-build-cache]`      | —      | Destroys all containers, networks, volumes, and images (`local` default) |
 | `./workshop help`                                                  | —      | Prints a detailed help message                                           |
