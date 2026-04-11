@@ -1,14 +1,12 @@
 """
 Module 2 — Atomic Counters
 Module 3 — Sorted Sets (ZINCRBY replaces INCR + powers the leaderboard)
-Module 6 — VectorSets  (read side: VSIM for similar songs)
 
 Business logic for song queries and play-count tracking.
 """
 
 from database import get_connection
 from redis_client import r
-from services._helpers import parse_vsim_results, enrich_with_metadata
 
 
 def play_song(song_id: str) -> int | None:
@@ -45,15 +43,10 @@ def play_song(song_id: str) -> int | None:
 
 def find_similar_songs(song_id: str, count: int) -> list[dict]:
     """Similar songs – Module 6: query VectorSet with VSIM
-    Embeddings are loaded into Redis via POST /admin/load-embeddings
-    We're using all-MiniLM-L6-v2 to generate embeddings: not great, but good enough for a demo
-    """
-    results = r.execute_command(
-        "VSIM", "song-vectors", "ELE", song_id, "WITHSCORES", "COUNT", count
-    )
 
-    similar_songs = parse_vsim_results(results, exclude_id=song_id)
-    return enrich_with_metadata(similar_songs)
+    TODO: Implement in the 'vectorsets' branch.
+    """
+    return []
 
 
 def list_songs(artist_id: str | None, page: int, per_page: int) -> dict:
