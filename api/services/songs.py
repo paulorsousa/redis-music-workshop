@@ -19,27 +19,9 @@ def play_song(song_id: str) -> int | None:
     NOTE: Intentionally broken with race condition (Module 2 fixes it with INCR).
     NOTE: After Module 2, the leaderboard breaks (Module 3 fixes it with ZINCRBY).
 
-    TODO: Module 2 — replace SELECT/+1/UPDATE with INCR play-count:song:{song_id}
     TODO: Module 3 — replace INCR with ZINCRBY top-songs 1 {song_id} (i.e., sorted set replaces the counter)
     """
-    conn = get_connection()
-    cur = conn.cursor()
-
-    # Step 1: SELECT current count
-    cur.execute("SELECT play_count FROM songs WHERE id = %s", (song_id,))
-    row = cur.fetchone()
-    if not row:
-        cur.close()
-        conn.close()
-        return None
-
-    new_count = row[0] + 1
-
-    # Step 2: UPDATE with incremented value (non-atomic — loses updates under concurrency)
-    cur.execute("UPDATE songs SET play_count = %s WHERE id = %s", (new_count, song_id))
-    conn.commit()
-    cur.close()
-    conn.close()
+    new_count = r.incr(f"play-count:song:{song_id}")
     return new_count
 
 
