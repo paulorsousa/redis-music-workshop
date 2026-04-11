@@ -9,10 +9,8 @@ from workshop_cli.commands.destroy import cmd_destroy
 from workshop_cli.commands.health import cmd_health
 from workshop_cli.commands.list_artists import cmd_list_artists
 from workshop_cli.commands.list_songs import cmd_list_songs
-from workshop_cli.commands.load_embeddings import cmd_load_embeddings
 from workshop_cli.commands.redis_memory import cmd_get_redis_memory
 from workshop_cli.commands.reset import cmd_reset
-from workshop_cli.commands.similar_songs import cmd_similar_songs
 from workshop_cli.commands.simulate_plays import cmd_simulate_plays
 from workshop_cli.commands.top_songs import cmd_top_songs
 
@@ -85,14 +83,6 @@ def main():
         "get-redis-memory-usage", help="Print Redis memory usage by key pattern"
     )
 
-    sub.add_parser("load-embeddings", help="Compute and load song embeddings")
-
-    p = sub.add_parser("similar-songs", help="Find similar songs via VectorSet")
-    p.add_argument("--song", required=True, help="Song ID (e.g. song-42)")
-    p.add_argument(
-        "--count", type=int, default=5, help="Number of results (default: 5)"
-    )
-
     args = parser.parse_args()
 
     cmds = {
@@ -106,8 +96,6 @@ def main():
         "add-listeners": cmd_add_listeners,
         "top-songs": cmd_top_songs,
         "get-redis-memory-usage": cmd_get_redis_memory,
-        "load-embeddings": cmd_load_embeddings,
-        "similar-songs": cmd_similar_songs,
         "destroy": cmd_destroy,
     }
 
