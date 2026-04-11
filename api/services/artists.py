@@ -17,6 +17,21 @@ def _get_listener_count(artist_id: str) -> int:
     return r.llen(key)
 
 
+def add_listener(artist_id: str, user_id: str) -> None:
+    """Track a listener — intentionally uses Redis List with O(N) dedup (Module 4).
+
+    TODO: Module 4 — replace List + scan with SADD monthly-listeners:{artist_id}:{YYYY-MM} {user_id}
+    TODO: Module 5 — replace SADD with PFADD hll-listeners:{artist_id}:{YYYY-MM} {user_id}
+    """
+    month = datetime.now().strftime("%Y-%m")
+    key = f"monthly-listeners:{artist_id}:{month}"
+
+    # O(N) dedup check on a List — intentionally slow (Module 4)
+    existing = r.lrange(key, 0, -1)
+    if user_id not in existing:
+        r.rpush(key, user_id)
+
+
 def list_artists(page: int, per_page: int) -> dict:
     """Return a paginated list of artists with monthly listener counts."""
     conn = get_connection()
@@ -71,18 +86,3 @@ def artist_exists(artist_id: str) -> bool:
     cur.close()
     conn.close()
     return exists
-
-
-def add_listener(artist_id: str, user_id: str) -> None:
-    """Track a listener — intentionally uses Redis List with O(N) dedup (Module 4).
-
-    TODO: Module 4 — replace List + scan with SADD monthly-listeners:{artist_id}:{YYYY-MM} {user_id}
-    TODO: Module 5 — replace SADD with PFADD hll-listeners:{artist_id}:{YYYY-MM} {user_id}
-    """
-    month = datetime.now().strftime("%Y-%m")
-    key = f"monthly-listeners:{artist_id}:{month}"
-
-    # O(N) dedup check on a List — intentionally slow (Module 4)
-    existing = r.lrange(key, 0, -1)
-    if user_id not in existing:
-        r.rpush(key, user_id)

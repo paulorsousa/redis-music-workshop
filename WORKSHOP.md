@@ -245,8 +245,9 @@ The platform tracks **monthly distinct listeners** per artist. The current imple
 ### Observe
 
 ```bash
-./workshop add-listeners --artist artist-1 --count 100000     # note the time
-./workshop add-listeners --artist artist-1 --count 100000     # same operation, but slower — List now has 100K entries, O(N) check on every insert
+./workshop reset
+./workshop add-listeners --artist artist-1 --count 5000     # note the time (~10 s)
+./workshop add-listeners --artist artist-1 --count 5000     # same operation, but slower (~15 s) — List now has 10K entries, O(N) check on every insert
 ```
 
 ### Goal
@@ -270,13 +271,15 @@ Use a Redis **Set** for **O(1)** add-with-dedup.
 
 ```bash
 ./workshop reset
-./workshop add-listeners --artist artist-1 --count 100000
+./workshop add-listeners --artist artist-1 --count 5000
+./workshop add-listeners --artist artist-1 --count 5000
 # Constant speed regardless of size
 ```
 
 ### Discussion
 
-- Sets store each member in full — what about memory at 100 M scale? (→ Module 5)
+- Why are we using YYYY-MM as part of the key? (monthly aggregation)
+- Sets store each member in full — what about memory at 100M scale? (→ Module 5)
 
 ---
 
