@@ -5,9 +5,10 @@ Business logic for the top-songs leaderboard.
 """
 
 from database import get_connection
+from redis_client import r
 
 
-def get_leaderboard(per_page: int) -> dict:
+def get_leaderboard(per_page: int) -> list:
     """Top songs by play count — queries PostgreSQL directly (Module 3 replaces with Sorted Set).
 
     TODO: Module 3 — replace with ZREVRANGE top-songs 0 {per_page-1} WITHSCORES
@@ -26,4 +27,4 @@ def get_leaderboard(per_page: int) -> dict:
     data = [dict(zip(cols, row)) for row in cur.fetchall()]
     cur.close()
     conn.close()
-    return {"data": data}
+    return data

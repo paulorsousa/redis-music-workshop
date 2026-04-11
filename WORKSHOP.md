@@ -217,13 +217,13 @@ Replace the counter from Module 2 with a Sorted Set — `ZINCRBY` is also atomic
 
 1. Open `api/services/songs.py` — in `play_song`, replace the `INCR` with `ZINCRBY top-songs 1 {song_id}`.
 2. In `get_song` (same file), replace `GET play-count:song:{song_id}` with `ZSCORE top-songs {song_id}` to read a single song's play count.
-3. Open `api/services/leaderboard.py` — replace the PostgreSQL query with `ZREVRANGE top-songs 0 {per_page-1} WITHSCORES`.
+3. Open `api/services/leaderboard.py` — use `ZREVRANGE top-songs 0 {per_page-1} WITHSCORES` to get the top song IDs and scores, then fetch the song details (title, artist, genre) from PostgreSQL. Redis gives you the ranking; PostgreSQL complements it with the metadata.
 4. Verify:
 
 ```bash
 ./workshop simulate-plays --song song-1 --count 20 --concurrent
 ./workshop simulate-plays --song song-2 --count 35 --concurrent
-./workshop top-songs --limit 10
+./workshop top-songs
 # song-2: 35, song-1: 20
 ```
 
