@@ -47,7 +47,7 @@ def find_similar_songs(song_id: str, count: int) -> dict:
 
     TODO: Module 6 — query VectorSet with VSIM song-vectors ELE {song_id} COUNT {count}
     """
-    return {"song_id": song_id, "similar": []}
+    return []
 
 
 def list_songs(artist_id: str | None, page: int, per_page: int) -> dict:

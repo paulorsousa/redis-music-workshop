@@ -27,7 +27,7 @@ def load_embeddings() -> dict:
     song_ids = []
     for song in songs:
         artist_name = artists.get(song["artist_id"], "Unknown")
-        text = f"{song['title']} {artist_name} {song['genre']}"
+        text = f"{song['title']} {song['genre']} {song['description']} {artist_name}"
         texts.append(text)
         song_ids.append(song["id"])
 
@@ -42,9 +42,14 @@ def load_embeddings() -> dict:
     # Load into Redis VectorSet
     for song_id, embedding in zip(song_ids, embeddings):
         values = embedding.tolist()
-        # VADD song-vectors FP32 <element> VALUES v1 v2 ...
+        # VADD key VALUES num v1 v2 ... element
         r.execute_command(
-            "VADD", "song-vectors", "FP32", song_id, "VALUES", *[str(v) for v in values]
+            "VADD",
+            "song-vectors",
+            "VALUES",
+            len(values),
+            *[str(v) for v in values],
+            song_id,
         )
 
     return {"loaded": len(song_ids), "dimensions": int(dimensions)}

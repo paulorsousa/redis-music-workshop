@@ -1,501 +1,501 @@
-id,title,artist_id,genre,duration_seconds
-song-1,Boy Named Sue,artist-17,Country,336
-song-2,Fading Storms,artist-18,Country,317
-song-3,High Life,artist-15,Electronic,205
-song-4,Your Song,artist-6,Pop,199
-song-5,Three Little Birds,artist-14,Reggae,185
-song-6,Dark Mountains,artist-14,Reggae,298
-song-7,Frozen,artist-9,Pop,247
-song-8,Golden Shadows,artist-19,Classical,305
-song-9,Punky Reggae Party,artist-14,Reggae,291
-song-10,Distant Skies,artist-11,Jazz,191
-song-11,The Winner Takes It All,artist-6,Pop,276
-song-12,Dark Shadows,artist-10,Pop,157
-song-13,Naima,artist-11,Jazz,175
-song-14,Beyond,artist-16,Electronic,263
-song-15,Rocket Man,artist-9,Pop,331
-song-16,Mr PC,artist-13,Jazz,394
-song-17,Is This Love,artist-14,Reggae,230
-song-18,Wild Skies,artist-15,Electronic,228
-song-19,Bright Waves,artist-2,Rock,327
-song-20,Distant Dreams,artist-2,Rock,299
-song-21,Tuesdays Gone,artist-5,Rock,389
-song-22,Badlands,artist-2,Rock,410
-song-23,Golden Shadows,artist-3,Rock,345
-song-24,Bright Skies,artist-6,Pop,208
-song-25,Last Dreams,artist-19,Classical,295
-song-26,Nefertiti,artist-11,Jazz,234
-song-27,We Will Rock You,artist-4,Rock,324
-song-28,Dark Stars,artist-9,Pop,306
-song-29,Hotel California,artist-1,Rock,344
-song-30,Take It Easy,artist-3,Rock,233
-song-31,Lost Skies,artist-8,Pop,315
-song-32,One Love,artist-14,Reggae,187
-song-33,ESP,artist-12,Jazz,151
-song-34,Come Together,artist-7,Pop,341
-song-35,Wild Mountains,artist-5,Rock,403
-song-36,What a Wonderful World,artist-13,Jazz,270
-song-37,Rising Lights,artist-20,Classical,160
-song-38,Radioactivity,artist-16,Electronic,241
-song-39,Here You Come Again,artist-17,Country,305
-song-40,Folsom Prison Blues,artist-17,Country,347
-song-41,Man in the Mirror,artist-10,Pop,204
-song-42,Rising Lights,artist-9,Pop,375
-song-43,Dark Lights,artist-3,Rock,274
-song-44,Last Dreams,artist-10,Pop,302
-song-45,Thunderstruck,artist-5,Rock,163
-song-46,Two Doors Down,artist-18,Country,257
-song-47,Beat It,artist-6,Pop,286
-song-48,Born to Run,artist-5,Rock,369
-song-49,Ghost Riders in the Sky,artist-17,Country,303
-song-50,Eternal Rivers,artist-3,Rock,265
-song-51,Silent Rivers,artist-16,Electronic,297
-song-52,Bright Stars,artist-19,Classical,344
-song-53,Silent Waves,artist-16,Electronic,376
-song-54,Love Is Like a Butterfly,artist-18,Country,314
-song-55,Black Dog,artist-2,Rock,221
-song-56,Golden Dreams,artist-9,Pop,394
-song-57,Bicycle Race,artist-5,Rock,300
-song-58,Electric Memories,artist-17,Country,208
-song-59,Like a Virgin,artist-6,Pop,186
-song-60,Distant Memories,artist-8,Pop,291
-song-61,Bright Shadows,artist-9,Pop,298
-song-62,Autobahn,artist-15,Electronic,248
-song-63,My Favorite Things,artist-11,Jazz,181
-song-64,We Have All the Time in the World,artist-12,Jazz,417
-song-65,Bright Memories,artist-6,Pop,390
-song-66,Bright Memories,artist-8,Pop,330
-song-67,Another One Bites the Dust,artist-4,Rock,199
-song-68,Smoke on the Water,artist-1,Rock,194
-song-69,Golden Voices,artist-14,Reggae,419
-song-70,Distant Rivers,artist-11,Jazz,258
-song-71,Last Dreams,artist-20,Classical,228
-song-72,Pathetique Sonata,artist-19,Classical,162
-song-73,Last Dreams,artist-18,Country,386
-song-74,Golden Shadows,artist-8,Pop,346
-song-75,Spring Sonata,artist-19,Classical,346
-song-76,First Waves,artist-16,Electronic,296
-song-77,Broken Horizons,artist-13,Jazz,368
-song-78,Rebel Music,artist-14,Reggae,216
-song-79,Fernando,artist-8,Pop,374
-song-80,Islands in the Stream,artist-18,Country,357
-song-81,Dont Let the Sun Go Down on Me,artist-7,Pop,247
-song-82,Midnight Storms,artist-3,Rock,314
-song-83,Wild Storms,artist-19,Classical,160
-song-84,Circle of Life,artist-10,Pop,379
-song-85,Dark Shadows,artist-7,Pop,182
-song-86,Rising Horizons,artist-1,Rock,217
-song-87,Digital Love,artist-15,Electronic,171
-song-88,Lost Voices,artist-18,Country,214
-song-89,Exodus,artist-14,Reggae,209
-song-90,Like a Prayer,artist-8,Pop,186
-song-91,Midnight Dreams,artist-6,Pop,307
-song-92,First Voices,artist-16,Electronic,212
-song-93,Lacrimosa,artist-20,Classical,312
-song-94,Let It Be,artist-8,Pop,409
-song-95,I Will Always Love You,artist-17,Country,365
-song-96,Distant Dreams,artist-12,Jazz,261
-song-97,First Stars,artist-10,Pop,369
-song-98,Ray of Light,artist-7,Pop,217
-song-99,The River,artist-4,Rock,196
-song-100,Voulez-Vous,artist-10,Pop,262
-song-101,Impressions,artist-11,Jazz,245
-song-102,Fading Echoes,artist-15,Electronic,407
-song-103,Silent Skies,artist-4,Rock,232
-song-104,Mack the Knife,artist-13,Jazz,191
-song-105,Freddie Freeloader,artist-11,Jazz,376
-song-106,Hurt,artist-17,Country,373
-song-107,Bright Roads,artist-11,Jazz,293
-song-108,Eternal Lights,artist-3,Rock,273
-song-109,I Want to Break Free,artist-4,Rock,190
-song-110,Golden Waves,artist-14,Reggae,401
-song-111,Mother,artist-5,Rock,284
-song-112,Free Bird,artist-2,Rock,231
-song-113,Golden Memories,artist-20,Classical,385
-song-114,Dark Roads,artist-14,Reggae,397
-song-115,Midnight Mountains,artist-14,Reggae,219
-song-116,Old Flames,artist-18,Country,259
-song-117,Something About Us,artist-16,Electronic,229
-song-118,Eternal Rivers,artist-12,Jazz,185
-song-119,We Are the Champions,artist-3,Rock,229
-song-120,Broken Rivers,artist-19,Classical,287
-song-121,Fading Stars,artist-14,Reggae,289
-song-122,Dark Waves,artist-17,Country,294
-song-123,Footprints,artist-12,Jazz,285
-song-124,Crazy Train,artist-1,Rock,261
-song-125,Distant Dreams,artist-19,Classical,175
-song-126,Im Still Standing,artist-6,Pop,277
-song-127,The Wall,artist-2,Rock,405
-song-128,Eine Kleine Nachtmusik,artist-20,Classical,354
-song-129,Dark Storms,artist-5,Rock,185
-song-130,Eternal Horizons,artist-12,Jazz,186
-song-131,Eternal Roads,artist-6,Pop,206
-song-132,Rising Waves,artist-12,Jazz,392
-song-133,Rising Echoes,artist-14,Reggae,331
-song-134,Rising Horizons,artist-15,Electronic,304
-song-135,Fading Waves,artist-20,Classical,265
-song-136,Help,artist-6,Pop,214
-song-137,Whole Lotta Love,artist-5,Rock,364
-song-138,Redemption Song,artist-14,Reggae,384
-song-139,Tennessee Mountain Home,artist-18,Country,376
-song-140,Broken Echoes,artist-19,Classical,177
-song-141,Broken Skies,artist-11,Jazz,344
-song-142,The Marriage of Figaro,artist-19,Classical,212
-song-143,Ave Verum Corpus,artist-20,Classical,408
-song-144,Numbers,artist-15,Electronic,372
-song-145,Could You Be Loved,artist-14,Reggae,217
-song-146,Fading Lights,artist-15,Electronic,281
-song-147,First Waves,artist-9,Pop,155
-song-148,Kind of Blue,artist-11,Jazz,157
-song-149,Learning to Fly,artist-2,Rock,311
-song-150,Electric Rivers,artist-20,Classical,178
-song-151,Silent Voices,artist-16,Electronic,345
-song-152,Midnight Memories,artist-4,Rock,377
-song-153,First Shadows,artist-16,Electronic,380
-song-154,Golden Memories,artist-19,Classical,255
-song-155,Wild Waves,artist-12,Jazz,301
-song-156,No Woman No Cry,artist-14,Reggae,384
-song-157,Fading Mountains,artist-13,Jazz,353
-song-158,Face to Face,artist-15,Electronic,241
-song-159,Wild Voices,artist-4,Rock,310
-song-160,Broken Mountains,artist-9,Pop,385
-song-161,Knowing Me Knowing You,artist-8,Pop,160
-song-162,Distant Storms,artist-16,Electronic,301
-song-163,Bad,artist-8,Pop,372
-song-164,Fading Shadows,artist-3,Rock,214
-song-165,Fading Roads,artist-1,Rock,196
-song-166,Sun Is Shining,artist-14,Reggae,294
-song-167,Kashmir,artist-2,Rock,379
-song-168,Electric Shadows,artist-18,Country,337
-song-169,Silent Dreams,artist-16,Electronic,316
-song-170,Iron Man,artist-1,Rock,165
-song-171,When the Saints Go Marching In,artist-13,Jazz,170
-song-172,Fading Voices,artist-13,Jazz,191
-song-173,Midnight Mountains,artist-5,Rock,405
-song-174,Last Mountains,artist-13,Jazz,337
-song-175,Harder Better Faster Stronger,artist-16,Electronic,336
-song-176,Dont Stop Me Now,artist-1,Rock,197
-song-177,Dark Lights,artist-19,Classical,346
-song-178,Equinox,artist-13,Jazz,230
-song-179,First Mountains,artist-2,Rock,308
-song-180,Last Waves,artist-19,Classical,400
-song-181,Lost Mountains,artist-20,Classical,272
-song-182,Midnight Voices,artist-3,Rock,393
-song-183,Tiny Dancer,artist-9,Pop,360
-song-184,Golden Roads,artist-10,Pop,323
-song-185,Dark Roads,artist-1,Rock,352
-song-186,Broken Flames,artist-20,Classical,370
-song-187,Electric Rivers,artist-8,Pop,306
-song-188,Thunder Road,artist-1,Rock,162
-song-189,Golden Dreams,artist-14,Reggae,380
-song-190,Distant Waves,artist-10,Pop,330
-song-191,Wish You Were Here,artist-5,Rock,275
-song-192,Aerodynamic,artist-15,Electronic,361
-song-193,Man in Black,artist-17,Country,416
-song-194,Basin Street Blues,artist-12,Jazz,217
-song-195,Last Mountains,artist-14,Reggae,176
-song-196,Bright Shadows,artist-20,Classical,151
-song-197,Midnight Stars,artist-12,Jazz,359
-song-198,Afro Blue,artist-11,Jazz,184
-song-199,Jamming,artist-14,Reggae,409
-song-200,In a Silent Way,artist-12,Jazz,399
-song-201,Midnight Waves,artist-1,Rock,309
-song-202,Somebody to Love,artist-2,Rock,322
-song-203,Flamenco Sketches,artist-13,Jazz,200
-song-204,I Shot the Sheriff,artist-14,Reggae,218
-song-205,Ring of Fire,artist-18,Country,411
-song-206,Turn Your Lights Down Low,artist-14,Reggae,325
-song-207,Crocodile Rock,artist-9,Pop,177
-song-208,Thriller,artist-10,Pop,155
-song-209,Stairway to Heaven,artist-5,Rock,292
-song-210,Rising Rivers,artist-9,Pop,383
-song-211,Wild Stars,artist-11,Jazz,230
-song-212,Billie Jean,artist-10,Pop,278
-song-213,Silent Rivers,artist-4,Rock,295
-song-214,Lost Shadows,artist-17,Country,319
-song-215,Rising Echoes,artist-16,Electronic,358
-song-216,Bennie and the Jets,artist-6,Pop,181
-song-217,Central Park West,artist-11,Jazz,410
-song-218,Lost Rivers,artist-9,Pop,247
-song-219,Last Voices,artist-12,Jazz,195
-song-220,Broken Stars,artist-8,Pop,335
-song-221,Wild Stars,artist-8,Pop,361
-song-222,Jolene,artist-18,Country,356
-song-223,Fortunate Son,artist-1,Rock,206
-song-224,Fading Dreams,artist-14,Reggae,315
-song-225,Paranoid,artist-5,Rock,366
-song-226,Wild Dreams,artist-7,Pop,365
-song-227,Highway Star,artist-3,Rock,275
-song-228,Stir It Up,artist-14,Reggae,304
-song-229,All Blues,artist-11,Jazz,292
-song-230,The Magic Flute,artist-19,Classical,204
-song-231,Fading Voices,artist-5,Rock,362
-song-232,The Model,artist-16,Electronic,318
-song-233,Electric Mountains,artist-7,Pop,278
-song-234,Distant Stars,artist-1,Rock,181
-song-235,Distant Stars,artist-14,Reggae,398
-song-236,Last Storms,artist-19,Classical,344
-song-237,Midnight Horizons,artist-3,Rock,355
-song-238,Requiem,artist-19,Classical,225
-song-239,Here Comes the Sun,artist-10,Pop,315
-song-240,Broken Echoes,artist-15,Electronic,305
-song-241,Comfortably Numb,artist-1,Rock,237
-song-242,Midnight Echoes,artist-8,Pop,219
-song-243,Wild Lights,artist-20,Classical,410
-song-244,Mamma Mia,artist-7,Pop,252
-song-245,Kaya,artist-14,Reggae,197
-song-246,Veridis Quo,artist-15,Electronic,233
-song-247,Silent Voices,artist-14,Reggae,239
-song-248,Good Times Bad Times,artist-5,Rock,335
-song-249,Don Giovanni,artist-20,Classical,175
-song-250,Midnight Stars,artist-9,Pop,323
-song-251,Back in Black,artist-2,Rock,408
-song-252,Sweet Home Alabama,artist-4,Rock,182
-song-253,Material Girl,artist-6,Pop,267
-song-254,Lost Skies,artist-2,Rock,300
-song-255,Silent Skies,artist-18,Country,343
-song-256,Last Echoes,artist-12,Jazz,338
-song-257,Within,artist-16,Electronic,306
-song-258,Fading Rivers,artist-19,Classical,357
-song-259,Rock and Roll,artist-1,Rock,173
-song-260,Get Rhythm,artist-18,Country,359
-song-261,Bohemian Rhapsody,artist-1,Rock,231
-song-262,Dark Flames,artist-7,Pop,342
-song-263,Silent Mountains,artist-16,Electronic,168
-song-264,Dark Rivers,artist-6,Pop,216
-song-265,Midnight Memories,artist-13,Jazz,157
-song-266,Wild Horizons,artist-4,Rock,274
-song-267,Midnight Memories,artist-9,Pop,265
-song-268,First Rivers,artist-19,Classical,163
-song-269,Wild Waves,artist-17,Country,300
-song-270,La Vie En Rose,artist-12,Jazz,211
-song-271,Eternal Mountains,artist-11,Jazz,156
-song-272,Dogs,artist-3,Rock,355
-song-273,Eternal Shadows,artist-10,Pop,374
-song-274,Smooth Criminal,artist-8,Pop,207
-song-275,Last Stars,artist-6,Pop,175
-song-276,Distant Mountains,artist-1,Rock,388
-song-277,Eternal Storms,artist-15,Electronic,157
-song-278,Bright Memories,artist-17,Country,398
-song-279,Broken Storms,artist-11,Jazz,246
-song-280,Bitches Brew,artist-11,Jazz,247
-song-281,Distant Horizons,artist-5,Rock,216
-song-282,La Isla Bonita,artist-7,Pop,392
-song-283,Across the Universe,artist-10,Pop,234
-song-284,9 to 5,artist-18,Country,215
-song-285,Electric Mountains,artist-3,Rock,170
-song-286,Bright Rivers,artist-14,Reggae,262
-song-287,Trans-Europe Express,artist-16,Electronic,185
-song-288,Last Echoes,artist-15,Electronic,201
-song-289,Eternal Flames,artist-9,Pop,234
-song-290,Midnight Horizons,artist-18,Country,256
-song-291,Rising Lights,artist-16,Electronic,162
-song-292,First Dreams,artist-5,Rock,230
-song-293,Lost Memories,artist-11,Jazz,274
-song-294,Lost Lights,artist-10,Pop,294
-song-295,Four,artist-11,Jazz,355
-song-296,Electric Shadows,artist-16,Electronic,208
-song-297,Milestones,artist-11,Jazz,271
-song-298,Broken Memories,artist-12,Jazz,412
-song-299,First Voices,artist-10,Pop,410
-song-300,Ode to Joy,artist-19,Classical,251
-song-301,Summertime,artist-12,Jazz,396
-song-302,Midnight Mountains,artist-12,Jazz,333
-song-303,Sunday Mornin Comin Down,artist-18,Country,310
-song-304,A Kind of Magic,artist-5,Rock,213
-song-305,Fading Echoes,artist-8,Pop,297
-song-306,Dancing Queen,artist-10,Pop,366
-song-307,Dark Waves,artist-16,Electronic,299
-song-308,While My Guitar Gently Weeps,artist-8,Pop,420
-song-309,Golden Mountains,artist-16,Electronic,184
-song-310,Bright Mountains,artist-9,Pop,170
-song-311,Silent Echoes,artist-18,Country,244
-song-312,The Way You Make Me Feel,artist-10,Pop,241
-song-313,War,artist-14,Reggae,207
-song-314,First Waves,artist-8,Pop,182
-song-315,Last Storms,artist-4,Rock,386
-song-316,Bright Horizons,artist-6,Pop,309
-song-317,Dark Horizons,artist-11,Jazz,208
-song-318,Dancing in the Dark,artist-5,Rock,354
-song-319,Buffalo Soldier,artist-14,Reggae,187
-song-320,Silent Mountains,artist-9,Pop,345
-song-321,A Hard Days Night,artist-6,Pop,398
-song-322,Hey Jude,artist-10,Pop,251
-song-323,Blue in Green,artist-12,Jazz,277
-song-324,Vogue,artist-10,Pop,271
-song-325,Midnight Voices,artist-10,Pop,270
-song-326,Da Funk,artist-15,Electronic,339
-song-327,Candle in the Wind,artist-9,Pop,323
-song-328,Super Trouper,artist-10,Pop,267
-song-329,Eternal Mountains,artist-15,Electronic,292
-song-330,Last Shadows,artist-15,Electronic,397
-song-331,Highway to Hell,artist-5,Rock,251
-song-332,Voyager,artist-16,Electronic,360
-song-333,Rising Mountains,artist-13,Jazz,234
-song-334,Coat of Many Colors,artist-18,Country,239
-song-335,Electric Waves,artist-2,Rock,416
-song-336,Run Like Hell,artist-2,Rock,285
-song-337,Dark Flames,artist-2,Rock,329
-song-338,Black or White,artist-7,Pop,382
-song-339,First Waves,artist-5,Rock,268
-song-340,Lost Stars,artist-3,Rock,310
-song-341,Contact,artist-15,Electronic,264
-song-342,Fading Memories,artist-18,Country,397
-song-343,Silent Echoes,artist-13,Jazz,413
-song-344,Fading Mountains,artist-8,Pop,404
-song-345,Broken Echoes,artist-5,Rock,265
-song-346,Rock with You,artist-6,Pop,284
-song-347,Tour de France,artist-16,Electronic,169
-song-348,Bright Dreams,artist-7,Pop,286
-song-349,Silent Horizons,artist-15,Electronic,354
-song-350,Lost Dreams,artist-10,Pop,402
-song-351,Golden Voices,artist-1,Rock,196
-song-352,Yesterday,artist-7,Pop,150
-song-353,Electric Mountains,artist-19,Classical,160
-song-354,Bright Dreams,artist-3,Rock,300
-song-355,Have a Cigar,artist-2,Rock,166
-song-356,Silent Echoes,artist-1,Rock,404
-song-357,Strawberry Fields Forever,artist-8,Pop,272
-song-358,Silent Roads,artist-11,Jazz,193
-song-359,Eternal Stars,artist-15,Electronic,191
-song-360,A Love Supreme,artist-12,Jazz,261
-song-361,Dream a Little Dream of Me,artist-11,Jazz,310
-song-362,The Robots,artist-16,Electronic,319
-song-363,Silent Dreams,artist-6,Pop,223
-song-364,Wild Shadows,artist-17,Country,288
-song-365,Young Lust,artist-2,Rock,276
-song-366,Soul Rebel,artist-14,Reggae,151
-song-367,Life in the Fast Lane,artist-3,Rock,331
-song-368,Africa Unite,artist-14,Reggae,368
-song-369,Rising Shadows,artist-9,Pop,222
-song-370,Midnight Horizons,artist-15,Electronic,196
-song-371,Immigrant Song,artist-5,Rock,248
-song-372,Electric Lights,artist-16,Electronic,291
-song-373,Rising Rivers,artist-18,Country,168
-song-374,Wild Flames,artist-8,Pop,406
-song-375,Jackson,artist-18,Country,185
-song-376,Neon Lights,artist-15,Electronic,209
-song-377,St James Infirmary Blues,artist-12,Jazz,283
-song-378,Fragments of Time,artist-15,Electronic,385
-song-379,Short Circuit,artist-15,Electronic,286
-song-380,Eleanor Rigby,artist-7,Pop,393
-song-381,Dark Shadows,artist-16,Electronic,202
-song-382,Distant Memories,artist-14,Reggae,279
-song-383,Midnight Rivers,artist-1,Rock,316
-song-384,Electric Voices,artist-3,Rock,372
-song-385,Fur Elise,artist-19,Classical,295
-song-386,Broken Lights,artist-15,Electronic,224
-song-387,Tutu,artist-12,Jazz,296
-song-388,Under Pressure,artist-5,Rock,285
-song-389,Eternal Dreams,artist-19,Classical,318
-song-390,Bright Rivers,artist-18,Country,163
-song-391,Broken Lights,artist-9,Pop,373
-song-392,Pigs,artist-3,Rock,183
-song-393,First Memories,artist-17,Country,286
-song-394,One More Time,artist-15,Electronic,370
-song-395,Midnight Waves,artist-17,Country,258
-song-396,Dark Shadows,artist-3,Rock,301
-song-397,Desperado,artist-3,Rock,382
-song-398,Fading Lights,artist-8,Pop,318
-song-399,Broken Dreams,artist-12,Jazz,302
-song-400,Wild Horizons,artist-18,Country,378
-song-401,Electric Skies,artist-6,Pop,304
-song-402,Satisfy My Soul,artist-14,Reggae,285
-song-403,Papa Dont Preach,artist-6,Pop,166
-song-404,Fading Voices,artist-19,Classical,297
-song-405,Golden Stars,artist-7,Pop,331
-song-406,Waldstein Sonata,artist-20,Classical,187
-song-407,Killer Queen,artist-1,Rock,385
-song-408,Dark Shadows,artist-14,Reggae,229
-song-409,Rising Memories,artist-5,Rock,199
-song-410,Last Rivers,artist-16,Electronic,204
-song-411,Dark Stars,artist-16,Electronic,379
-song-412,Rising Rivers,artist-4,Rock,221
-song-413,Computer Love,artist-16,Electronic,329
-song-414,Wild Stars,artist-12,Jazz,364
-song-415,Distant Lights,artist-4,Rock,248
-song-416,Broken Stars,artist-15,Electronic,324
-song-417,Hey You,artist-4,Rock,384
-song-418,Fading Storms,artist-9,Pop,164
-song-419,Eternal Mountains,artist-10,Pop,173
-song-420,On the Sunny Side of the Street,artist-11,Jazz,285
-song-421,Too Long,artist-16,Electronic,169
-song-422,Ramble On,artist-1,Rock,269
-song-423,Radio Ga Ga,artist-3,Rock,326
-song-424,Appassionata,artist-20,Classical,362
-song-425,Symphony No 40,artist-20,Classical,262
-song-426,Wild Horizons,artist-2,Rock,373
-song-427,Money,artist-2,Rock,386
-song-428,Broken Dreams,artist-13,Jazz,322
-song-429,Lose Yourself to Dance,artist-15,Electronic,331
-song-430,When the Levee Breaks,artist-2,Rock,298
-song-431,Dark Flames,artist-11,Jazz,330
-song-432,Hello Dolly,artist-13,Jazz,276
-song-433,Bright Stars,artist-2,Rock,336
-song-434,Get Up Stand Up,artist-14,Reggae,339
-song-435,Distant Waves,artist-20,Classical,180
-song-436,Symphony No 9,artist-19,Classical,308
-song-437,Rondo Alla Turca,artist-20,Classical,218
-song-438,New Kid in Town,artist-2,Rock,286
-song-439,Symphony No 5,artist-20,Classical,197
-song-440,Penny Lane,artist-6,Pop,273
-song-441,Natural Mystic,artist-14,Reggae,229
-song-442,Distant Waves,artist-19,Classical,316
-song-443,Lively Up Yourself,artist-14,Reggae,278
-song-444,Midnight Lights,artist-4,Rock,363
-song-445,Golden Lights,artist-6,Pop,188
-song-446,Dark Horizons,artist-15,Electronic,186
-song-447,Distant Storms,artist-15,Electronic,274
-song-448,Broken Echoes,artist-11,Jazz,279
-song-449,Emperor Concerto,artist-19,Classical,275
-song-450,Dark Rivers,artist-16,Electronic,273
-song-451,Wild Skies,artist-9,Pop,341
-song-452,Silent Horizons,artist-8,Pop,194
-song-453,Golden Voices,artist-10,Pop,164
-song-454,Piano Concerto No 21,artist-19,Classical,415
-song-455,Wild Rivers,artist-11,Jazz,388
-song-456,Bright Flames,artist-13,Jazz,380
-song-457,First Roads,artist-18,Country,230
-song-458,SOS,artist-7,Pop,182
-song-459,Time,artist-4,Rock,288
-song-460,Dark Rivers,artist-9,Pop,406
-song-461,Silent Skies,artist-14,Reggae,224
-song-462,Electric Flames,artist-14,Reggae,242
-song-463,Twist and Shout,artist-10,Pop,190
-song-464,Midnight Horizons,artist-7,Pop,301
-song-465,Gimme Gimme Gimme,artist-10,Pop,381
-song-466,Express Yourself,artist-10,Pop,392
-song-467,Giant Steps,artist-13,Jazz,310
-song-468,Something,artist-9,Pop,159
-song-469,Glory Days,artist-3,Rock,262
-song-470,Round Midnight,artist-11,Jazz,358
-song-471,Norwegian Wood,artist-6,Pop,335
-song-472,Distant Flames,artist-4,Rock,382
-song-473,Wild Echoes,artist-18,Country,265
-song-474,Last Mountains,artist-12,Jazz,205
-song-475,Electric Horizons,artist-14,Reggae,172
-song-476,Instant Crush,artist-15,Electronic,277
-song-477,Get Lucky,artist-15,Electronic,333
-song-478,Last Roads,artist-7,Pop,346
-song-479,Wild Echoes,artist-12,Jazz,216
-song-480,Hung Up,artist-8,Pop,398
-song-481,Rising Mountains,artist-19,Classical,399
-song-482,Bright Dreams,artist-8,Pop,252
-song-483,Simple Man,artist-4,Rock,345
-song-484,Fading Voices,artist-4,Rock,256
-song-485,Last Stars,artist-5,Rock,163
-song-486,Shine On You Crazy Diamond,artist-5,Rock,262
-song-487,Waterloo,artist-8,Pop,354
-song-488,Last Stars,artist-4,Rock,271
-song-489,Zimbabwe,artist-14,Reggae,232
-song-490,So What,artist-11,Jazz,366
-song-491,Around the World,artist-15,Electronic,226
-song-492,Last Skies,artist-18,Country,344
-song-493,Waiting in Vain,artist-14,Reggae,303
-song-494,Lost Shadows,artist-9,Pop,176
-song-495,Pocket Calculator,artist-16,Electronic,310
-song-496,Brain Damage,artist-3,Rock,178
-song-497,Last Echoes,artist-16,Electronic,159
-song-498,I Walk the Line,artist-17,Country,280
-song-499,Eternal Flames,artist-12,Jazz,367
-song-500,Moonlight Sonata,artist-20,Classical,236
+id,title,artist_id,genre,duration_seconds,description
+song-1,Boy Named Sue,artist-17,Country,336,A humorous story-song about a boy seeking revenge on his absent father for giving him a girl's name.
+song-2,Fading Storms,artist-18,Country,317,A warm country tune blending storytelling tradition with foot-stomping acoustic energy.
+song-3,High Life,artist-15,Electronic,205,"A pulsating electronic track weaving synthetic textures into a mesmerizing, futuristic soundscape."
+song-4,Your Song,artist-6,Pop,199,A tender declaration of love wrapped in gentle piano melodies and heartfelt simplicity.
+song-5,Three Little Birds,artist-14,Reggae,185,An uplifting reggae anthem reassuring listeners that everything is going to be alright.
+song-6,Dark Mountains,artist-14,Reggae,298,A rhythmic reggae anthem radiating peace and positivity through offbeat guitar chops.
+song-7,Frozen,artist-9,Pop,247,A brooding pop ballad exploring emotional detachment and the desire to break free.
+song-8,Golden Shadows,artist-19,Classical,305,A graceful classical piece flowing with refined beauty and subtle emotional depth.
+song-9,Punky Reggae Party,artist-14,Reggae,291,A high-energy fusion of punk attitude and reggae grooves celebrating musical unity.
+song-10,Distant Skies,artist-11,Jazz,191,A swinging jazz number driven by rhythmic vitality and spontaneous creative energy.
+song-11,The Winner Takes It All,artist-6,Pop,276,A poignant pop ballad about heartbreak and acceptance after a relationship ends.
+song-12,Dark Shadows,artist-10,Pop,157,An upbeat pop anthem radiating positive energy through bright melodies and crisp arrangements.
+song-13,Naima,artist-11,Jazz,175,"A hauntingly beautiful jazz ballad dedicated to Coltrane's first wife, full of warm harmonics."
+song-14,Beyond,artist-16,Electronic,263,"A driving electronic piece built on layered synths and a relentless, hypnotic beat."
+song-15,Rocket Man,artist-9,Pop,331,"A melancholic reflection on the isolation of space travel, set against soaring melodies."
+song-16,Mr PC,artist-13,Jazz,394,"A hard-driving jazz tribute to bassist Paul Chambers, fueled by relentless swing energy."
+song-17,Is This Love,artist-14,Reggae,230,A sweet reggae love song with an irresistible groove and romantic sincerity.
+song-18,Wild Skies,artist-15,Electronic,228,"A cerebral electronic exploration balancing mechanical precision with organic, emotional undertones."
+song-19,Bright Waves,artist-2,Rock,327,An anthemic rock song blending heavy instrumentation with soaring vocal melodies.
+song-20,Distant Dreams,artist-2,Rock,299,A sweeping rock ballad balancing heavy instrumentation with moments of quiet introspection.
+song-21,Tuesdays Gone,artist-5,Rock,389,A muscular rock anthem fueled by relentless riffs and commanding vocal delivery.
+song-22,Badlands,artist-2,Rock,410,"A driving rock track with powerful guitar riffs and raw, unfiltered energy."
+song-23,Golden Shadows,artist-3,Rock,345,"A driving rock track with powerful guitar riffs and raw, unfiltered energy."
+song-24,Bright Skies,artist-6,Pop,208,A cheerful pop tune radiating optimism with sunny melodies and uplifting harmonies.
+song-25,Last Dreams,artist-19,Classical,295,"A delicate classical composition balancing intricate counterpoint with lyrical, singing melodies."
+song-26,Nefertiti,artist-11,Jazz,234,A hypnotic jazz piece where the horns repeat a haunting melody over shifting rhythms.
+song-27,We Will Rock You,artist-4,Rock,324,An iconic stadium rock anthem built on stomping beats and defiant chants.
+song-28,Dark Stars,artist-9,Pop,306,A silky pop number with lush harmonies and an effortlessly memorable chorus.
+song-29,Hotel California,artist-1,Rock,344,A mysterious rock epic about excess and entrapment in a surreal desert hotel.
+song-30,Take It Easy,artist-3,Rock,233,A breezy country-rock classic about slowing down and enjoying the open road.
+song-31,Lost Skies,artist-8,Pop,315,A silky pop number with lush harmonies and an effortlessly memorable chorus.
+song-32,One Love,artist-14,Reggae,187,A unifying reggae hymn calling for peace and togetherness across all people.
+song-33,ESP,artist-12,Jazz,151,A haunting jazz meditation drifting through shadowy harmonies and introspective silences.
+song-34,Come Together,artist-7,Pop,341,"A funky, cryptic rock track with hypnotic bass and surreal lyrical imagery."
+song-35,Wild Mountains,artist-5,Rock,403,A sweeping rock ballad balancing heavy instrumentation with moments of quiet introspection.
+song-36,What a Wonderful World,artist-13,Jazz,270,"A warm, optimistic jazz standard celebrating the beauty of everyday life."
+song-37,Rising Lights,artist-20,Classical,160,A majestic classical piece unfolding with rich orchestral textures and timeless elegance.
+song-38,Radioactivity,artist-16,Electronic,241,"A cerebral electronic exploration balancing mechanical precision with organic, emotional undertones."
+song-39,Here You Come Again,artist-17,Country,305,A playful country-pop hit about an irresistible ex who keeps coming back.
+song-40,Folsom Prison Blues,artist-17,Country,347,A raw country classic capturing the longing of a prisoner watching life pass by.
+song-41,Man in the Mirror,artist-10,Pop,204,An inspiring pop anthem urging personal change to make the world a better place.
+song-42,Rising Lights,artist-9,Pop,375,A silky pop number with lush harmonies and an effortlessly memorable chorus.
+song-43,Dark Lights,artist-3,Rock,274,An adrenaline-charged rock song driven by pulsating bass and fierce vocal intensity.
+song-44,Last Dreams,artist-10,Pop,302,"A soulful pop ballad showcasing emotive vocals over gentle, sweeping instrumentation."
+song-45,Thunderstruck,artist-5,Rock,163,An electrifying hard rock track driven by one of the most iconic guitar riffs ever.
+song-46,Two Doors Down,artist-18,Country,257,A lively country track driven by rollicking rhythms and down-home charm.
+song-47,Beat It,artist-6,Pop,286,"A fierce pop-rock anthem about standing up for yourself, featuring a legendary guitar solo."
+song-48,Born to Run,artist-5,Rock,369,An explosive rock anthem about youthful dreams and the desire to escape small-town life.
+song-49,Ghost Riders in the Sky,artist-17,Country,303,A haunting cowboy ballad about spectral horsemen chasing devil's cattle across the sky.
+song-50,Eternal Rivers,artist-3,Rock,265,A powerful rock piece weaving dark lyrical themes with blistering guitar solos.
+song-51,Silent Rivers,artist-16,Electronic,297,A hypnotic electronic track locking into a deep groove of interlocking synth patterns.
+song-52,Bright Stars,artist-19,Classical,344,A luminous classical composition radiating warmth through gentle strings and expressive phrasing.
+song-53,Silent Waves,artist-16,Electronic,376,"A pulsating electronic track weaving synthetic textures into a mesmerizing, futuristic soundscape."
+song-54,Love Is Like a Butterfly,artist-18,Country,314,A nostalgic country ballad reflecting on simpler times with gentle steel guitar and honest vocals.
+song-55,Black Dog,artist-2,Rock,221,A swaggering hard rock track with a complex riff and powerful bluesy vocals.
+song-56,Golden Dreams,artist-9,Pop,394,"A soulful pop ballad showcasing emotive vocals over gentle, sweeping instrumentation."
+song-57,Bicycle Race,artist-1,Rock,300,A playful and irreverent rock song celebrating simple pleasures over life's complications.
+song-58,Electric Memories,artist-17,Country,208,"A breezy country song carried by bright acoustic picking and a relaxed, conversational delivery."
+song-59,Like a Virgin,artist-6,Pop,186,A bold pop anthem about feeling renewed and alive through the power of love.
+song-60,Distant Memories,artist-8,Pop,291,"A vibrant pop song combining playful lyrics with a toe-tapping, radio-ready groove."
+song-61,Bright Shadows,artist-9,Pop,298,An upbeat pop anthem radiating positive energy through bright melodies and crisp arrangements.
+song-62,Autobahn,artist-15,Electronic,248,A pioneering electronic track evoking the hypnotic rhythm of driving on the German motorway.
+song-63,My Favorite Things,artist-11,Jazz,181,"A beloved jazz reinterpretation of the show tune, reinvented with modal improvisation."
+song-64,We Have All the Time in the World,artist-12,Jazz,417,"A lush, romantic jazz ballad radiating warmth and timeless devotion."
+song-65,Bright Memories,artist-6,Pop,390,A silky pop number with lush harmonies and an effortlessly memorable chorus.
+song-66,Bright Memories,artist-8,Pop,330,A breezy pop track carried by warm melodies and sparkling synth textures.
+song-67,Another One Bites the Dust,artist-4,Rock,199,A funk-driven rock anthem with one of the most recognizable bass lines in music.
+song-68,Smoke on the Water,artist-1,Rock,194,A legendary hard rock track immortalized by its four-note guitar riff.
+song-69,Golden Voices,artist-14,Reggae,419,"A roots reggae track carrying a message of hope over a deep, rolling riddim."
+song-70,Distant Rivers,artist-11,Jazz,258,A smooth jazz composition gliding through mellow grooves and nuanced melodic phrasing.
+song-71,Last Dreams,artist-20,Classical,228,A vibrant classical piece sparkling with rhythmic vitality and brilliant orchestral color.
+song-72,Pathetique Sonata,artist-19,Classical,162,A deeply emotional piano sonata moving from turbulent drama to lyrical tenderness.
+song-73,Last Dreams,artist-18,Country,386,A warm country tune blending storytelling tradition with foot-stomping acoustic energy.
+song-74,Golden Shadows,artist-8,Pop,346,A breezy pop track carried by warm melodies and sparkling synth textures.
+song-75,Spring Sonata,artist-19,Classical,346,"A radiant violin sonata bursting with warmth, optimism, and lyrical beauty."
+song-76,First Waves,artist-16,Electronic,296,A luminous electronic piece radiating digital warmth through cascading arpeggios and steady beats.
+song-77,Broken Horizons,artist-13,Jazz,368,A lively jazz outing bouncing with rhythmic interplay and virtuosic musicianship.
+song-78,Rebel Music,artist-14,Reggae,216,"A defiant reggae track protesting oppression with a steady, militant rhythm."
+song-79,Fernando,artist-8,Pop,374,A nostalgic pop ballad recalling wartime camaraderie under starlit skies.
+song-80,Islands in the Stream,artist-18,Country,357,A warm country-pop duet about an unbreakable bond between two lovers.
+song-81,Dont Let the Sun Go Down on Me,artist-7,Pop,247,"A dramatic, emotional ballad about vulnerability and the need for connection."
+song-82,Midnight Storms,artist-3,Rock,314,An intense rock composition merging melodic hooks with explosive instrumental passages.
+song-83,Wild Storms,artist-19,Classical,160,A majestic classical piece unfolding with rich orchestral textures and timeless elegance.
+song-84,Circle of Life,artist-10,Pop,379,A majestic pop anthem celebrating the cycle of existence with sweeping orchestration.
+song-85,Dark Shadows,artist-7,Pop,182,An energetic pop hit bursting with rhythmic vitality and singalong appeal.
+song-86,Rising Horizons,artist-1,Rock,217,An adrenaline-charged rock song driven by pulsating bass and fierce vocal intensity.
+song-87,Digital Love,artist-15,Electronic,171,"A driving electronic piece built on layered synths and a relentless, hypnotic beat."
+song-88,Lost Voices,artist-18,Country,214,A tender country piece exploring themes of home and belonging with quiet sincerity.
+song-89,Exodus,artist-14,Reggae,209,"A powerful reggae call to action, urging liberation and the movement of Jah people."
+song-90,Like a Prayer,artist-8,Pop,186,A provocative pop song blending spiritual imagery with passionate dance beats.
+song-91,Midnight Dreams,artist-6,Pop,307,A polished pop track blending smooth vocals with shimmering production and danceable beats.
+song-92,First Voices,artist-16,Electronic,212,"A cerebral electronic exploration balancing mechanical precision with organic, emotional undertones."
+song-93,Lacrimosa,artist-20,Classical,312,A profoundly moving classical requiem passage expressing grief and divine supplication.
+song-94,Let It Be,artist-8,Pop,409,A serene rock hymn offering words of wisdom and comfort in troubled times.
+song-95,I Will Always Love You,artist-17,Country,365,A tender country farewell ballad expressing enduring love despite parting ways.
+song-96,Distant Dreams,artist-12,Jazz,261,A contemplative jazz ballad unfolding with gentle restraint and emotional depth.
+song-97,First Stars,artist-10,Pop,369,A sleek pop groove layering smooth rhythms with captivating melodic twists.
+song-98,Ray of Light,artist-7,Pop,217,A breezy pop track carried by warm melodies and sparkling synth textures.
+song-99,The River,artist-4,Rock,196,A reflective rock song about broken dreams and the passage of youthful ambition.
+song-100,Voulez-Vous,artist-10,Pop,262,An energetic disco-pop track pulsing with infectious rhythm and playful French flair.
+song-101,Impressions,artist-11,Jazz,245,A landmark modal jazz piece built on ascending melodic lines and spiritual intensity.
+song-102,Fading Echoes,artist-15,Electronic,407,A hypnotic electronic track locking into a deep groove of interlocking synth patterns.
+song-103,Silent Skies,artist-4,Rock,232,A gritty rock tune channeling rebellious energy through distorted chords and pounding rhythms.
+song-104,Mack the Knife,artist-13,Jazz,191,A smooth jazz composition gliding through mellow grooves and nuanced melodic phrasing.
+song-105,Freddie Freeloader,artist-11,Jazz,376,A sophisticated jazz piece exploring rich harmonic textures with elegant improvisational flair.
+song-106,Hurt,artist-17,Country,373,"A stark, confessional country ballad about regret and the weight of a troubled life."
+song-107,Bright Roads,artist-11,Jazz,293,A swinging jazz number driven by rhythmic vitality and spontaneous creative energy.
+song-108,Eternal Lights,artist-3,Rock,273,An intense rock composition merging melodic hooks with explosive instrumental passages.
+song-109,I Want to Break Free,artist-4,Rock,190,A rebellious pop-rock anthem about liberation from conformity and expectation.
+song-110,Golden Waves,artist-14,Reggae,401,"A roots reggae track carrying a message of hope over a deep, rolling riddim."
+song-111,Mother,artist-5,Rock,284,A gritty rock tune channeling rebellious energy through distorted chords and pounding rhythms.
+song-112,Free Bird,artist-2,Rock,231,"An epic Southern rock ballad about freedom and restless wandering, crowned by a legendary solo."
+song-113,Golden Memories,artist-20,Classical,385,"A delicate classical composition balancing intricate counterpoint with lyrical, singing melodies."
+song-114,Dark Roads,artist-14,Reggae,397,A vibrant reggae number fusing dub textures with catchy melodies and social commentary.
+song-115,Midnight Mountains,artist-14,Reggae,219,A rhythmic reggae anthem radiating peace and positivity through offbeat guitar chops.
+song-116,Old Flames,artist-18,Country,259,A bittersweet country tune about running into a past love and the memories that linger.
+song-117,Something About Us,artist-16,Electronic,229,"A smooth, melancholic electronic love song with understated emotion and warmth."
+song-118,Eternal Rivers,artist-12,Jazz,185,A spirited jazz composition celebrating the art of improvisation with infectious swing.
+song-119,We Are the Champions,artist-3,Rock,229,A triumphant rock anthem celebrating perseverance and hard-won victory.
+song-120,Broken Rivers,artist-19,Classical,287,"A contemplative classical work exploring rich harmonic landscapes with patient, unhurried grace."
+song-121,Fading Stars,artist-14,Reggae,289,"An uplifting reggae song blending skanking guitars with soulful, conscious lyrics."
+song-122,Dark Waves,artist-17,Country,294,"A breezy country song carried by bright acoustic picking and a relaxed, conversational delivery."
+song-123,Footprints,artist-12,Jazz,285,A lyrical jazz composition exploring gentle melodic landscapes with understated elegance.
+song-124,Crazy Train,artist-1,Rock,261,A high-voltage rock track driven by one of metal's most recognizable opening riffs.
+song-125,Distant Dreams,artist-19,Classical,175,"A contemplative classical work exploring rich harmonic landscapes with patient, unhurried grace."
+song-126,Im Still Standing,artist-6,Pop,277,An upbeat pop celebration of resilience and bouncing back stronger than ever.
+song-127,The Wall,artist-2,Rock,405,"An ambitious rock concept piece exploring isolation, trauma, and emotional barriers."
+song-128,Eine Kleine Nachtmusik,artist-20,Classical,354,"A sparkling classical serenade brimming with elegance, charm, and melodic delight."
+song-129,Dark Storms,artist-5,Rock,185,A gritty rock tune channeling rebellious energy through distorted chords and pounding rhythms.
+song-130,Eternal Horizons,artist-12,Jazz,186,A contemplative jazz ballad unfolding with gentle restraint and emotional depth.
+song-131,Eternal Roads,artist-6,Pop,206,A polished pop track blending smooth vocals with shimmering production and danceable beats.
+song-132,Rising Waves,artist-12,Jazz,392,A lively jazz outing bouncing with rhythmic interplay and virtuosic musicianship.
+song-133,Rising Echoes,artist-14,Reggae,331,"An uplifting reggae song blending skanking guitars with soulful, conscious lyrics."
+song-134,Rising Horizons,artist-15,Electronic,304,"A cerebral electronic exploration balancing mechanical precision with organic, emotional undertones."
+song-135,Fading Waves,artist-20,Classical,265,A graceful classical piece flowing with refined beauty and subtle emotional depth.
+song-136,Help,artist-6,Pop,214,"An urgent pop-rock plea for emotional support beneath its upbeat, catchy surface."
+song-137,Whole Lotta Love,artist-5,Rock,364,"A raw, blues-infused hard rock track bursting with primal energy and sonic experimentation."
+song-138,Redemption Song,artist-14,Reggae,384,An acoustic reggae masterpiece about freedom and the power of emancipation.
+song-139,Tennessee Mountain Home,artist-18,Country,376,A nostalgic country ode to the beauty and simplicity of Appalachian life.
+song-140,Broken Echoes,artist-19,Classical,177,"A dramatic classical work building from quiet tension to powerful, sweeping climaxes."
+song-141,Broken Skies,artist-11,Jazz,344,A spirited jazz composition celebrating the art of improvisation with infectious swing.
+song-142,The Marriage of Figaro,artist-19,Classical,212,"A brilliant operatic overture full of wit, drama, and dazzling orchestral energy."
+song-143,Ave Verum Corpus,artist-20,Classical,408,A sublime choral hymn of serene beauty and spiritual contemplation.
+song-144,Numbers,artist-15,Electronic,372,An atmospheric electronic journey drifting through ethereal pads and rhythmic precision.
+song-145,Could You Be Loved,artist-14,Reggae,217,An infectious reggae-funk crossover encouraging self-love and authenticity.
+song-146,Fading Lights,artist-15,Electronic,281,"A sleek electronic track fusing minimalist melodies with deep, throbbing bass pulses."
+song-147,First Waves,artist-9,Pop,155,"A dreamy pop piece floating on airy production and wistful, introspective lyrics."
+song-148,Kind of Blue,artist-11,Jazz,157,"A cool, contemplative jazz piece from the most influential album in jazz history."
+song-149,Learning to Fly,artist-2,Rock,311,A hopeful rock anthem about taking risks and embracing the unknown.
+song-150,Electric Rivers,artist-20,Classical,178,A graceful classical piece flowing with refined beauty and subtle emotional depth.
+song-151,Silent Voices,artist-16,Electronic,345,A luminous electronic piece radiating digital warmth through cascading arpeggios and steady beats.
+song-152,Midnight Memories,artist-4,Rock,377,"A driving rock track with powerful guitar riffs and raw, unfiltered energy."
+song-153,First Shadows,artist-16,Electronic,380,A dynamic electronic groove evolving through shifting patterns and immersive sonic layers.
+song-154,Golden Memories,artist-19,Classical,255,A majestic classical piece unfolding with rich orchestral textures and timeless elegance.
+song-155,Wild Waves,artist-12,Jazz,301,"A dynamic jazz exploration blending complex chord changes with fluid, inventive soloing."
+song-156,No Woman No Cry,artist-14,Reggae,384,A soulful reggae ballad of hope and remembrance from the streets of Trenchtown.
+song-157,Fading Mountains,artist-13,Jazz,353,A warm jazz piece radiating understated elegance through subtle rhythmic shifts and lush tones.
+song-158,Face to Face,artist-15,Electronic,241,"A sleek electronic track fusing minimalist melodies with deep, throbbing bass pulses."
+song-159,Wild Voices,artist-4,Rock,310,An anthemic rock song blending heavy instrumentation with soaring vocal melodies.
+song-160,Broken Mountains,artist-9,Pop,385,A silky pop number with lush harmonies and an effortlessly memorable chorus.
+song-161,Knowing Me Knowing You,artist-8,Pop,160,A bittersweet pop farewell acknowledging that a relationship has reached its end.
+song-162,Distant Storms,artist-16,Electronic,301,A hypnotic electronic track locking into a deep groove of interlocking synth patterns.
+song-163,Bad,artist-8,Pop,372,"A bold, funky pop track asserting confidence with edgy attitude and slick grooves."
+song-164,Fading Shadows,artist-3,Rock,214,"A dynamic rock track shifting between brooding verses and explosive, cathartic choruses."
+song-165,Fading Roads,artist-1,Rock,196,A gritty rock tune channeling rebellious energy through distorted chords and pounding rhythms.
+song-166,Sun Is Shining,artist-14,Reggae,294,"A steady reggae jam layering rich harmonies over a pulsing, head-nodding rhythm."
+song-167,Kashmir,artist-2,Rock,379,A monumental rock odyssey blending Eastern scales with thunderous orchestral power.
+song-168,Electric Shadows,artist-18,Country,337,A tender country piece exploring themes of home and belonging with quiet sincerity.
+song-169,Silent Dreams,artist-16,Electronic,316,A high-energy electronic anthem powered by pounding kicks and euphoric synth leads.
+song-170,Iron Man,artist-1,Rock,165,A heavy metal classic featuring a doom-laden riff and a cautionary sci-fi narrative.
+song-171,When the Saints Go Marching In,artist-13,Jazz,170,A jubilant jazz standard and New Orleans anthem radiating pure joy.
+song-172,Fading Voices,artist-13,Jazz,191,A moody jazz track painting atmospheric soundscapes with expressive instrumental interplay.
+song-173,Midnight Mountains,artist-5,Rock,405,An intense rock composition merging melodic hooks with explosive instrumental passages.
+song-174,Last Mountains,artist-13,Jazz,337,A moody jazz track painting atmospheric soundscapes with expressive instrumental interplay.
+song-175,Harder Better Faster Stronger,artist-16,Electronic,336,A robotic electronic anthem built on vocoder chants and relentless dance energy.
+song-176,Dont Stop Me Now,artist-1,Rock,197,A euphoric rock anthem overflowing with unstoppable joy and blazing energy.
+song-177,Dark Lights,artist-19,Classical,346,A graceful classical piece flowing with refined beauty and subtle emotional depth.
+song-178,Equinox,artist-13,Jazz,230,A meditative jazz exploration balancing light and dark with fluid improvisational beauty.
+song-179,First Mountains,artist-2,Rock,308,An adrenaline-charged rock song driven by pulsating bass and fierce vocal intensity.
+song-180,Last Waves,artist-19,Classical,400,A pastoral classical work painting serene landscapes with flowing melodies and soft orchestration.
+song-181,Lost Mountains,artist-20,Classical,272,A luminous classical composition radiating warmth through gentle strings and expressive phrasing.
+song-182,Midnight Voices,artist-3,Rock,393,A sweeping rock ballad balancing heavy instrumentation with moments of quiet introspection.
+song-183,Tiny Dancer,artist-9,Pop,360,"A soulful pop ballad showcasing emotive vocals over gentle, sweeping instrumentation."
+song-184,Golden Roads,artist-10,Pop,323,A sleek pop groove layering smooth rhythms with captivating melodic twists.
+song-185,Dark Roads,artist-1,Rock,352,A muscular rock anthem fueled by relentless riffs and commanding vocal delivery.
+song-186,Broken Flames,artist-20,Classical,370,"A contemplative classical work exploring rich harmonic landscapes with patient, unhurried grace."
+song-187,Electric Rivers,artist-8,Pop,306,A silky pop number with lush harmonies and an effortlessly memorable chorus.
+song-188,Thunder Road,artist-1,Rock,162,A hard-hitting rock number built on thunderous drums and electrifying guitar work.
+song-189,Golden Dreams,artist-14,Reggae,380,"A contemplative reggae ballad infused with warmth, longing, and gentle island breezes."
+song-190,Distant Waves,artist-10,Pop,330,An energetic pop hit bursting with rhythmic vitality and singalong appeal.
+song-191,Wish You Were Here,artist-5,Rock,275,"A poignant rock elegy for lost friendship, wrapped in gentle acoustic beauty."
+song-192,Aerodynamic,artist-15,Electronic,361,A high-energy electronic track blending robotic riffs with a soaring rock guitar breakdown.
+song-193,Man in Black,artist-17,Country,416,A somber country statement explaining why Cash always dressed in black for the downtrodden.
+song-194,Basin Street Blues,artist-12,Jazz,217,"A smooth, swinging jazz classic evoking the vibrant nightlife of New Orleans."
+song-195,Last Mountains,artist-14,Reggae,176,"A roots reggae track carrying a message of hope over a deep, rolling riddim."
+song-196,Bright Shadows,artist-20,Classical,151,A majestic classical piece unfolding with rich orchestral textures and timeless elegance.
+song-197,Midnight Stars,artist-12,Jazz,359,A smooth jazz composition gliding through mellow grooves and nuanced melodic phrasing.
+song-198,Afro Blue,artist-11,Jazz,184,A groundbreaking jazz composition fusing African rhythms with modern harmonic sophistication.
+song-199,Jamming,artist-14,Reggae,409,An infectious reggae jam about musical togetherness and the joy of playing.
+song-200,In a Silent Way,artist-12,Jazz,399,"A meditative jazz-fusion piece creating shimmering, ambient soundscapes."
+song-201,Midnight Waves,artist-1,Rock,309,A hard-hitting rock number built on thunderous drums and electrifying guitar work.
+song-202,Somebody to Love,artist-2,Rock,322,A gospel-infused rock anthem yearning for connection with soaring vocal harmonies.
+song-203,Flamenco Sketches,artist-13,Jazz,200,A serene modal jazz piece where each soloist drifts through a sequence of scales.
+song-204,I Shot the Sheriff,artist-14,Reggae,218,A reggae classic telling a story of self-defense and unjust persecution.
+song-205,Ring of Fire,artist-18,Country,411,An iconic country song with mariachi horns describing love's burning intensity.
+song-206,Turn Your Lights Down Low,artist-14,Reggae,325,"A sultry reggae love song with a gentle, intimate groove."
+song-207,Crocodile Rock,artist-9,Pop,177,"A nostalgic, upbeat pop-rock throwback celebrating teenage dances and first love."
+song-208,Thriller,artist-10,Pop,155,"A genre-defining pop masterpiece blending funk, horror, and unforgettable theatricality."
+song-209,Stairway to Heaven,artist-5,Rock,292,A legendary progressive rock epic ascending from acoustic delicacy to thundering climax.
+song-210,Rising Rivers,artist-9,Pop,383,An upbeat pop anthem radiating positive energy through bright melodies and crisp arrangements.
+song-211,Wild Stars,artist-11,Jazz,230,A warm jazz piece radiating understated elegance through subtle rhythmic shifts and lush tones.
+song-212,Billie Jean,artist-10,Pop,278,An iconic pop track with a legendary bass line and a tale of mistaken identity.
+song-213,Silent Rivers,artist-4,Rock,295,A sweeping rock ballad balancing heavy instrumentation with moments of quiet introspection.
+song-214,Lost Shadows,artist-17,Country,319,A warm country tune blending storytelling tradition with foot-stomping acoustic energy.
+song-215,Rising Echoes,artist-16,Electronic,358,An atmospheric electronic journey drifting through ethereal pads and rhythmic precision.
+song-216,Bennie and the Jets,artist-6,Pop,181,A glam-tinged pop-rock track about a fictional electric band and their dazzling show.
+song-217,Central Park West,artist-11,Jazz,410,"A gentle, romantic jazz ballad inspired by the New York cityscape."
+song-218,Lost Rivers,artist-9,Pop,247,"A soulful pop ballad showcasing emotive vocals over gentle, sweeping instrumentation."
+song-219,Last Voices,artist-12,Jazz,195,A lively jazz outing bouncing with rhythmic interplay and virtuosic musicianship.
+song-220,Broken Stars,artist-8,Pop,335,An energetic pop hit bursting with rhythmic vitality and singalong appeal.
+song-221,Wild Stars,artist-8,Pop,361,"A dreamy pop piece floating on airy production and wistful, introspective lyrics."
+song-222,Jolene,artist-18,Country,356,"A desperate, pleading country ballad begging a beautiful woman not to steal a lover."
+song-223,Fortunate Son,artist-1,Rock,206,"A fiery rock protest against privilege and war, driven by swampy guitar riffs."
+song-224,Fading Dreams,artist-14,Reggae,315,A rhythmic reggae anthem radiating peace and positivity through offbeat guitar chops.
+song-225,Paranoid,artist-5,Rock,366,An adrenaline-charged rock song driven by pulsating bass and fierce vocal intensity.
+song-226,Wild Dreams,artist-7,Pop,365,A catchy pop tune with infectious hooks and a feel-good vibe from start to finish.
+song-227,Highway Star,artist-3,Rock,275,A blazing hard rock track showcasing virtuoso guitar and organ at breakneck speed.
+song-228,Stir It Up,artist-14,Reggae,304,"A roots reggae track carrying a message of hope over a deep, rolling riddim."
+song-229,All Blues,artist-11,Jazz,292,"A laid-back jazz waltz in 6/8 time with a hypnotic, bluesy groove."
+song-230,The Magic Flute,artist-19,Classical,204,A dazzling operatic overture blending playfulness and grandeur in equal measure.
+song-231,Fading Voices,artist-5,Rock,362,An adrenaline-charged rock song driven by pulsating bass and fierce vocal intensity.
+song-232,The Model,artist-16,Electronic,318,"A sleek electronic track fusing minimalist melodies with deep, throbbing bass pulses."
+song-233,Electric Mountains,artist-7,Pop,278,A breezy pop track carried by warm melodies and sparkling synth textures.
+song-234,Distant Stars,artist-1,Rock,181,An anthemic rock song blending heavy instrumentation with soaring vocal melodies.
+song-235,Distant Stars,artist-14,Reggae,398,A rhythmic reggae anthem radiating peace and positivity through offbeat guitar chops.
+song-236,Last Storms,artist-19,Classical,344,A vibrant classical piece sparkling with rhythmic vitality and brilliant orchestral color.
+song-237,Midnight Horizons,artist-3,Rock,355,A hard-hitting rock number built on thunderous drums and electrifying guitar work.
+song-238,Requiem,artist-19,Classical,225,A solemn classical composition evoking deep feeling through restrained dynamics and noble themes.
+song-239,Here Comes the Sun,artist-10,Pop,315,A catchy pop tune with infectious hooks and a feel-good vibe from start to finish.
+song-240,Broken Echoes,artist-15,Electronic,305,"A sleek electronic track fusing minimalist melodies with deep, throbbing bass pulses."
+song-241,Comfortably Numb,artist-1,Rock,237,"A haunting rock ballad about emotional disconnection, crowned by two iconic guitar solos."
+song-242,Midnight Echoes,artist-8,Pop,219,"A dreamy pop piece floating on airy production and wistful, introspective lyrics."
+song-243,Wild Lights,artist-20,Classical,410,"A dramatic classical work building from quiet tension to powerful, sweeping climaxes."
+song-244,Mamma Mia,artist-7,Pop,252,"A bubbly, irresistible pop hit about falling helplessly back in love."
+song-245,Kaya,artist-14,Reggae,197,A mellow reggae track celebrating relaxation and the soothing power of nature.
+song-246,Veridis Quo,artist-15,Electronic,233,"A cerebral electronic exploration balancing mechanical precision with organic, emotional undertones."
+song-247,Silent Voices,artist-14,Reggae,239,"A roots reggae track carrying a message of hope over a deep, rolling riddim."
+song-248,Good Times Bad Times,artist-5,Rock,335,A explosive rock debut showcasing thunderous drumming and raw youthful energy.
+song-249,Don Giovanni,artist-20,Classical,175,"A dramatic operatic overture bristling with tension, passion, and orchestral brilliance."
+song-250,Midnight Stars,artist-9,Pop,323,"A vibrant pop song combining playful lyrics with a toe-tapping, radio-ready groove."
+song-251,Back in Black,artist-2,Rock,408,A thunderous hard rock comeback anthem fueled by raw power and attitude.
+song-252,Sweet Home Alabama,artist-4,Rock,182,"A proud Southern rock anthem celebrating home, heritage, and good times."
+song-253,Material Girl,artist-6,Pop,267,A playful pop satire on materialism wrapped in an irresistibly catchy melody.
+song-254,Lost Skies,artist-2,Rock,300,An adrenaline-charged rock song driven by pulsating bass and fierce vocal intensity.
+song-255,Silent Skies,artist-18,Country,343,A rollicking country tune mixing humor and heart over a driving honky-tonk beat.
+song-256,Last Echoes,artist-12,Jazz,338,A swinging jazz number driven by rhythmic vitality and spontaneous creative energy.
+song-257,Within,artist-16,Electronic,306,"A shimmering electronic composition blending ambient washes with crisp, mechanical rhythms."
+song-258,Fading Rivers,artist-19,Classical,357,"A contemplative classical work exploring rich harmonic landscapes with patient, unhurried grace."
+song-259,Rock and Roll,artist-1,Rock,173,A high-octane rock track exploding with adrenaline and classic rock-and-roll spirit.
+song-260,Get Rhythm,artist-18,Country,359,A nostalgic country ballad reflecting on simpler times with gentle steel guitar and honest vocals.
+song-261,Bohemian Rhapsody,artist-1,Rock,231,"A groundbreaking rock opera blending balladry, opera, and hard rock in six unforgettable minutes."
+song-262,Dark Flames,artist-7,Pop,342,"A dreamy pop piece floating on airy production and wistful, introspective lyrics."
+song-263,Silent Mountains,artist-16,Electronic,168,"A cerebral electronic exploration balancing mechanical precision with organic, emotional undertones."
+song-264,Dark Rivers,artist-6,Pop,216,A catchy pop tune with infectious hooks and a feel-good vibe from start to finish.
+song-265,Midnight Memories,artist-13,Jazz,157,A lively jazz outing bouncing with rhythmic interplay and virtuosic musicianship.
+song-266,Wild Horizons,artist-4,Rock,274,"A dynamic rock track shifting between brooding verses and explosive, cathartic choruses."
+song-267,Midnight Memories,artist-9,Pop,265,An energetic pop hit bursting with rhythmic vitality and singalong appeal.
+song-268,First Rivers,artist-19,Classical,163,A majestic classical piece unfolding with rich orchestral textures and timeless elegance.
+song-269,Wild Waves,artist-17,Country,300,A warm country tune blending storytelling tradition with foot-stomping acoustic energy.
+song-270,La Vie En Rose,artist-12,Jazz,211,"A dynamic jazz exploration blending complex chord changes with fluid, inventive soloing."
+song-271,Eternal Mountains,artist-11,Jazz,156,A contemplative jazz ballad unfolding with gentle restraint and emotional depth.
+song-272,Dogs,artist-3,Rock,355,A gritty rock tune channeling rebellious energy through distorted chords and pounding rhythms.
+song-273,Eternal Shadows,artist-10,Pop,374,A catchy pop tune with infectious hooks and a feel-good vibe from start to finish.
+song-274,Smooth Criminal,artist-8,Pop,207,A silky pop number with lush harmonies and an effortlessly memorable chorus.
+song-275,Last Stars,artist-6,Pop,175,A sleek pop groove layering smooth rhythms with captivating melodic twists.
+song-276,Distant Mountains,artist-1,Rock,388,An anthemic rock song blending heavy instrumentation with soaring vocal melodies.
+song-277,Eternal Storms,artist-15,Electronic,157,"A driving electronic piece built on layered synths and a relentless, hypnotic beat."
+song-278,Bright Memories,artist-17,Country,398,A spirited country anthem celebrating rural life with infectious energy and singalong melodies.
+song-279,Broken Storms,artist-11,Jazz,246,A smooth jazz composition gliding through mellow grooves and nuanced melodic phrasing.
+song-280,Bitches Brew,artist-11,Jazz,247,A haunting jazz meditation drifting through shadowy harmonies and introspective silences.
+song-281,Distant Horizons,artist-5,Rock,216,A hard-hitting rock number built on thunderous drums and electrifying guitar work.
+song-282,La Isla Bonita,artist-7,Pop,392,An upbeat pop anthem radiating positive energy through bright melodies and crisp arrangements.
+song-283,Across the Universe,artist-10,Pop,234,"A dreamy, philosophical rock song flowing with poetic imagery and cosmic wonder."
+song-284,9 to 5,artist-18,Country,215,A spirited country-pop anthem about the daily grind and workplace empowerment.
+song-285,Electric Mountains,artist-3,Rock,170,A powerful rock piece weaving dark lyrical themes with blistering guitar solos.
+song-286,Bright Rivers,artist-14,Reggae,262,"A contemplative reggae ballad infused with warmth, longing, and gentle island breezes."
+song-287,Trans-Europe Express,artist-16,Electronic,185,A hypnotic electronic journey mimicking the rhythmic pulse of continental rail travel.
+song-288,Last Echoes,artist-15,Electronic,201,"A shimmering electronic composition blending ambient washes with crisp, mechanical rhythms."
+song-289,Eternal Flames,artist-9,Pop,234,"A vibrant pop song combining playful lyrics with a toe-tapping, radio-ready groove."
+song-290,Midnight Horizons,artist-18,Country,256,A reflective country ballad painting vivid scenes of love and loss with poetic simplicity.
+song-291,Rising Lights,artist-16,Electronic,162,A hypnotic electronic track locking into a deep groove of interlocking synth patterns.
+song-292,First Dreams,artist-5,Rock,230,A muscular rock anthem fueled by relentless riffs and commanding vocal delivery.
+song-293,Lost Memories,artist-11,Jazz,274,A swinging jazz number driven by rhythmic vitality and spontaneous creative energy.
+song-294,Lost Lights,artist-10,Pop,294,"A dreamy pop piece floating on airy production and wistful, introspective lyrics."
+song-295,Four,artist-11,Jazz,355,A swinging jazz number driven by rhythmic vitality and spontaneous creative energy.
+song-296,Electric Shadows,artist-16,Electronic,208,"A sleek electronic track fusing minimalist melodies with deep, throbbing bass pulses."
+song-297,Milestones,artist-11,Jazz,271,A warm jazz piece radiating understated elegance through subtle rhythmic shifts and lush tones.
+song-298,Broken Memories,artist-12,Jazz,412,"A dynamic jazz exploration blending complex chord changes with fluid, inventive soloing."
+song-299,First Voices,artist-10,Pop,410,An energetic pop hit bursting with rhythmic vitality and singalong appeal.
+song-300,Ode to Joy,artist-19,Classical,251,A pastoral classical work painting serene landscapes with flowing melodies and soft orchestration.
+song-301,Summertime,artist-12,Jazz,396,A spirited jazz composition celebrating the art of improvisation with infectious swing.
+song-302,Midnight Mountains,artist-12,Jazz,333,A smooth jazz composition gliding through mellow grooves and nuanced melodic phrasing.
+song-303,Sunday Mornin Comin Down,artist-18,Country,310,A lively country track driven by rollicking rhythms and down-home charm.
+song-304,A Kind of Magic,artist-5,Rock,213,A gritty rock tune channeling rebellious energy through distorted chords and pounding rhythms.
+song-305,Fading Echoes,artist-8,Pop,297,A polished pop track blending smooth vocals with shimmering production and danceable beats.
+song-306,Dancing Queen,artist-10,Pop,366,A sparkling disco-pop classic that captures the joy of being young and carefree.
+song-307,Dark Waves,artist-16,Electronic,299,A luminous electronic piece radiating digital warmth through cascading arpeggios and steady beats.
+song-308,While My Guitar Gently Weeps,artist-8,Pop,420,A catchy pop tune with infectious hooks and a feel-good vibe from start to finish.
+song-309,Golden Mountains,artist-16,Electronic,184,A hypnotic electronic track locking into a deep groove of interlocking synth patterns.
+song-310,Bright Mountains,artist-9,Pop,170,"A dreamy pop piece floating on airy production and wistful, introspective lyrics."
+song-311,Silent Echoes,artist-18,Country,244,A lively country track driven by rollicking rhythms and down-home charm.
+song-312,The Way You Make Me Feel,artist-10,Pop,241,A flirtatious pop-funk track celebrating the thrill of romantic attraction.
+song-313,War,artist-14,Reggae,207,A forceful reggae protest song demanding an end to conflict and injustice.
+song-314,First Waves,artist-8,Pop,182,A sleek pop groove layering smooth rhythms with captivating melodic twists.
+song-315,Last Storms,artist-4,Rock,386,A gritty rock tune channeling rebellious energy through distorted chords and pounding rhythms.
+song-316,Bright Horizons,artist-6,Pop,309,A catchy pop tune with infectious hooks and a feel-good vibe from start to finish.
+song-317,Dark Horizons,artist-11,Jazz,208,A smooth jazz composition gliding through mellow grooves and nuanced melodic phrasing.
+song-318,Dancing in the Dark,artist-5,Rock,354,"A driving rock track with powerful guitar riffs and raw, unfiltered energy."
+song-319,Buffalo Soldier,artist-14,Reggae,187,"A reggae history lesson about African soldiers in the American West, told with a catchy lilt."
+song-320,Silent Mountains,artist-9,Pop,345,A silky pop number with lush harmonies and an effortlessly memorable chorus.
+song-321,A Hard Days Night,artist-6,Pop,398,An energetic pop-rock opener driven by an iconic opening chord and youthful exuberance.
+song-322,Hey Jude,artist-10,Pop,251,"An epic pop ballad building from intimate encouragement to a massive, joyful singalong."
+song-323,Blue in Green,artist-12,Jazz,277,"A haunting, introspective jazz ballad painted in shades of melancholy and beauty."
+song-324,Vogue,artist-10,Pop,271,A stylish dance-pop track celebrating self-expression through fashion and movement.
+song-325,Midnight Voices,artist-10,Pop,270,A polished pop track blending smooth vocals with shimmering production and danceable beats.
+song-326,Da Funk,artist-15,Electronic,339,"A gritty, relentless electronic groove driven by a distorted synth bass line."
+song-327,Candle in the Wind,artist-9,Pop,323,A tender pop tribute mourning the loss of an icon gone too soon.
+song-328,Super Trouper,artist-10,Pop,267,A catchy pop tune with infectious hooks and a feel-good vibe from start to finish.
+song-329,Eternal Mountains,artist-15,Electronic,292,A luminous electronic piece radiating digital warmth through cascading arpeggios and steady beats.
+song-330,Last Shadows,artist-15,Electronic,397,"A driving electronic piece built on layered synths and a relentless, hypnotic beat."
+song-331,Highway to Hell,artist-5,Rock,251,"A defiant hard rock anthem embracing the wild, reckless road of rock and roll."
+song-332,Voyager,artist-16,Electronic,360,A dreamy electronic odyssey gliding through synthesized textures and pulsing rhythms.
+song-333,Rising Mountains,artist-13,Jazz,234,A haunting jazz meditation drifting through shadowy harmonies and introspective silences.
+song-334,Coat of Many Colors,artist-18,Country,239,A lively country track driven by rollicking rhythms and down-home charm.
+song-335,Electric Waves,artist-2,Rock,416,An intense rock composition merging melodic hooks with explosive instrumental passages.
+song-336,Run Like Hell,artist-2,Rock,285,A powerful rock piece weaving dark lyrical themes with blistering guitar solos.
+song-337,Dark Flames,artist-2,Rock,329,A gritty rock tune channeling rebellious energy through distorted chords and pounding rhythms.
+song-338,Black or White,artist-7,Pop,382,"A dreamy pop piece floating on airy production and wistful, introspective lyrics."
+song-339,First Waves,artist-5,Rock,268,A hard-hitting rock number built on thunderous drums and electrifying guitar work.
+song-340,Lost Stars,artist-3,Rock,310,A sweeping rock ballad balancing heavy instrumentation with moments of quiet introspection.
+song-341,Contact,artist-15,Electronic,264,A hypnotic electronic track locking into a deep groove of interlocking synth patterns.
+song-342,Fading Memories,artist-18,Country,397,A spirited country anthem celebrating rural life with infectious energy and singalong melodies.
+song-343,Silent Echoes,artist-13,Jazz,413,A swinging jazz number driven by rhythmic vitality and spontaneous creative energy.
+song-344,Fading Mountains,artist-8,Pop,404,An energetic pop hit bursting with rhythmic vitality and singalong appeal.
+song-345,Broken Echoes,artist-5,Rock,265,A muscular rock anthem fueled by relentless riffs and commanding vocal delivery.
+song-346,Rock with You,artist-6,Pop,284,A silky pop number with lush harmonies and an effortlessly memorable chorus.
+song-347,Tour de France,artist-16,Electronic,169,"A driving electronic piece built on layered synths and a relentless, hypnotic beat."
+song-348,Bright Dreams,artist-7,Pop,286,A polished pop track blending smooth vocals with shimmering production and danceable beats.
+song-349,Silent Horizons,artist-15,Electronic,354,An atmospheric electronic journey drifting through ethereal pads and rhythmic precision.
+song-350,Lost Dreams,artist-10,Pop,402,A breezy pop track carried by warm melodies and sparkling synth textures.
+song-351,Golden Voices,artist-1,Rock,196,A muscular rock anthem fueled by relentless riffs and commanding vocal delivery.
+song-352,Yesterday,artist-7,Pop,150,"A soulful pop ballad showcasing emotive vocals over gentle, sweeping instrumentation."
+song-353,Electric Mountains,artist-19,Classical,160,A solemn classical composition evoking deep feeling through restrained dynamics and noble themes.
+song-354,Bright Dreams,artist-3,Rock,300,"A driving rock track with powerful guitar riffs and raw, unfiltered energy."
+song-355,Have a Cigar,artist-2,Rock,166,An anthemic rock song blending heavy instrumentation with soaring vocal melodies.
+song-356,Silent Echoes,artist-1,Rock,404,"A driving rock track with powerful guitar riffs and raw, unfiltered energy."
+song-357,Strawberry Fields Forever,artist-8,Pop,272,"A soulful pop ballad showcasing emotive vocals over gentle, sweeping instrumentation."
+song-358,Silent Roads,artist-11,Jazz,193,"A dynamic jazz exploration blending complex chord changes with fluid, inventive soloing."
+song-359,Eternal Stars,artist-15,Electronic,191,"A driving electronic piece built on layered synths and a relentless, hypnotic beat."
+song-360,A Love Supreme,artist-12,Jazz,261,A swinging jazz number driven by rhythmic vitality and spontaneous creative energy.
+song-361,Dream a Little Dream of Me,artist-11,Jazz,310,A swinging jazz number driven by rhythmic vitality and spontaneous creative energy.
+song-362,The Robots,artist-16,Electronic,319,A dynamic electronic groove evolving through shifting patterns and immersive sonic layers.
+song-363,Silent Dreams,artist-6,Pop,223,"A dreamy pop piece floating on airy production and wistful, introspective lyrics."
+song-364,Wild Shadows,artist-17,Country,288,A spirited country anthem celebrating rural life with infectious energy and singalong melodies.
+song-365,Young Lust,artist-2,Rock,276,A hard-hitting rock number built on thunderous drums and electrifying guitar work.
+song-366,Soul Rebel,artist-14,Reggae,151,A vibrant reggae number fusing dub textures with catchy melodies and social commentary.
+song-367,Life in the Fast Lane,artist-3,Rock,331,A hard-hitting rock number built on thunderous drums and electrifying guitar work.
+song-368,Africa Unite,artist-14,Reggae,368,A rhythmic reggae anthem radiating peace and positivity through offbeat guitar chops.
+song-369,Rising Shadows,artist-9,Pop,222,An energetic pop hit bursting with rhythmic vitality and singalong appeal.
+song-370,Midnight Horizons,artist-15,Electronic,196,A dynamic electronic groove evolving through shifting patterns and immersive sonic layers.
+song-371,Immigrant Song,artist-5,Rock,248,An anthemic rock song blending heavy instrumentation with soaring vocal melodies.
+song-372,Electric Lights,artist-16,Electronic,291,A high-energy electronic anthem powered by pounding kicks and euphoric synth leads.
+song-373,Rising Rivers,artist-18,Country,168,A reflective country ballad painting vivid scenes of love and loss with poetic simplicity.
+song-374,Wild Flames,artist-8,Pop,406,A polished pop track blending smooth vocals with shimmering production and danceable beats.
+song-375,Jackson,artist-18,Country,185,A heartfelt country song telling a story of life and love over twangy guitar and fiddle.
+song-376,Neon Lights,artist-15,Electronic,209,"A cerebral electronic exploration balancing mechanical precision with organic, emotional undertones."
+song-377,St James Infirmary Blues,artist-12,Jazz,283,A sophisticated jazz piece exploring rich harmonic textures with elegant improvisational flair.
+song-378,Fragments of Time,artist-15,Electronic,385,"A driving electronic piece built on layered synths and a relentless, hypnotic beat."
+song-379,Short Circuit,artist-15,Electronic,286,A dynamic electronic groove evolving through shifting patterns and immersive sonic layers.
+song-380,Eleanor Rigby,artist-7,Pop,393,An upbeat pop anthem radiating positive energy through bright melodies and crisp arrangements.
+song-381,Dark Shadows,artist-16,Electronic,202,An atmospheric electronic journey drifting through ethereal pads and rhythmic precision.
+song-382,Distant Memories,artist-14,Reggae,279,"A steady reggae jam layering rich harmonies over a pulsing, head-nodding rhythm."
+song-383,Midnight Rivers,artist-1,Rock,316,A powerful rock piece weaving dark lyrical themes with blistering guitar solos.
+song-384,Electric Voices,artist-3,Rock,372,A gritty rock tune channeling rebellious energy through distorted chords and pounding rhythms.
+song-385,Fur Elise,artist-19,Classical,295,A vibrant classical piece sparkling with rhythmic vitality and brilliant orchestral color.
+song-386,Broken Lights,artist-15,Electronic,224,"A pulsating electronic track weaving synthetic textures into a mesmerizing, futuristic soundscape."
+song-387,Tutu,artist-12,Jazz,296,A moody jazz track painting atmospheric soundscapes with expressive instrumental interplay.
+song-388,Under Pressure,artist-5,Rock,285,A muscular rock anthem fueled by relentless riffs and commanding vocal delivery.
+song-389,Eternal Dreams,artist-19,Classical,318,A majestic classical piece unfolding with rich orchestral textures and timeless elegance.
+song-390,Bright Rivers,artist-18,Country,163,A tender country piece exploring themes of home and belonging with quiet sincerity.
+song-391,Broken Lights,artist-9,Pop,373,"A vibrant pop song combining playful lyrics with a toe-tapping, radio-ready groove."
+song-392,Pigs,artist-3,Rock,183,A powerful rock piece weaving dark lyrical themes with blistering guitar solos.
+song-393,First Memories,artist-17,Country,286,"A soulful country number weaving tales of the heartland with authentic, earthy instrumentation."
+song-394,One More Time,artist-15,Electronic,370,An atmospheric electronic journey drifting through ethereal pads and rhythmic precision.
+song-395,Midnight Waves,artist-17,Country,258,A reflective country ballad painting vivid scenes of love and loss with poetic simplicity.
+song-396,Dark Shadows,artist-3,Rock,301,A powerful rock piece weaving dark lyrical themes with blistering guitar solos.
+song-397,Desperado,artist-3,Rock,382,A hard-hitting rock number built on thunderous drums and electrifying guitar work.
+song-398,Fading Lights,artist-8,Pop,318,A silky pop number with lush harmonies and an effortlessly memorable chorus.
+song-399,Broken Dreams,artist-12,Jazz,302,A contemplative jazz ballad unfolding with gentle restraint and emotional depth.
+song-400,Wild Horizons,artist-18,Country,378,A lively country track driven by rollicking rhythms and down-home charm.
+song-401,Electric Skies,artist-6,Pop,304,A catchy pop tune with infectious hooks and a feel-good vibe from start to finish.
+song-402,Satisfy My Soul,artist-14,Reggae,285,A grooving reggae track celebrating unity and love over a classic roots foundation.
+song-403,Papa Dont Preach,artist-6,Pop,166,"A dreamy pop piece floating on airy production and wistful, introspective lyrics."
+song-404,Fading Voices,artist-19,Classical,297,A majestic classical piece unfolding with rich orchestral textures and timeless elegance.
+song-405,Golden Stars,artist-7,Pop,331,A breezy pop track carried by warm melodies and sparkling synth textures.
+song-406,Waldstein Sonata,artist-20,Classical,187,A majestic classical piece unfolding with rich orchestral textures and timeless elegance.
+song-407,Killer Queen,artist-1,Rock,385,"A driving rock track with powerful guitar riffs and raw, unfiltered energy."
+song-408,Dark Shadows,artist-14,Reggae,229,A grooving reggae track celebrating unity and love over a classic roots foundation.
+song-409,Rising Memories,artist-5,Rock,199,A powerful rock piece weaving dark lyrical themes with blistering guitar solos.
+song-410,Last Rivers,artist-16,Electronic,204,"A cerebral electronic exploration balancing mechanical precision with organic, emotional undertones."
+song-411,Dark Stars,artist-16,Electronic,379,"A cerebral electronic exploration balancing mechanical precision with organic, emotional undertones."
+song-412,Rising Rivers,artist-4,Rock,221,A hard-hitting rock number built on thunderous drums and electrifying guitar work.
+song-413,Computer Love,artist-16,Electronic,329,"A pulsating electronic track weaving synthetic textures into a mesmerizing, futuristic soundscape."
+song-414,Wild Stars,artist-12,Jazz,364,A haunting jazz meditation drifting through shadowy harmonies and introspective silences.
+song-415,Distant Lights,artist-4,Rock,248,An anthemic rock song blending heavy instrumentation with soaring vocal melodies.
+song-416,Broken Stars,artist-15,Electronic,324,"A shimmering electronic composition blending ambient washes with crisp, mechanical rhythms."
+song-417,Hey You,artist-4,Rock,384,An anthemic rock song blending heavy instrumentation with soaring vocal melodies.
+song-418,Fading Storms,artist-9,Pop,164,A sleek pop groove layering smooth rhythms with captivating melodic twists.
+song-419,Eternal Mountains,artist-10,Pop,173,A polished pop track blending smooth vocals with shimmering production and danceable beats.
+song-420,On the Sunny Side of the Street,artist-11,Jazz,285,A swinging jazz number driven by rhythmic vitality and spontaneous creative energy.
+song-421,Too Long,artist-16,Electronic,169,An atmospheric electronic journey drifting through ethereal pads and rhythmic precision.
+song-422,Ramble On,artist-1,Rock,269,An anthemic rock song blending heavy instrumentation with soaring vocal melodies.
+song-423,Radio Ga Ga,artist-3,Rock,326,A sweeping rock ballad balancing heavy instrumentation with moments of quiet introspection.
+song-424,Appassionata,artist-20,Classical,362,A graceful classical piece flowing with refined beauty and subtle emotional depth.
+song-425,Symphony No 40,artist-20,Classical,262,A grand classical piece commanding attention with bold thematic statements and masterful development.
+song-426,Wild Horizons,artist-2,Rock,373,A sweeping rock ballad balancing heavy instrumentation with moments of quiet introspection.
+song-427,Money,artist-2,Rock,386,"A driving rock track with powerful guitar riffs and raw, unfiltered energy."
+song-428,Broken Dreams,artist-13,Jazz,322,A lively jazz outing bouncing with rhythmic interplay and virtuosic musicianship.
+song-429,Lose Yourself to Dance,artist-15,Electronic,331,"A driving electronic piece built on layered synths and a relentless, hypnotic beat."
+song-430,When the Levee Breaks,artist-2,Rock,298,A muscular rock anthem fueled by relentless riffs and commanding vocal delivery.
+song-431,Dark Flames,artist-11,Jazz,330,A lively jazz outing bouncing with rhythmic interplay and virtuosic musicianship.
+song-432,Hello Dolly,artist-13,Jazz,276,A lively jazz outing bouncing with rhythmic interplay and virtuosic musicianship.
+song-433,Bright Stars,artist-2,Rock,336,An adrenaline-charged rock song driven by pulsating bass and fierce vocal intensity.
+song-434,Get Up Stand Up,artist-14,Reggae,339,A soulful reggae piece combining spiritual themes with an irresistible one-drop beat.
+song-435,Distant Waves,artist-20,Classical,180,A luminous classical composition radiating warmth through gentle strings and expressive phrasing.
+song-436,Symphony No 9,artist-19,Classical,308,A graceful classical piece flowing with refined beauty and subtle emotional depth.
+song-437,Rondo Alla Turca,artist-20,Classical,218,"A contemplative classical work exploring rich harmonic landscapes with patient, unhurried grace."
+song-438,New Kid in Town,artist-2,Rock,286,A gritty rock tune channeling rebellious energy through distorted chords and pounding rhythms.
+song-439,Symphony No 5,artist-20,Classical,197,A luminous classical composition radiating warmth through gentle strings and expressive phrasing.
+song-440,Penny Lane,artist-6,Pop,273,"A soulful pop ballad showcasing emotive vocals over gentle, sweeping instrumentation."
+song-441,Natural Mystic,artist-14,Reggae,229,"An uplifting reggae song blending skanking guitars with soulful, conscious lyrics."
+song-442,Distant Waves,artist-19,Classical,316,A luminous classical composition radiating warmth through gentle strings and expressive phrasing.
+song-443,Lively Up Yourself,artist-14,Reggae,278,"A steady reggae jam layering rich harmonies over a pulsing, head-nodding rhythm."
+song-444,Midnight Lights,artist-4,Rock,363,"A dynamic rock track shifting between brooding verses and explosive, cathartic choruses."
+song-445,Golden Lights,artist-6,Pop,188,A polished pop track blending smooth vocals with shimmering production and danceable beats.
+song-446,Dark Horizons,artist-15,Electronic,186,"A pulsating electronic track weaving synthetic textures into a mesmerizing, futuristic soundscape."
+song-447,Distant Storms,artist-15,Electronic,274,A high-energy electronic anthem powered by pounding kicks and euphoric synth leads.
+song-448,Broken Echoes,artist-11,Jazz,279,A lively jazz outing bouncing with rhythmic interplay and virtuosic musicianship.
+song-449,Emperor Concerto,artist-19,Classical,275,A grand classical piece commanding attention with bold thematic statements and masterful development.
+song-450,Dark Rivers,artist-16,Electronic,273,"A driving electronic piece built on layered synths and a relentless, hypnotic beat."
+song-451,Wild Skies,artist-9,Pop,341,A polished pop track blending smooth vocals with shimmering production and danceable beats.
+song-452,Silent Horizons,artist-8,Pop,194,"A dreamy pop piece floating on airy production and wistful, introspective lyrics."
+song-453,Golden Voices,artist-10,Pop,164,A silky pop number with lush harmonies and an effortlessly memorable chorus.
+song-454,Piano Concerto No 21,artist-19,Classical,415,A pastoral classical work painting serene landscapes with flowing melodies and soft orchestration.
+song-455,Wild Rivers,artist-11,Jazz,388,A contemplative jazz ballad unfolding with gentle restraint and emotional depth.
+song-456,Bright Flames,artist-13,Jazz,380,A moody jazz track painting atmospheric soundscapes with expressive instrumental interplay.
+song-457,First Roads,artist-18,Country,230,"A breezy country song carried by bright acoustic picking and a relaxed, conversational delivery."
+song-458,SOS,artist-7,Pop,182,A polished pop track blending smooth vocals with shimmering production and danceable beats.
+song-459,Time,artist-4,Rock,288,A gritty rock tune channeling rebellious energy through distorted chords and pounding rhythms.
+song-460,Dark Rivers,artist-9,Pop,406,A breezy pop track carried by warm melodies and sparkling synth textures.
+song-461,Silent Skies,artist-14,Reggae,224,A rhythmic reggae anthem radiating peace and positivity through offbeat guitar chops.
+song-462,Electric Flames,artist-14,Reggae,242,"An uplifting reggae song blending skanking guitars with soulful, conscious lyrics."
+song-463,Twist and Shout,artist-10,Pop,190,An energetic pop hit bursting with rhythmic vitality and singalong appeal.
+song-464,Midnight Horizons,artist-7,Pop,301,"A dreamy pop piece floating on airy production and wistful, introspective lyrics."
+song-465,Gimme Gimme Gimme,artist-10,Pop,381,"A vibrant pop song combining playful lyrics with a toe-tapping, radio-ready groove."
+song-466,Express Yourself,artist-10,Pop,392,A sleek pop groove layering smooth rhythms with captivating melodic twists.
+song-467,Giant Steps,artist-13,Jazz,310,A haunting jazz meditation drifting through shadowy harmonies and introspective silences.
+song-468,Something,artist-9,Pop,159,A catchy pop tune with infectious hooks and a feel-good vibe from start to finish.
+song-469,Glory Days,artist-3,Rock,262,An adrenaline-charged rock song driven by pulsating bass and fierce vocal intensity.
+song-470,Round Midnight,artist-11,Jazz,358,A contemplative jazz ballad unfolding with gentle restraint and emotional depth.
+song-471,Norwegian Wood,artist-6,Pop,335,A polished pop track blending smooth vocals with shimmering production and danceable beats.
+song-472,Distant Flames,artist-4,Rock,382,A hard-hitting rock number built on thunderous drums and electrifying guitar work.
+song-473,Wild Echoes,artist-18,Country,265,"A soulful country number weaving tales of the heartland with authentic, earthy instrumentation."
+song-474,Last Mountains,artist-12,Jazz,205,A smooth jazz composition gliding through mellow grooves and nuanced melodic phrasing.
+song-475,Electric Horizons,artist-14,Reggae,172,"A roots reggae track carrying a message of hope over a deep, rolling riddim."
+song-476,Instant Crush,artist-15,Electronic,277,"A cerebral electronic exploration balancing mechanical precision with organic, emotional undertones."
+song-477,Get Lucky,artist-15,Electronic,333,"A shimmering electronic composition blending ambient washes with crisp, mechanical rhythms."
+song-478,Last Roads,artist-7,Pop,346,"A vibrant pop song combining playful lyrics with a toe-tapping, radio-ready groove."
+song-479,Wild Echoes,artist-12,Jazz,216,A contemplative jazz ballad unfolding with gentle restraint and emotional depth.
+song-480,Hung Up,artist-8,Pop,398,A sleek pop groove layering smooth rhythms with captivating melodic twists.
+song-481,Rising Mountains,artist-19,Classical,399,A graceful classical piece flowing with refined beauty and subtle emotional depth.
+song-482,Bright Dreams,artist-8,Pop,252,A breezy pop track carried by warm melodies and sparkling synth textures.
+song-483,Simple Man,artist-4,Rock,345,"A heartfelt rock ballad of motherly wisdom about living a simple, honest life."
+song-484,Fading Voices,artist-4,Rock,256,A gritty rock tune channeling rebellious energy through distorted chords and pounding rhythms.
+song-485,Last Stars,artist-5,Rock,163,An intense rock composition merging melodic hooks with explosive instrumental passages.
+song-486,Shine On You Crazy Diamond,artist-5,Rock,262,An adrenaline-charged rock song driven by pulsating bass and fierce vocal intensity.
+song-487,Waterloo,artist-8,Pop,354,An energetic pop hit bursting with rhythmic vitality and singalong appeal.
+song-488,Last Stars,artist-4,Rock,271,An intense rock composition merging melodic hooks with explosive instrumental passages.
+song-489,Zimbabwe,artist-14,Reggae,232,A laid-back reggae groove pulsing with warm bass lines and sun-soaked rhythms.
+song-490,So What,artist-11,Jazz,366,A smooth jazz composition gliding through mellow grooves and nuanced melodic phrasing.
+song-491,Around the World,artist-15,Electronic,226,An atmospheric electronic journey drifting through ethereal pads and rhythmic precision.
+song-492,Last Skies,artist-18,Country,344,"A soulful country number weaving tales of the heartland with authentic, earthy instrumentation."
+song-493,Waiting in Vain,artist-14,Reggae,303,A laid-back reggae groove pulsing with warm bass lines and sun-soaked rhythms.
+song-494,Lost Shadows,artist-9,Pop,176,A catchy pop tune with infectious hooks and a feel-good vibe from start to finish.
+song-495,Pocket Calculator,artist-16,Electronic,310,A luminous electronic piece radiating digital warmth through cascading arpeggios and steady beats.
+song-496,Brain Damage,artist-3,Rock,178,A hard-hitting rock number built on thunderous drums and electrifying guitar work.
+song-497,Last Echoes,artist-16,Electronic,159,"A sleek electronic track fusing minimalist melodies with deep, throbbing bass pulses."
+song-498,I Walk the Line,artist-17,Country,280,A nostalgic country ballad reflecting on simpler times with gentle steel guitar and honest vocals.
+song-499,Eternal Flames,artist-12,Jazz,367,A spirited jazz composition celebrating the art of improvisation with infectious swing.
+song-500,Moonlight Sonata,artist-20,Classical,236,A pastoral classical work painting serene landscapes with flowing melodies and soft orchestration.

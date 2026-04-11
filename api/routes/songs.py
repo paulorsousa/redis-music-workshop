@@ -33,4 +33,8 @@ def play_song(song_id: str):
 @router.get("/songs/{song_id}/similar")
 def similar_songs(song_id: str, count: int = Query(5, ge=1, le=50)):
     """Similar songs (Module 6)."""
-    return songs_service.find_similar_songs(song_id, count)
+
+    return {
+        "song_id": song_id,
+        "similar": songs_service.find_similar_songs(song_id, count),
+    }
