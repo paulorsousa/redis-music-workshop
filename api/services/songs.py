@@ -12,16 +12,8 @@ from services._helpers import parse_vsim_results, enrich_with_metadata
 
 
 def play_song(song_id: str) -> int | None:
-    """Increment play count and return the new count.
-
-    Returns None if the song does not exist.
-
-    NOTE: Intentionally broken with race condition (Module 2 fixes it with INCR).
-    NOTE: After Module 2, the leaderboard breaks (Module 3 fixes it with ZINCRBY).
-
-    TODO: Module 3 — replace INCR with ZINCRBY top-songs 1 {song_id} (i.e., sorted set replaces the counter)
-    """
-    new_count = r.incr(f"play-count:song:{song_id}")
+    """Increment play count and return the new count."""
+    new_count = r.zincrby("top-songs", 1, song_id)  # O(log N)
     return new_count
 
 
@@ -92,8 +84,7 @@ def get_song(song_id: str) -> dict | None:
     result = dict(zip(cols, row))
 
     # Get play count from Redis, fallback to PostgreSQL if missing
-    # TODO: Module 3 — replace with r.zscore("top-songs", song_id)
-    redis_count = r.get(f"play-count:song:{song_id}")
+    redis_count = r.zscore("top-songs", song_id)
     if redis_count:
         result["play_count"] = int(redis_count)
 

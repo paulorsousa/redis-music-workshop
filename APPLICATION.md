@@ -200,6 +200,7 @@ redis-music-workshop/
 │   │   ├── leaderboard.py      # /leaderboard
 │   │   └── admin.py            # /admin/load-embeddings
 │   └── services/               # Business logic (what students edit during the workshop)
+│       ├── _helpers.py         # Shared helpers (metadata queries, Redis decoders, VSIM parsing)
 │       ├── songs.py            # Modules 2, 3, 6 — play counts, sorted sets, vectors
 │       ├── artists.py          # Modules 4, 5 — listener tracking (sets, HLL)
 │       ├── daily_mix.py        # Module 1 — caching & TTL
