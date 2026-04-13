@@ -314,8 +314,8 @@ Module 4 improved speed, but **not memory** usage. Each user ID is stored in ful
 Our top-5 artists count with ~100 M monthly listeners (36-char UUIDs each):
 
 ```
-100 000 000 × 36 bytes ≈ 3.4 GiB per artist
-5 artists ≈ 17 GiB — just for 5 artists
+100 000 000 × 36 bytes = 3.6 GB per artist
+5 artists = 18 GB — just for 5 artists
 ```
 
 ### Goal
