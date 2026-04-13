@@ -63,6 +63,9 @@ The `--user` flag accepts a **username** (e.g. `user-1`) and derives the 36-char
 ./workshop <command> [options]
 ```
 
+> [!NOTE]
+> **Windows:** use `python workshop <command> [options]` instead.
+
 ### Commands
 
 | Command                                                            | Module | What it does                                                                                |
